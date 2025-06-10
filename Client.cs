@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace SAE_201_LOXAM
 {
@@ -9,11 +10,25 @@ namespace SAE_201_LOXAM
         CACES_R482 = 3,
     }
 
-    public class Client
+    public class Client:ICrud<Client>,INotifyPropertyChanged
     {
         private int numClient;
         private string nomClient;
         private string prenomClient;
+        private List<Certification> certifications;
+
+        public Client()
+        {
+        }
+
+        public Client(int numClient, string nomClient, string prenomClient, List<Certification> certifications)
+        {
+            this.NumClient = numClient;
+            this.NomClient = nomClient;
+            this.PrenomClient = prenomClient;
+            this.Certifications = certifications;
+         
+        }
 
         public int NumClient
         {
@@ -41,6 +56,51 @@ namespace SAE_201_LOXAM
                     throw new ArgumentException("Le prénom du client ne peut pas dépasser 30 caractères.");
                 this.prenomClient = value;
             }
+        }
+
+        public List<Certification> Certifications
+        {
+            get
+            {
+                return this.certifications;
+            }
+
+            set
+            {
+                this.certifications = value;
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public int Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Client> FindAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Client> FindBySelection(string criteres)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

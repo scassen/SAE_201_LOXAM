@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace SAE_201_LOXAM
 {
     public enum Role {Employe,ResponsableAtelier }
-    internal class Employe
+    internal class Employe:ICrud<Employe>,INotifyPropertyChanged
     {
         private int numEmploye;
         private string nomEmploye;
@@ -15,6 +16,10 @@ namespace SAE_201_LOXAM
         private string login;
         private string mdp;
         private Role roleEmploye;
+
+        public Employe()
+        {
+        }
 
         public int NumEmploye
         {
@@ -106,6 +111,38 @@ namespace SAE_201_LOXAM
             {
                 this.roleEmploye = value;
             }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public int Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Employe> FindAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Employe> FindBySelection(string criteres)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }
