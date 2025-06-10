@@ -1,50 +1,42 @@
-﻿<Window
+﻿<UserControl
     x:Class="SAE_201_LOXAM.Reserver"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SAE_201_LOXAM"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Reserver"
-    Width="800"
-    Height="450"
-    Icon="/IMG/256x256bb.jpg"
-    ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen"
+    Height="371"
+    d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid>
-        <Rectangle
-            Width="800"
-            Height="52"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Fill="#FFFF3636" />
+    <Grid Background="White">
 
         <TextBox
             x:Name="Filtre"
             Width="191"
-            Margin="29,85,0,330"
+            Margin="29,54,0,297"
             HorizontalAlignment="Left"
+            Background="Snow"
             BorderBrush="Black"
+            CaretBrush="White"
             TextWrapping="Wrap" />
         <Label
             x:Name="filtre_label"
-            Margin="32,104,0,0"
+            Margin="29,83,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Rechercher par filtre :" />
         <RadioButton
-            Margin="29,130,0,0"
+            Margin="33,114,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="RadioButton" />
         <RadioButton
-            Margin="124,130,0,0"
+            Margin="128,114,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="RadioButton" />
         <RadioButton
-            Margin="225,130,0,0"
+            Margin="229,114,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="RadioButton" />
@@ -57,28 +49,19 @@
             Margin="0,176,0,0"
             HorizontalAlignment="Center"
             Stroke="Black" />
-        <DataGrid Margin="-1,176,1,0" d:ItemsSource="{d:SampleData ItemCount=5}" />
+        <DataGrid Margin="-1,150,1,0" d:ItemsSource="{d:SampleData ItemCount=5}" />
 
         <Label
             x:Name="Filtrer_label"
-            Margin="32,63,0,0"
+            Margin="41,20,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Rechercher par nom : " />
-        <Label
-            x:Name="Reserver_label"
-            Margin="585,-3,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="RESERVER"
-            FontSize="36"
-            FontWeight="Bold"
-            Foreground="White" />
         <Button
             x:Name="Enregistrer"
             Width="186"
             Height="35"
-            Margin="557,77,0,0"
+            Margin="558,24,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="Red"
@@ -88,9 +71,9 @@
             Foreground="White" />
         <Button
             x:Name="Client"
-            Width="131"
+            Width="130"
             Height="35"
-            Margin="585,123,0,0"
+            Margin="586,74,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="Red"
@@ -100,29 +83,21 @@
             Foreground="White" />
         <Label
             x:Name="Nom_client_label"
-            Margin="259,59,0,0"
+            Margin="263,20,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Client existant : " />
         <TextBox
             x:Name="Client_box"
             Width="146"
-            Margin="259,85,0,0"
+            Margin="263,54,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextWrapping="Wrap" />
         <RadioButton
-            Margin="320,130,0,0"
+            Margin="336,114,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="RadioButton" />
-        <Image
-            Width="245"
-            Height="63"
-            Margin="0,-3,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Source="/IMG/f567c238ffb4f0ab7644d64aec5e1ce6863c2271.png"
-            Stretch="Fill" />
     </Grid>
-</Window>
+</UserControl>

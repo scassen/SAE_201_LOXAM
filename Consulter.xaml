@@ -1,33 +1,15 @@
-﻿<Window
+﻿<UserControl
     x:Class="SAE_201_LOXAM.Consulter"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SAE_201_LOXAM"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Consulter"
     Width="800"
-    Height="450"
-    Icon="/IMG/256x256bb.jpg"
-    ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen"
+    Height="385"
     mc:Ignorable="d">
     <Grid>
-        <Rectangle
-            Width="800"
-            Height="52"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Fill="#FFFF3636" />
-        <Image
-            Width="245"
-            Height="63"
-            Margin="0,-3,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Source="/IMG/f567c238ffb4f0ab7644d64aec5e1ce6863c2271.png"
-            Stretch="Fill" />
-        <Grid Margin="0,57,0,0">
+        <Grid>
             <TabControl>
                 <TabItem Header="Consulter">
                     <Grid Background="#FFE5E5E5">
@@ -95,15 +77,6 @@
                 </TabItem>
             </TabControl>
         </Grid>
-        <Label
-            x:Name="consulter_label"
-            Margin="576,-3,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="CONSULTER"
-            FontSize="36"
-            FontWeight="Bold"
-            Foreground="White" />
-
+        <Rectangle Margin="0,-12,0,0" Stroke="Black" />
     </Grid>
-</Window>
+</UserControl>

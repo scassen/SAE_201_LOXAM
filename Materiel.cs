@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SAE_201_LOXAM
 {
-    public enum Etat {EnReparation,EnRevision,conforme  }
+    public enum Etat { }
     internal class Materiel
     {
         private int numMateriel;

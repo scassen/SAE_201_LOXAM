@@ -21,10 +21,55 @@ namespace SAE_201_LOXAM
             InitializeComponent();
         }
 
+        private void CacheMainWindow()
+        {
+            var elements = TrouverElementsParTag(this, "MainTag");
+            foreach (var element in elements)
+            {
+                Console.WriteLine(element.Name);
+            }
+
+            foreach (var element in elements)
+            {
+                element.Visibility = Visibility.Hidden;
+            }
+        }
+        private void MontreMainWindow()
+        {
+            var elements = TrouverElementsParTag(this, "MainTag");
+            foreach (var element in elements)
+            {
+                Console.WriteLine(element.Name);
+            }
+
+            foreach (var element in elements)
+            {
+                element.Visibility = Visibility.Visible;
+            }
+        }
+        private List<FrameworkElement> TrouverElementsParTag(DependencyObject parent, object tag)
+        {
+            var elements = new List<FrameworkElement>();
+
+            int count = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < count; i++)
+            {
+                var element = VisualTreeHelper.GetChild(parent, i);
+
+                if (element is FrameworkElement fe && Equals(fe.Tag, tag))
+                {
+                    elements.Add(fe);
+                }
+                elements.AddRange(TrouverElementsParTag(element, tag));
+            }
+            return elements;
+        }
+
         private void Reserver_Click(object sender, RoutedEventArgs e)
         {
-            var ReserverFenetre = new Reserver();
-            ReserverFenetre.Show();
+            CacheMainWindow();
+            MainContent.Content = new Reserver();
+            
         }
 
         private void Vérifier_Click(object sender, RoutedEventArgs e)
@@ -35,14 +80,22 @@ namespace SAE_201_LOXAM
 
         private void Consulter_Click(object sender, RoutedEventArgs e)
         {
-            var ConsulterFenetre = new Consulter();
-            ConsulterFenetre.Show();
+            CacheMainWindow();
+            MainContent.Content = new Consulter();
+
+            
         }
 
         private void Se_connecter_Click(object sender, RoutedEventArgs e)
         {
             var ConnexionFenetre = new Connexion();
             ConnexionFenetre.Show();
+        }
+
+        private void Acceuil_button_Click(object sender, RoutedEventArgs e)
+        {
+            MontreMainWindow();
+            MainContent.Content = null;
         }
     }
 }
