@@ -20,27 +20,6 @@
             CaretBrush="White"
             TextWrapping="Wrap" />
         <Label
-            x:Name="filtre_label"
-            Margin="29,83,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Rechercher par filtre :" />
-        <RadioButton
-            Margin="33,114,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="RadioButton" />
-        <RadioButton
-            Margin="128,114,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="RadioButton" />
-        <RadioButton
-            Margin="229,114,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="RadioButton" />
-        <Label
             x:Name="Location"
             Margin="10,150,0,250"
             Content="Location" />
@@ -49,7 +28,7 @@
             Margin="0,176,0,0"
             HorizontalAlignment="Center"
             Stroke="Black" />
-        <DataGrid Margin="-1,150,1,0" d:ItemsSource="{d:SampleData ItemCount=5}" />
+        <DataGrid Margin="-1,124,1,0" d:ItemsSource="{d:SampleData ItemCount=5}" />
 
         <Label
             x:Name="Filtrer_label"
@@ -94,10 +73,5 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextWrapping="Wrap" />
-        <RadioButton
-            Margin="336,114,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="RadioButton" />
     </Grid>
 </UserControl>

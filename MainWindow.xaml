@@ -16,9 +16,25 @@
     Icon="/IMG/256x256bb.jpg"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d" Activated="Acceuil_Activated">
+    mc:Ignorable="d">
     <Grid>
-        <ContentControl x:Name="MainContent" Margin="0,52,0,0" />
+        <ContentControl x:Name="MainContent" Margin="0,52,0,0">
+            <Label
+                x:Name="Bienvenue_label"
+                Width="819"
+                Height="297"
+                Margin="-19,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                BorderBrush="Black"
+                Content="Bienvenue chez loxam"
+                FontFamily="Bahnschrift SemiBold"
+                FontSize="72"
+                RenderTransformOrigin="0.496,0.531"
+                Tag="MainTag" />
+        </ContentControl>
 
 
         <Grid
@@ -137,19 +153,6 @@
             VerticalAlignment="Top"
             Source="/IMG/f567c238ffb4f0ab7644d64aec5e1ce6863c2271.png"
             Stretch="Fill" />
-        <Label
-            x:Name="Bienvenue_label"
-            Width="819"
-            Height="297"
-            Margin="-19,73,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            FontFamily="Bahnschrift SemiBold"
-            FontSize="72"
-            RenderTransformOrigin="0.496,0.531"
-            Tag="MainTag" BorderBrush="Black" Content="Bienvenue chez loxam" />
         <Button
             x:Name="Acceuil_button"
             Width="108"
@@ -159,9 +162,10 @@
             VerticalAlignment="Top"
             Background="#FFFFFBFB"
             BorderBrush="{x:Null}"
+            Click="Acceuil_button_Click"
             Content="Accueil"
             Foreground="#FFFD0000"
-            RenderTransformOrigin="0.5,0.5" Click="Acceuil_button_Click">
+            RenderTransformOrigin="0.5,0.5">
 
             <Button.RenderTransform>
                 <TransformGroup>

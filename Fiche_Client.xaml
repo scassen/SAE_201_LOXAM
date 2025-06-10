@@ -1,0 +1,82 @@
+﻿<UserControl
+    x:Class="SAE_201_LOXAM.Fiche_Client"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SAE_201_LOXAM"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid Background="White">
+        <Label
+            x:Name="Créer_label"
+            Margin="0,86,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="CREER FICHE CLIENT"
+            FontSize="24" />
+        <Rectangle
+            Width="800"
+            Height="52"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Fill="#FFFF3636" />
+        <Label
+            x:Name="Creer"
+            Margin="547,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="FICHE CLIENT"
+            FontSize="36"
+            FontWeight="Bold"
+            Foreground="White" />
+        <Image
+            Width="245"
+            Height="63"
+            Margin="0,-3,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Source="/IMG/f567c238ffb4f0ab7644d64aec5e1ce6863c2271.png"
+            Stretch="Fill" />
+        <Label
+            x:Name="Nom_label"
+            Width="139"
+            Height="38"
+            Margin="165,186,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Nom client : "
+            FontSize="22" />
+        <Label
+            x:Name="prenom_label"
+            Margin="501,185,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Prénom client :"
+            FontSize="22" />
+        <TextBox
+            x:Name="nom_client_box"
+            Width="180"
+            Margin="144,229,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#FFFBF8F8"
+            FontSize="20"
+            TextWrapping="Wrap" />
+        <TextBox
+            x:Name="prenom_client_box"
+            Width="180"
+            Margin="488,225,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#FFFBF8F8"
+            FontSize="20"
+            TextWrapping="Wrap" />
+        <Label x:Name="Certification_label" Content="Certification : " HorizontalAlignment="Center" Height="37" Margin="0,310,0,0" VerticalAlignment="Top" Width="148" FontSize="22"/>
+        <CheckBox x:Name="interne_check" Content="Interne" HorizontalAlignment="Left" Margin="286,363,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="CACES_R486_check" Content="CACES_R486" HorizontalAlignment="Center" Margin="0,363,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.261,-0.883"/>
+        <CheckBox x:Name="CACES_R482_check" Content="CACES_R482" HorizontalAlignment="Left" Margin="457,363,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</UserControl>
