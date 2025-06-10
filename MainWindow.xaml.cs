@@ -24,7 +24,7 @@ namespace SAE_201_LOXAM
 
           
             InitializeComponent();
-           
+            ChargeData();
            
         }
         public void ChargeData()
@@ -36,8 +36,8 @@ namespace SAE_201_LOXAM
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Problème lors de récupération des données, veuillez consulter votre admin");
-
+                // Log the actual exception details for debugging
+                MessageBox.Show($"Problème lors de la récupération des données: {ex.Message}\nStack Trace: {ex.StackTrace}");
                 Application.Current.Shutdown();
             }
         }
