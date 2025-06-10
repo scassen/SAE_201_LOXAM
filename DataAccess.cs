@@ -1,19 +1,20 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
+using Microsoft.Extensions.Logging;
+using Npgsql;
+
 
 namespace SAE_201_LOXAM
 {
-    internal class DataAccess
-    {
+
         public class DataAccess
         {
             private static readonly DataAccess instance = new DataAccess();
             private readonly string connectionString = "Host=srv-peda-new;Port=5433;Username=cassens;Password=V0q8SA;Database=cassens_pension;Options='-c search_path=cassens'";
             private NpgsqlConnection connection;
+        
 
             public static DataAccess Instance
             {
@@ -146,5 +147,5 @@ namespace SAE_201_LOXAM
                 }
             }
         }
-    }
+    
 }
