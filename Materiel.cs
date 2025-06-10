@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +10,7 @@ using System.Threading.Tasks;
 namespace SAE_201_LOXAM
 {
     public enum Etat { }
-    internal class Materiel
+    internal class Materiel:ICrud<Materiel>,INotifyPropertyChanged
     {
         private int numMateriel;
         private string reference;
@@ -17,6 +20,8 @@ namespace SAE_201_LOXAM
         private Etat etatMateriel;
         private Type typeMateriel;
         private List<Certification> certificationsnecessaires;
+
+
 
         public Materiel(int numMateriel, string reference, string nomMateriel, string descriptif, decimal prixJournee, Etat etatMateriel, List<Certification> certificationsnecessaires, Type typeMateriel)
         {
@@ -28,6 +33,9 @@ namespace SAE_201_LOXAM
             this.EtatMateriel = etatMateriel;
             this.Certificationsnecessaires = certificationsnecessaires;
             this.TypeMateriel = typeMateriel;
+        }
+        public Materiel()
+        {
         }
 
         public int NumMateriel
@@ -144,6 +152,46 @@ namespace SAE_201_LOXAM
             {
                 this.typeMateriel = value;
             }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public int Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Materiel> FindAll()
+        {
+            List<Materiel> lesMateriaux = new List<Materiel>();
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from Materiels ;"))
+            {
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                foreach (DataRow dr in dt.Rows)
+                    lesMateriaux.Add(new Materiel());
+
+            }
+            return lesMateriaux;
+        }
+
+        public List<Materiel> FindBySelection(string criteres)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

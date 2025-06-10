@@ -1,25 +1,32 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SAE_201_LOXAM
 {
-    internal class Reservation
+    internal class Reservation:ICrud<Reservation>, INotifyPropertyChanged
     {
         private int numReservation;
-        private DateOnly dateReservation;
-        private DateOnly dateDebutLocation;
-        private DateOnly dateRetourEffectiveLocation;
-        private DateOnly dateRetourReelleLocation;
+        private DateTime dateReservation;
+        private DateTime dateDebutLocation;
+        private DateTime dateRetourEffectiveLocation;
+        private DateTime dateRetourReelleLocation;
         private decimal prixTotal;
         private Employe employe;
         private Client client;
         private Materiel materiel;
 
-        public Reservation(int numReservation, DateOnly dateReservation, DateOnly dateDebutLocation, 
-            DateOnly dateRetourEffectiveLocation, DateOnly dateRetourReelleLocation, 
+        public Reservation()
+        {
+        }
+
+        public Reservation(int numReservation, DateTime dateReservation, DateTime dateDebutLocation, 
+            DateTime dateRetourEffectiveLocation, DateTime dateRetourReelleLocation, 
             decimal prixTotal, Employe employe, Client client, Materiel materiel)
         {
             this.NumReservation = numReservation;
@@ -46,7 +53,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        public DateOnly DateReservation
+        public DateTime DateReservation
         {
             get
             {
@@ -59,7 +66,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        public DateOnly DateDebutLocation
+        public DateTime DateDebutLocation
         {
             get
             {
@@ -75,7 +82,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        public DateOnly DateRetourEffectiveLocation
+        public DateTime DateRetourEffectiveLocation
         {
             get
             {
@@ -91,7 +98,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        public DateOnly DateRetourReelleLocation
+        public DateTime DateRetourReelleLocation
         {
             get
             {
@@ -156,6 +163,54 @@ namespace SAE_201_LOXAM
             {
                 this.materiel = value;
             }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public int Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Reservation> FindAll(Agence agence)
+        {
+            List<Reservation> lesReservations = new List<Reservation>();
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from reservations ;"))
+            {
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                foreach (DataRow dr in dt.Rows)
+                    lesReservations.Add(new Reservation((int)dr["numreservation"], (DateTime)dr["datereservation"], (DateTime)dr["datedebutlocation"], (DateTime)dr["dateretoureffectivelocation"],
+                        (DateTime)dr["dateretourreellelocation"], (Decimal)dr["prixtotal"], agence.Employes.SingleOrDefault(ID => ID.NumEmploye == (int)dr["numemploye"]),
+                        agence.Clients.SingleOrDefault(ID => ID.NumClient == (int)dr["numclient"]),
+                        agence.Materiels.SingleOrDefault(ID => ID.NumMateriel == (int)dr["nummateriel"])));
+                        
+            }
+            return lesReservations;
+        }
+
+        public List<Reservation> FindAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Reservation> FindBySelection(string criteres)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

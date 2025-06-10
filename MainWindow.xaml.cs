@@ -16,7 +16,7 @@ namespace SAE_201_LOXAM
     /// </summary>
     public partial class MainWindow : Window
     {
-        int comppte = 0;
+        bool open = true;
         public MainWindow()
         {
             InitializeComponent();
@@ -76,8 +76,8 @@ namespace SAE_201_LOXAM
 
         private void Vérifier_Click(object sender, RoutedEventArgs e)
         {
-            var VerifierFenetre = new Verifier();
-            VerifierFenetre.Show();
+            CacheMainWindow();
+            MainContent.Content = new Verifier();
         }
 
         private void Consulter_Click(object sender, RoutedEventArgs e)
@@ -99,18 +99,9 @@ namespace SAE_201_LOXAM
             MontreMainWindow();
             MainContent.Content = null;
         }
+  
 
-        private void Acceuil_Activated(object sender, EventArgs e)
-        {
-            
-            if(comppte == 0)
-            {
-                var ConnexionFenetre = new Connexion();
-                ConnexionFenetre.Show();
 
-            }
-            
-            comppte += 1;
-        }
+      
     }
 }

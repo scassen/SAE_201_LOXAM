@@ -39,7 +39,34 @@
                             VerticalAlignment="Top"
                             Background="Red"
                             Content="Remettre en location" />
-                        <DataGrid Margin="0,77,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" />
+                        <Rectangle Margin="-29,-24,29,12" Stroke="Black" />
+                        <Label
+    x:Name="filtre_label"
+    Margin="0,71,0,0"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
+    Content="Rechercher par filtre :" />
+                        <RadioButton
+    Margin="4,102,0,0"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
+    Content="RadioButton" />
+                        <RadioButton
+    Margin="99,102,0,0"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
+    Content="RadioButton" />
+                        <RadioButton
+    Margin="200,102,0,0"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
+    Content="RadioButton" />
+                        <RadioButton
+    Margin="307,102,0,0"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
+    Content="RadioButton" />
+                        <DataGrid Margin="0,122,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" />
                         <Label
                             x:Name="materiel_label"
                             Margin="0,48,0,0"
@@ -77,6 +104,6 @@
                 </TabItem>
             </TabControl>
         </Grid>
-        <Rectangle Margin="0,-12,0,0" Stroke="Black" />
+
     </Grid>
 </UserControl>
