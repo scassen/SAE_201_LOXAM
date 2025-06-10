@@ -50,5 +50,7 @@ namespace SAE_201_LOXAM
                 MessageBox.Show("Erreur de connexion : " + ex.Message);
             }
         }
+        
+
     }
 }

@@ -1,32 +1,23 @@
-﻿<Window
+﻿<UserControl
     x:Class="SAE_201_LOXAM.Verifier"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SAE_201_LOXAM"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Verifier"
-    Width="800"
-    Height="450"
-    Icon="/IMG/256x256bb.jpg"
-    ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen"
+    Height="422"
+    d:DesignWidth="800"
+    Background="White"
     mc:Ignorable="d">
 
     <Grid>
         <!--  Bande rouge en haut  -->
-        <Rectangle
-            Width="800"
-            Height="52"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Fill="#FFFF3636" />
 
 
 
         <!--  Conteneur principal sous la bande rouge  -->
         <Grid Margin="0,55,0,0">
-            <TabControl>
+            <TabControl Margin="0,-55,0,55">
                 <!--  Onglet Location  -->
                 <TabItem FlowDirection="RightToLeft" Header="Location">
                     <TabItem.Background>
@@ -40,7 +31,7 @@
                         Height="350"
                         Background="#FFE5E5E5"
                         FlowDirection="LeftToRight">
-                        <DataGrid Margin="0,45,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" />
+                        <DataGrid Margin="0,44,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" Height="352" VerticalAlignment="Top" />
                         <Label
                             x:Name="Client_location_label"
                             Width="140"
@@ -62,8 +53,8 @@
 
                 <!--  Onglet Reservation  -->
                 <TabItem Header="Reservation">
-                    <Grid Height="350" Background="#FFE5E5E5">
-                        <DataGrid Margin="0,45,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" />
+                    <Grid Height="395" Background="#FFE5E5E5">
+                        <DataGrid Margin="0,45,0,-48" d:ItemsSource="{d:SampleData ItemCount=5}" />
                         <Label
                             x:Name="Client_reservation_label"
                             Margin="207,0,0,0"
@@ -83,22 +74,5 @@
         </Grid>
 
         <!--  Label VERIFIER en haut à droite  -->
-        <Label
-            x:Name="Verifier_label"
-            Margin="585,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="VERIFIER"
-            FontSize="36"
-            FontWeight="Bold"
-            Foreground="White" />
-        <Image
-            Width="245"
-            Height="63"
-            Margin="0,-3,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Source="/IMG/f567c238ffb4f0ab7644d64aec5e1ce6863c2271.png"
-            Stretch="Fill" />
     </Grid>
-</Window>
+</UserControl>
