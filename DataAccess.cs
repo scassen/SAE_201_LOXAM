@@ -160,6 +160,18 @@ namespace SAE_201_LOXAM
                     connection.Close();
                 }
             }
+        public void EnsureConnection()
+        {
+            if (connection == null)
+                throw new InvalidOperationException("Connexion non initialisée.");
+
+            if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
+            {
+                connection = new NpgsqlConnection(connectionString);
+                connection.Open();
+            }
         }
-    
+
+    }
+
 }

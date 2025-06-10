@@ -29,28 +29,26 @@ namespace SAE_201_LOXAM
             string username = identifier_box.Text;
             string password = mdp_box.Text;
 
-            // Construire la chaîne de connexion dynamiquement
             string connString = $"Host=srv-peda-new;Port=5433;Username={username};Password={password};Database=201;Options='-c search_path=MAIN'";
-            
+
             try
             {
-                // Initialiser la connexion avec la chaîne fournie
+                // Initialise la connexion (singleton)
                 DataAccess.Init(connString);
 
-                // Tester la connexion
-                using (var conn = DataAccess.Instance.GetConnection())
-                {
-                    MessageBox.Show("Connexion réussie !");
-                }
+                // Test sans using
+                var conn = DataAccess.Instance.GetConnection();
+                MessageBox.Show("Connexion réussie !");
 
-                // Ensuite, afficher la fenêtre principale par exemple :
-                // new MainWindow().Show();
-                // this.Close();
+                // Lancer MainWindow ou autre
+                new MainWindow().Show();
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur de connexion : " + ex.Message);
             }
+            this.Close();
         }
     }
 }
