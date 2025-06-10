@@ -61,14 +61,14 @@
             VerticalAlignment="Top"
             FontSize="10"
             TextWrapping="Wrap" />
-        <Button
+        <Button x:Name="Button_Valider"
             Width="122"
             Margin="0,329,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="Red"
             Content="Valider"
-            FontSize="24" />
+            FontSize="24" Click="Button_Valider_Click" />
 
     </Grid>
 </Window>
