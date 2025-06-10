@@ -26,16 +26,31 @@ namespace SAE_201_LOXAM
                     return;
                 }
 
+                List<Certification> certifications = new();
+                if (interne_check.IsChecked == true) certifications.Add(Certification.Interne);
+                if (CACES_R486_check.IsChecked == true) certifications.Add(Certification.CACES_R486);
+                if (CACES_R482_check.IsChecked == true) certifications.Add(Certification.CACES_R482);
+
                 int nextNumClient = GetNextNumClient();
 
-                var cmd = new NpgsqlCommand(
+                // Insertion du client
+                var insertClientCmd = new NpgsqlCommand(
                     "INSERT INTO \"MAIN\".client(numclient, nomclient, prenomclient) VALUES (@num, @nom, @prenom)");
+                insertClientCmd.Parameters.AddWithValue("@num", nextNumClient);
+                insertClientCmd.Parameters.AddWithValue("@nom", nom);
+                insertClientCmd.Parameters.AddWithValue("@prenom", prenom);
 
-                cmd.Parameters.AddWithValue("@num", nextNumClient);
-                cmd.Parameters.AddWithValue("@nom", nom);
-                cmd.Parameters.AddWithValue("@prenom", prenom);
+                int rowsAffected = DataAccess.Instance.ExecuteSet(insertClientCmd);
 
-                int rowsAffected = DataAccess.Instance.ExecuteSet(cmd);
+                // Insertion des certifications dans "dispose"
+                foreach (var certif in certifications)
+                {
+                    var insertCertifCmd = new NpgsqlCommand(
+                        "INSERT INTO \"MAIN\".dispose(numclient, numcertification) VALUES (@numclient, @numcertif)");
+                    insertCertifCmd.Parameters.AddWithValue("@numclient", nextNumClient);
+                    insertCertifCmd.Parameters.AddWithValue("@numcertif", (int)certif); // supposant que l'enum = numcertification
+                    DataAccess.Instance.ExecuteSet(insertCertifCmd);
+                }
 
                 if (rowsAffected > 0)
                     MessageBox.Show("Client créé avec succès !");
@@ -47,6 +62,7 @@ namespace SAE_201_LOXAM
                 MessageBox.Show("Erreur lors de la création du client : " + ex.Message);
             }
         }
+
 
         private int GetNextNumClient()
         {
