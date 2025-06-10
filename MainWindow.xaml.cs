@@ -100,10 +100,10 @@ namespace SAE_201_LOXAM
 
         private void Vérifier_Click(object sender, RoutedEventArgs e)
         {
-            
-           
-            var VerifierFenetre = new Verifier();
-            VerifierFenetre.Show();
+
+
+            CacheMainWindow();
+            MainContent.Content = new Verifier();
         }
 
         private void Consulter_Click(object sender, RoutedEventArgs e)

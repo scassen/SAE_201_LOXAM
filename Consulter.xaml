@@ -39,7 +39,7 @@
                             VerticalAlignment="Top"
                             Background="Red"
                             Content="Remettre en location" />
-                        <Rectangle Margin="-29,-24,29,12" Stroke="Black" />
+                        <Rectangle Margin="-29,-24,-11,12" Stroke="Black" />
                         <Label
     x:Name="filtre_label"
     Margin="0,71,0,0"
