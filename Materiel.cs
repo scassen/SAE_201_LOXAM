@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace SAE_201_LOXAM
 {
     public enum Etat { }
-    internal class Materiel:ICrud<Materiel>,INotifyPropertyChanged
+    public class Materiel:ICrud<Materiel>,INotifyPropertyChanged
     {
         private int numMateriel;
         private string reference;
@@ -170,7 +170,7 @@ namespace SAE_201_LOXAM
         {
             List<Materiel> lesMateriaux = new List<Materiel>();
             
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from Materiels ;"))
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from materiels ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
@@ -191,7 +191,7 @@ namespace SAE_201_LOXAM
         private List<Certification> FindAllCertifications()
         {
            List<Certification> certifications = new List<Certification>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from Materiels ;"))
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from materiels ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)

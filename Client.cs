@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.ComponentModel;
+using System.Data;
 
 namespace SAE_201_LOXAM
 {
@@ -16,18 +18,18 @@ namespace SAE_201_LOXAM
         private string nomClient;
         private string prenomClient;
         private List<Certification> certifications;
-        private string email;
+  
         public Client()
         {
         }
 
-        public Client(int numClient, string nomClient, string prenomClient, List<Certification> certifications, string email)
+        public Client(int numClient, string nomClient, string prenomClient, List<Certification> certifications)
         {
             this.NumClient = numClient;
             this.NomClient = nomClient;
             this.PrenomClient = prenomClient;
             this.Certifications = certifications;
-            this.Email = email;
+     
         }
 
         public int NumClient
@@ -71,18 +73,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        public string Email
-        {
-            get
-            {
-                return this.email;
-            }
 
-            set
-            {
-                this.email = value;
-            }
-        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -98,7 +89,28 @@ namespace SAE_201_LOXAM
 
         public List<Client> FindAll()
         {
-            throw new NotImplementedException();
+            List<Client> lesClients = new List<Client>();
+
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from clients ;"))
+            {
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                foreach (DataRow dr in dt.Rows)
+                    lesClients.Add(new Client((int)dr["numclient"], (string)dr["nomclient"], (string)dr["prenomclient"],FindAllCertifications()));
+
+            }
+            return lesClients;
+        }
+        private List<Certification> FindAllCertifications()
+        {
+            List<Certification> certifications = new List<Certification>();
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from clients ;"))
+            {
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                foreach (DataRow dr in dt.Rows)
+                    certifications.Add((Certification)((int)dr["numcertification"]));
+
+            }
+            return certifications;
         }
 
         public List<Client> FindBySelection(string criteres)

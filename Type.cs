@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace SAE_201_LOXAM
 {
     public enum Categorie {Elevation,EspaceVert}
-    internal class Type:ICrud<Type>
+    public class Type:ICrud<Type>
     {
         private int numType;
         private string libelleType;

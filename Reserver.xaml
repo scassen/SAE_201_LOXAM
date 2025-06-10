@@ -33,17 +33,17 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                                                     Width="*"
-                                Binding="{Binding , ValidatesOnExceptions=true}"
+                                Binding="{Binding NomMateriel, ValidatesOnExceptions=true}"
                                 Header="Nom du materiel" />
                 <DataGridTextColumn                                Width="*"
-                                Binding="{Binding Nom, ValidatesOnExceptions=true}"
+                                Binding="{Binding Reference, ValidatesOnExceptions=true}"
                                 Header="Reference" />
 
                 <DataGridTextColumn                                Width="*"
-                                Binding="{Binding Nom, ValidatesOnExceptions=true}"
+                                Binding="{Binding Descriptif, ValidatesOnExceptions=true}"
                                 Header="descriptif" />
                 <DataGridTextColumn                                Width="*"
-                                Binding="{Binding Nom, ValidatesOnExceptions=true}"
+                                Binding="{Binding PrixJournee, ValidatesOnExceptions=true}"
                                 Header="prix journee" />
             </DataGrid.Columns>
             

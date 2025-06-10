@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SAE_201_LOXAM
 {
     public enum Role {Employe,ResponsableAtelier }
-    internal class Employe:ICrud<Employe>,INotifyPropertyChanged
+    public class Employe:ICrud<Employe>,INotifyPropertyChanged
     {
         private int numEmploye;
         private string nomEmploye;

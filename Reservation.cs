@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SAE_201_LOXAM
 {
-    internal class Reservation:ICrud<Reservation>, INotifyPropertyChanged
+    public class Reservation:ICrud<Reservation>, INotifyPropertyChanged
     {
         private int numReservation;
         private DateTime dateReservation;
