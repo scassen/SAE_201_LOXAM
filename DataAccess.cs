@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Windows;
 using Microsoft.Extensions.Logging;
@@ -11,8 +10,8 @@ namespace SAE_201_LOXAM
 
     public class DataAccess
     {
-        private static DataAccess instance;
-        private static string connectionString;
+        private static DataAccess instance = new DataAccess(connectionString);
+        private static string connectionString = "Host=srv-peda-new;Port=5433;Username=boultchi;Password=9E6r2Z;Database=201;Options='-c search_path=MAIN'"; 
         private NpgsqlConnection connection;
 
         public static DataAccess Instance
@@ -56,110 +55,114 @@ namespace SAE_201_LOXAM
 
         // pour récupérer la connexion (et l'ouvrir si nécessaire)
         public NpgsqlConnection GetConnection()
+        {
+            if (connection == null)
             {
-                if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
-                {
-                    try
-                    {
-                        connection.Open();
-                    }
-                    catch (Exception ex)
-                    {
-                        LogError.Log(ex, "Pb de connexion GetConnection \n" + connectionString);
-                        throw;
-                    }
-                }
-
-
-                return connection;
+                connection = new NpgsqlConnection(connectionString);
             }
 
-            //  pour requêtes SELECT et retourne un DataTable ( table de données en mémoire)
-            public DataTable ExecuteSelect(NpgsqlCommand cmd)
+            if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
             {
-                DataTable dataTable = new DataTable();
                 try
                 {
-                    cmd.Connection = GetConnection();
-                    using (var adapter = new NpgsqlDataAdapter(cmd))
-                    {
-                        adapter.Fill(dataTable);
-                    }
+                    connection.Open();
                 }
                 catch (Exception ex)
                 {
-                    LogError.Log(ex, "Erreur SQL");
+                    LogError.Log(ex, "Erreur lors de l'ouverture de la connexion PostgreSQL.");
                     throw;
                 }
-                return dataTable;
             }
 
-            //   pour requêtes INSERT et renvoie l'ID généré
+            return connection;
+        }
 
-            public int ExecuteInsert(NpgsqlCommand cmd)
+        //  pour requêtes SELECT et retourne un DataTable ( table de données en mémoire)
+        public DataTable ExecuteSelect(NpgsqlCommand cmd)
+        {
+            DataTable dataTable = new DataTable();
+            try
             {
-                int nb = 0;
-                try
+                cmd.Connection = GetConnection();
+                using (var adapter = new NpgsqlDataAdapter(cmd))
                 {
-                    cmd.Connection = GetConnection();
-                    nb = (int)cmd.ExecuteScalar();
-
+                    adapter.Fill(dataTable);
                 }
-                catch (Exception ex)
-                {
-                    LogError.Log(ex, "Pb avec une requete insert " + cmd.CommandText);
-                    throw;
-                }
-                return nb;
             }
-
-
-
-
-            //  pour requêtes UPDATE, DELETE
-            public int ExecuteSet(NpgsqlCommand cmd)
+            catch (Exception ex)
             {
-                int nb = 0;
-                try
-                {
-                    cmd.Connection = GetConnection();
-                    nb = cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    LogError.Log(ex, "Pb avec une requete set " + cmd.CommandText);
-                    throw;
-                }
-                return nb;
-
+                LogError.Log(ex, "Erreur SQL");
+                throw;
             }
+            return dataTable;
+        }
 
-            // pour requêtes avec une seule valeur retour  (ex : COUNT, SUM) 
-            public object ExecuteSelectUneValeur(NpgsqlCommand cmd)
+        //   pour requêtes INSERT et renvoie l'ID généré
+
+        public int ExecuteInsert(NpgsqlCommand cmd)
+        {
+            int nb = 0;
+            try
             {
-                object res = null;
-                try
-                {
-                    cmd.Connection = GetConnection();
-                    res = cmd.ExecuteScalar();
-                }
-                catch (Exception ex)
-                {
-                    LogError.Log(ex, "Pb avec une requete select " + cmd.CommandText);
-                    throw;
-                }
-                return res;
+                cmd.Connection = GetConnection();
+                nb = (int)cmd.ExecuteScalar();
 
             }
-
-            //  Fermer la connexion 
-            public void CloseConnection()
+            catch (Exception ex)
             {
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
+                LogError.Log(ex, "Pb avec une requete insert " + cmd.CommandText);
+                throw;
             }
+            return nb;
+        }
+
+
+
+
+        //  pour requêtes UPDATE, DELETE
+        public int ExecuteSet(NpgsqlCommand cmd)
+        {
+            int nb = 0;
+            try
+            {
+                cmd.Connection = GetConnection();
+                nb = cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                LogError.Log(ex, "Pb avec une requete set " + cmd.CommandText);
+                throw;
+            }
+            return nb;
+
+        }
+
+        // pour requêtes avec une seule valeur retour  (ex : COUNT, SUM) 
+        public object ExecuteSelectUneValeur(NpgsqlCommand cmd)
+        {
+            object res = null;
+            try
+            {
+                cmd.Connection = GetConnection();
+                res = cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                LogError.Log(ex, "Pb avec une requete select " + cmd.CommandText);
+                throw;
+            }
+            return res;
+
+        }
+
+        //  Fermer la connexion 
+        public void CloseConnection()
+        {
+            if (connection.State == ConnectionState.Open)
+            {
+                connection.Close();
+            }
+        }
         public void EnsureConnection()
         {
             if (connection == null)

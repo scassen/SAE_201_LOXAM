@@ -22,8 +22,9 @@ namespace SAE_201_LOXAM
         public MainWindow()
         {
             ChargeData();
+
             InitializeComponent();
-           
+            
         }
         public void ChargeData()
         {
