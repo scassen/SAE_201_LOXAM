@@ -40,7 +40,7 @@ namespace SAE_201_LOXAM
                 // Test sans using
                 var conn = DataAccess.Instance.GetConnection();
                 MessageBox.Show("Connexion réussie !");
-
+               
                
                 this.Close();
             }
