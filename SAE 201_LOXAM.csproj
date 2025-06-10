@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>SAE_201_LOXAM</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="IMG\256x256bb.jpg" />
+    <None Remove="IMG\f567c238ffb4f0ab7644d64aec5e1ce6863c2271.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="IMG\256x256bb.jpg" />
+    <Resource Include="IMG\f567c238ffb4f0ab7644d64aec5e1ce6863c2271.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="UserControls\" />
+    <Folder Include="Windows\" />
+  </ItemGroup>
+
+</Project>
