@@ -73,10 +73,43 @@
             Background="#FFFBF8F8"
             FontSize="20"
             TextWrapping="Wrap" />
-        <Label x:Name="Certification_label" Content="Certification : " HorizontalAlignment="Center" Height="37" Margin="0,310,0,0" VerticalAlignment="Top" Width="148" FontSize="22"/>
-        <CheckBox x:Name="interne_check" Content="Interne" HorizontalAlignment="Left" Margin="286,363,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="CACES_R486_check" Content="CACES_R486" HorizontalAlignment="Center" Margin="0,363,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.261,-0.883"/>
-        <CheckBox x:Name="CACES_R482_check" Content="CACES_R482" HorizontalAlignment="Left" Margin="457,363,0,0" VerticalAlignment="Top"/>
+        <Label
+            x:Name="Certification_label"
+            Width="148"
+            Height="37"
+            Margin="0,310,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="Certification : "
+            FontSize="22" />
+        <CheckBox
+            x:Name="interne_check"
+            Margin="286,363,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Interne" />
+        <CheckBox
+            x:Name="CACES_R486_check"
+            Margin="0,363,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="CACES_R486"
+            RenderTransformOrigin="0.261,-0.883" />
+        <CheckBox
+            x:Name="CACES_R482_check"
+            Margin="457,363,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="CACES_R482" />
+        <Button
+            x:Name="btnCreerClient"
+            Width="150"
+            Height="40"
+            Margin="0,393,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Click="btnCreerClient_Click"
+            Content="Créer le client" Background="Red" />
 
     </Grid>
 </UserControl>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SAE_201_LOXAM
 {
-    internal class Agence
+    public class Agence
     {
         private string nom;
         private ObservableCollection<Employe> employes;
@@ -64,7 +64,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        internal ObservableCollection<Agence> Agences
+        public ObservableCollection<Agence> Agences
         {
             get
             {
@@ -77,7 +77,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        internal ObservableCollection<Materiel> Materiels
+        public ObservableCollection<Materiel> Materiels
         {
             get
             {
