@@ -12,7 +12,7 @@ namespace SAE_201_LOXAM
         public class DataAccess
         {
             private static readonly DataAccess instance = new DataAccess();
-            private readonly string connectionString = "Host=srv-peda-new;Port=5433;Username=cassens;Password=V0q8SA;Database=cassens_pension;Options='-c search_path=cassens'";
+            private readonly string connectionString = "Host=srv-peda-new;Port=5433;Username=boultchi;Password=9E6r2Z;Database=SAE 201;Options='-c search_path=MAIN'";
             private NpgsqlConnection connection;
         
 
