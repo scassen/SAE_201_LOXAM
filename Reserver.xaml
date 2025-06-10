@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SAE_201_LOXAM"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:SAE_201_LOXAM"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     Height="371"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -28,7 +29,26 @@
             Margin="0,176,0,0"
             HorizontalAlignment="Center"
             Stroke="Black" />
-        <DataGrid Margin="-1,124,1,0" d:ItemsSource="{d:SampleData ItemCount=5}" />
+        <DataGrid Margin="-1,124,1,0" ItemsSource="{Binding Materiels}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                                                    Width="*"
+                                Binding="{Binding , ValidatesOnExceptions=true}"
+                                Header="Nom du materiel" />
+                <DataGridTextColumn                                Width="*"
+                                Binding="{Binding Nom, ValidatesOnExceptions=true}"
+                                Header="Reference" />
+
+                <DataGridTextColumn                                Width="*"
+                                Binding="{Binding Nom, ValidatesOnExceptions=true}"
+                                Header="descriptif" />
+                <DataGridTextColumn                                Width="*"
+                                Binding="{Binding Nom, ValidatesOnExceptions=true}"
+                                Header="prix journee" />
+            </DataGrid.Columns>
+            
+            
+        </DataGrid>
 
         <Label
             x:Name="Filtrer_label"
