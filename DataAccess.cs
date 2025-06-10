@@ -9,39 +9,53 @@ using Npgsql;
 namespace SAE_201_LOXAM
 {
 
-        public class DataAccess
+    public class DataAccess
+    {
+        private static DataAccess instance;
+        private static string connectionString;
+        private NpgsqlConnection connection;
+
+        public static DataAccess Instance
         {
-            private static readonly DataAccess instance = new DataAccess();
-            private readonly string connectionString = "Host=srv-peda-new;Port=5433;Username=boultchi;Password=9E6r2Z;Database=201;Options='-c search_path=MAIN'";
-            private NpgsqlConnection connection;
-        
-
-            public static DataAccess Instance
+            get
             {
-                get
+                if (instance == null)
                 {
-                    return instance;
+                    throw new InvalidOperationException("DataAccess non initialisé. Appeler Init d'abord.");
                 }
+                return instance;
             }
+        }
 
-            //  Constructeur privé pour empêcher l'instanciation multiple
-            private DataAccess()
+        private DataAccess(string connString)
+        {
+            connectionString = connString;
+            try
             {
-
-                try
-                {
-                    connection = new NpgsqlConnection(connectionString);
-                }
-                catch (Exception ex)
-                {
-                    LogError.Log(ex, "Pb de connexion GetConnection \n" + connectionString);
-                    throw;
-                }
+                connection = new NpgsqlConnection(connectionString);
             }
+            catch (Exception ex)
+            {
+                LogError.Log(ex, "Erreur dans le constructeur DataAccess");
+                throw;
+            }
+        }
+
+        public static void Init(string connString)
+        {
+            if (instance == null)
+            {
+                instance = new DataAccess(connString);
+            }
+            else
+            {
+                throw new InvalidOperationException("DataAccess déjà initialisé.");
+            }
+        }
 
 
-            // pour récupérer la connexion (et l'ouvrir si nécessaire)
-            public NpgsqlConnection GetConnection()
+        // pour récupérer la connexion (et l'ouvrir si nécessaire)
+        public NpgsqlConnection GetConnection()
             {
                 if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
                 {
