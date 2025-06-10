@@ -16,18 +16,18 @@ namespace SAE_201_LOXAM
         private string nomClient;
         private string prenomClient;
         private List<Certification> certifications;
-
+        private string email;
         public Client()
         {
         }
 
-        public Client(int numClient, string nomClient, string prenomClient, List<Certification> certifications)
+        public Client(int numClient, string nomClient, string prenomClient, List<Certification> certifications, string email)
         {
             this.NumClient = numClient;
             this.NomClient = nomClient;
             this.PrenomClient = prenomClient;
             this.Certifications = certifications;
-         
+            this.Email = email;
         }
 
         public int NumClient
@@ -68,6 +68,19 @@ namespace SAE_201_LOXAM
             set
             {
                 this.certifications = value;
+            }
+        }
+
+        public string Email
+        {
+            get
+            {
+                return this.email;
+            }
+
+            set
+            {
+                this.email = value;
             }
         }
 

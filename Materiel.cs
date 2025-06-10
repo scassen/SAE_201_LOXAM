@@ -166,17 +166,39 @@ namespace SAE_201_LOXAM
             throw new NotImplementedException();
         }
 
-        public List<Materiel> FindAll()
+        public List<Materiel> FindAll(Agence agence)
         {
             List<Materiel> lesMateriaux = new List<Materiel>();
+            
             using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from Materiels ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
-                    lesMateriaux.Add(new Materiel());
+                    lesMateriaux.Add(new Materiel(
+                        (int)dr["nummateriel"], 
+                        (string)dr["reference"],
+                        (string)dr["nommateriel"],
+                        (string)dr["descriptif"],
+                        (decimal)dr["prixjournee"],
+                        (Etat)((int)dr["numetat"]),
+                        FindAllCertifications(),
+                        agence.Types.SingleOrDefault(ID => ID.NumType == (int)dr["numtype"])));
 
             }
             return lesMateriaux;
+        }
+
+        private List<Certification> FindAllCertifications()
+        {
+           List<Certification> certifications = new List<Certification>();
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from Materiels ;"))
+            {
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                foreach (DataRow dr in dt.Rows)
+                    certifications.Add((Certification)((int)dr["numcertification"]));
+
+            }
+            return certifications;
         }
 
         public List<Materiel> FindBySelection(string criteres)
@@ -190,6 +212,11 @@ namespace SAE_201_LOXAM
         }
 
         public int Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Materiel> FindAll()
         {
             throw new NotImplementedException();
         }

@@ -15,14 +15,16 @@ namespace SAE_201_LOXAM
    
         private ObservableCollection<Materiel> materiels;
         private ObservableCollection<Reservation> reservations;
+        private ObservableCollection<Type> types;
 
         public Agence(string nom)
         {
             this.Nom = nom;
             this.Clients = new ObservableCollection<Client>(new Client().FindAll());
             this.Employes = new ObservableCollection<Employe>(new Employe().FindAll());
-            this.Materiels = new ObservableCollection<Materiel>(new Materiel().FindAll());
+            this.Materiels = new ObservableCollection<Materiel>(new Materiel().FindAll(this));
             this.Reservations = new ObservableCollection<Reservation>(new Reservation().FindAll(this));
+            this.Types = new ObservableCollection<Type>(new Type().FindAll());
         }
 
         public string Nom
@@ -64,20 +66,9 @@ namespace SAE_201_LOXAM
             }
         }
 
-        public ObservableCollection<Agence> Agences
-        {
-            get
-            {
-                return this.agences;
-            }
 
-            set
-            {
-                this.agences = value;
-            }
-        }
 
-        public ObservableCollection<Materiel> Materiels
+        internal ObservableCollection<Materiel> Materiels
         {
             get
             {
@@ -90,7 +81,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        internal ObservableCollection<Reservation> Reservations
+        internal ObservableCollection<Materiel> Materiels
         {
             get
             {
@@ -100,6 +91,19 @@ namespace SAE_201_LOXAM
             set
             {
                 this.reservations = value;
+            }
+        }
+
+        internal ObservableCollection<Type> Types
+        {
+            get
+            {
+                return this.types;
+            }
+
+            set
+            {
+                this.types = value;
             }
         }
     }
