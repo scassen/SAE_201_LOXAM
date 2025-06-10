@@ -5,52 +5,29 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SAE_201_LOXAM"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Height="392">
     <Grid Background="White">
+
         <Label
             x:Name="Créer_label"
-            Margin="0,86,0,0"
-            HorizontalAlignment="Center"
+            Margin="287,13,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="CREER FICHE CLIENT"
             FontSize="24" />
-        <Rectangle
-            Width="800"
-            Height="52"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Fill="#FFFF3636" />
-        <Label
-            x:Name="Creer"
-            Margin="547,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="FICHE CLIENT"
-            FontSize="36"
-            FontWeight="Bold"
-            Foreground="White" />
-        <Image
-            Width="245"
-            Height="63"
-            Margin="0,-3,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Source="/IMG/f567c238ffb4f0ab7644d64aec5e1ce6863c2271.png"
-            Stretch="Fill" />
         <Label
             x:Name="Nom_label"
             Width="139"
             Height="38"
-            Margin="165,186,0,0"
+            Margin="166,57,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Nom client : "
             FontSize="22" />
         <Label
             x:Name="prenom_label"
-            Margin="501,185,0,0"
+            Margin="502,56,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Prénom client :"
@@ -58,7 +35,7 @@
         <TextBox
             x:Name="nom_client_box"
             Width="180"
-            Margin="144,229,0,0"
+            Margin="145,100,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFFBF8F8"
@@ -67,7 +44,7 @@
         <TextBox
             x:Name="prenom_client_box"
             Width="180"
-            Margin="488,225,0,0"
+            Margin="489,96,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFFBF8F8"
@@ -77,27 +54,27 @@
             x:Name="Certification_label"
             Width="148"
             Height="37"
-            Margin="0,310,0,0"
-            HorizontalAlignment="Center"
+            Margin="329,172,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Certification : "
             FontSize="22" />
         <CheckBox
             x:Name="interne_check"
-            Margin="286,363,0,0"
+            Margin="289,225,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Interne" />
         <CheckBox
             x:Name="CACES_R486_check"
-            Margin="0,363,0,0"
-            HorizontalAlignment="Center"
+            Margin="362,225,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="CACES_R486"
             RenderTransformOrigin="0.261,-0.883" />
         <CheckBox
             x:Name="CACES_R482_check"
-            Margin="457,363,0,0"
+            Margin="460,225,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="CACES_R482" />
@@ -105,11 +82,12 @@
             x:Name="btnCreerClient"
             Width="150"
             Height="40"
-            Margin="0,393,0,0"
+            Margin="0,268,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
+            Background="Red"
             Click="btnCreerClient_Click"
-            Content="Créer le client" Background="Red" />
+            Content="Créer le client" />
 
     </Grid>
 </UserControl>

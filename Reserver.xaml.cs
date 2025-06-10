@@ -24,5 +24,19 @@ namespace SAE_201_LOXAM
         {
             InitializeComponent();
         }
+
+        private void Client_Click(object sender, RoutedEventArgs e)
+        {
+
+            var ficheClient = new Fiche_Client();
+
+            // Récupère la fenêtre principale
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.AfficherContenu(ficheClient);
+            }
+        }
+
     }
 }

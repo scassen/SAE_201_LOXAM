@@ -23,7 +23,7 @@ namespace SAE_201_LOXAM
            
         }
 
-        private void CacheMainWindow()
+        public void CacheMainWindow()
         {
             var elements = TrouverElementsParTag(this, "MainTag");
             foreach (var element in elements)
@@ -36,7 +36,12 @@ namespace SAE_201_LOXAM
                 element.Visibility = Visibility.Hidden;
             }
         }
-        private void MontreMainWindow()
+        public void AfficherContenu(UserControl uc)
+        {
+            this.MainContent.Content = uc;
+        }
+
+        public void MontreMainWindow()
         {
             var elements = TrouverElementsParTag(this, "MainTag");
             foreach (var element in elements)
@@ -76,16 +81,18 @@ namespace SAE_201_LOXAM
 
         private void Vérifier_Click(object sender, RoutedEventArgs e)
         {
-            CacheMainWindow();
-            MainContent.Content = new Verifier();
+            
+           
+            var VerifierFenetre = new Verifier();
+            VerifierFenetre.Show();
         }
 
         private void Consulter_Click(object sender, RoutedEventArgs e)
         {
             CacheMainWindow();
             MainContent.Content = new Consulter();
-
-            
+           
+         
         }
 
         private void Se_connecter_Click(object sender, RoutedEventArgs e)

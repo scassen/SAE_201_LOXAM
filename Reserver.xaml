@@ -59,7 +59,7 @@
             BorderBrush="Red"
             Content="Créer fiche client"
             FontFamily="Arial Rounded MT Bold"
-            Foreground="White" />
+            Foreground="White" Click="Client_Click" />
         <Label
             x:Name="Nom_client_label"
             Margin="263,20,0,0"
