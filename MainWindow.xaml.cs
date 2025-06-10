@@ -21,8 +21,8 @@ namespace SAE_201_LOXAM
         bool open = true;
         public MainWindow()
         {
-            ChargeData();
 
+          
             InitializeComponent();
            
            
@@ -118,6 +118,7 @@ namespace SAE_201_LOXAM
         {
             var ConnexionFenetre = new Connexion();
             ConnexionFenetre.Show();
+            
         }
 
         private void Acceuil_button_Click(object sender, RoutedEventArgs e)

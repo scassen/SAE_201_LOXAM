@@ -22,6 +22,7 @@ namespace SAE_201_LOXAM
         public Connexion()
         {
             InitializeComponent();
+
         }
 
         private void Button_Valider_Click(object sender, RoutedEventArgs e)
@@ -48,6 +49,9 @@ namespace SAE_201_LOXAM
                 MessageBox.Show("Erreur de connexion : " + ex.Message);
             }
             this.Close();
+              
         }
+        
+
     }
 }
