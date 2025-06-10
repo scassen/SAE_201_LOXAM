@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
 namespace SAE_201_LOXAM
 {
-    public enum Etat { }
+ *//*   public enum Etat { }
     internal class Materiel
     {
         private int numMateriel;
@@ -16,4 +16,4 @@ namespace SAE_201_LOXAM
         private decimal prixJournee;
         private 
     }
-}
+}*/

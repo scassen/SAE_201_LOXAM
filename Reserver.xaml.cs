@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SAE_201_LOXAM
@@ -17,7 +18,7 @@ namespace SAE_201_LOXAM
     /// <summary>
     /// Logique d'interaction pour Reserver.xaml
     /// </summary>
-    public partial class Reserver : Window
+    public partial class Reserver : UserControl
     {
         public Reserver()
         {
