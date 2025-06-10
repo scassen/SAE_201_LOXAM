@@ -29,10 +29,25 @@
             Margin="0,176,0,0"
             HorizontalAlignment="Center"
             Stroke="Black" />
-        <DataGrid>
-            <DataGrid.Columns />
+        <DataGrid Margin="-1,124,1,0" ItemsSource="{Binding Materiels}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                                                    Width="*"
+                                Binding="{Binding NomMateriel, ValidatesOnExceptions=true}"
+                                Header="Nom du materiel" />
+                <DataGridTextColumn                                Width="*"
+                                Binding="{Binding Reference, ValidatesOnExceptions=true}"
+                                Header="Reference" />
 
-
+                <DataGridTextColumn                                Width="*"
+                                Binding="{Binding Descriptif, ValidatesOnExceptions=true}"
+                                Header="descriptif" />
+                <DataGridTextColumn                                Width="*"
+                                Binding="{Binding PrixJournee, ValidatesOnExceptions=true}"
+                                Header="prix journee" />
+            </DataGrid.Columns>
+            
+            
         </DataGrid>
 
         <Label

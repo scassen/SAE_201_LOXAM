@@ -53,7 +53,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        internal ObservableCollection<Employe> Employes
+        public ObservableCollection<Employe> Employes
         {
             get
             {
@@ -68,7 +68,7 @@ namespace SAE_201_LOXAM
 
 
 
-        internal ObservableCollection<Materiel> Materiels
+        public ObservableCollection<Materiel> Materiels
         {
             get
             {
@@ -81,7 +81,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        internal ObservableCollection<Reservation> Reservations
+        public ObservableCollection<Reservation> Reservations
         {
             get
             {
@@ -94,7 +94,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        internal ObservableCollection<Type> Types
+        public ObservableCollection<Type> Types
         {
             get
             {
