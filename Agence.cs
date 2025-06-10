@@ -81,7 +81,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        internal ObservableCollection<Materiel> Materiels
+        internal ObservableCollection<Reservation> Reservations
         {
             get
             {
