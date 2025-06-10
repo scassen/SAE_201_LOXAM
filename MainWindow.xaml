@@ -16,7 +16,7 @@
     Icon="/IMG/256x256bb.jpg"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Activated="Acceuil_Activated">
     <Grid>
         <ContentControl x:Name="MainContent" Margin="0,52,0,0" />
 
@@ -109,10 +109,9 @@
         </Button>
         <Button
             x:Name="Se_connecter"
-            Grid.Column="1"
             Width="163"
             Height="36"
-            Margin="622,8,0,0"
+            Margin="624,8,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="White"

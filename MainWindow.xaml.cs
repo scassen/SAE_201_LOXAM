@@ -16,9 +16,11 @@ namespace SAE_201_LOXAM
     /// </summary>
     public partial class MainWindow : Window
     {
+        int comppte = 0;
         public MainWindow()
         {
             InitializeComponent();
+           
         }
 
         private void CacheMainWindow()
@@ -96,6 +98,19 @@ namespace SAE_201_LOXAM
         {
             MontreMainWindow();
             MainContent.Content = null;
+        }
+
+        private void Acceuil_Activated(object sender, EventArgs e)
+        {
+            
+            if(comppte == 0)
+            {
+                var ConnexionFenetre = new Connexion();
+                ConnexionFenetre.Show();
+
+            }
+            
+            comppte += 1;
         }
     }
 }
