@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,11 +17,27 @@ namespace SAE_201_LOXAM
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Agence LAgence { get; set; }
         bool open = true;
         public MainWindow()
         {
+            ChargeData();
             InitializeComponent();
            
+        }
+        public void ChargeData()
+        {
+            try
+            {
+                LAgence = new Agence("Agence 1");
+                this.DataContext = LAgence;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problème lors de récupération des données, veuillez consulter votre admin");
+
+                Application.Current.Shutdown();
+            }
         }
 
         public void CacheMainWindow()

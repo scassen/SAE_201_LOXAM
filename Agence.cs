@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SAE_201_LOXAM
 {
-    internal class Agence
+   public class Agence
     {
         private string nom;
         private ObservableCollection<Employe> employes;
