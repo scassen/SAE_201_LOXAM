@@ -116,7 +116,7 @@ namespace SAE_201_LOXAM
 
         private void Se_connecter_Click(object sender, RoutedEventArgs e)
         {
-            var ConnexionFenetre = new Connexion();
+            var ConnexionFenetre = new Connexion(this);
             ConnexionFenetre.Show();
             
         }
@@ -126,9 +126,14 @@ namespace SAE_201_LOXAM
             MontreMainWindow();
             MainContent.Content = null;
         }
-  
+        public void SetUserConnected(string username)
+        {
+            Se_connecter_Button.Content = username;  // Affiche le nom d'utilisateur
+            Se_connecter_Button.IsEnabled = false;   // Désactive le bouton
+        }
 
 
-      
+
+
     }
 }
