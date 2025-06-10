@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SAE_201_LOXAM"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="clr-namespace:SAE_201_LOXAM"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     Height="371"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -77,9 +77,10 @@
             VerticalAlignment="Top"
             Background="Red"
             BorderBrush="Red"
+            Click="Client_Click"
             Content="Créer fiche client"
             FontFamily="Arial Rounded MT Bold"
-            Foreground="White" Click="Client_Click" />
+            Foreground="White" />
         <Label
             x:Name="Nom_client_label"
             Margin="263,20,0,0"

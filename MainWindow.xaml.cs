@@ -24,7 +24,8 @@ namespace SAE_201_LOXAM
             ChargeData();
 
             InitializeComponent();
-            
+           
+           
         }
         public void ChargeData()
         {
