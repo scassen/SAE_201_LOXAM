@@ -100,13 +100,14 @@ namespace SAE_201_LOXAM
             }
             return lesClients;
         }
-        private List<Certification> FindAllCertifications()
+        private List<Certification> FindAllCertifications(int num)
         {
             List<Certification> certifications = new List<Certification>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from clients ;"))
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from dispose ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
+                    if (num == (int)dr["numclient"])
                     certifications.Add((Certification)((int)dr["numcertification"]));
 
             }

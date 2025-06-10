@@ -181,20 +181,21 @@ namespace SAE_201_LOXAM
                         (string)dr["descriptif"],
                         (decimal)dr["prixjournee"],
                         (Etat)((int)dr["numetat"]),
-                        FindAllCertifications(),
+                        FindAllCertifications((int)dr["nummateriel"]),
                         agence.Types.SingleOrDefault(ID => ID.NumType == (int)dr["numtype"])));
 
             }
             return lesMateriaux;
         }
 
-        private List<Certification> FindAllCertifications()
+        private List<Certification> FindAllCertifications(int num)
         {
            List<Certification> certifications = new List<Certification>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from materiels ;"))
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from necessiter ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
+                    if(num== (int)dr["nummateriel"])
                     certifications.Add((Certification)((int)dr["numcertification"]));
 
             }
