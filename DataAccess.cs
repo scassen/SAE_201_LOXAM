@@ -56,26 +56,30 @@ namespace SAE_201_LOXAM
 
         // pour récupérer la connexion (et l'ouvrir si nécessaire)
         public NpgsqlConnection GetConnection()
+        {
+            if (connection == null)
             {
-                if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
-                {
-                    try
-                    {
-                        connection.Open();
-                    }
-                    catch (Exception ex)
-                    {
-                        LogError.Log(ex, "Pb de connexion GetConnection \n" + connectionString);
-                        throw;
-                    }
-                }
-
-
-                return connection;
+                connection = new NpgsqlConnection(connectionString);
             }
 
-            //  pour requêtes SELECT et retourne un DataTable ( table de données en mémoire)
-            public DataTable ExecuteSelect(NpgsqlCommand cmd)
+            if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (Exception ex)
+                {
+                    LogError.Log(ex, "Erreur lors de l'ouverture de la connexion PostgreSQL.");
+                    throw;
+                }
+            }
+
+            return connection;
+        }
+
+        //  pour requêtes SELECT et retourne un DataTable ( table de données en mémoire)
+        public DataTable ExecuteSelect(NpgsqlCommand cmd)
             {
                 DataTable dataTable = new DataTable();
                 try
