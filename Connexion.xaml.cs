@@ -19,9 +19,12 @@ namespace SAE_201_LOXAM
     /// </summary>
     public partial class Connexion : Window
     {
-        public Connexion()
+        private MainWindow mainWindow;
+
+        public Connexion(MainWindow mainWin)
         {
             InitializeComponent();
+            mainWindow = mainWin;
         }
 
         private void Button_Valider_Click(object sender, RoutedEventArgs e)
@@ -33,21 +36,19 @@ namespace SAE_201_LOXAM
 
             try
             {
-                // Initialise la connexion (singleton)
                 DataAccess.Init(connString);
-
-                // Test sans using
                 var conn = DataAccess.Instance.GetConnection();
                 MessageBox.Show("Connexion réussie !");
 
-               
+                // Met à jour le bouton dans MainWindow
+                mainWindow.SetUserConnected(username);
+
                 this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur de connexion : " + ex.Message);
             }
-            this.Close();
         }
     }
 }

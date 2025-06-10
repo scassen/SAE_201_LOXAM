@@ -124,7 +124,7 @@
             </Button.RenderTransform>
         </Button>
         <Button
-            x:Name="Se_connecter"
+            x:Name="Se_connecter_Button"
             Width="163"
             Height="36"
             Margin="624,8,0,0"
