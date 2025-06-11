@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace SAE_201_LOXAM
 {
@@ -23,6 +24,7 @@ namespace SAE_201_LOXAM
         public Reserver()
         {
             InitializeComponent();
+            dgReserver.Items.Filter = RechercheMotCleMateriel;
             this.DataContext = this;
 
             if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.LAgence is not null)
@@ -35,6 +37,16 @@ namespace SAE_201_LOXAM
             }
         }
 
+        private bool RechercheMotCleMateriel(object obj)
+        {
+            if (String.IsNullOrEmpty(Filtre.Text))
+                return true;
+            Materiel unMateriel = obj as Materiel;
+            return (unMateriel.NomMateriel.StartsWith(Filtre.Text, StringComparison.OrdinalIgnoreCase)
+            || unMateriel.TypeMateriel.LibelleType.StartsWith(Filtre.Text, StringComparison.OrdinalIgnoreCase) 
+            || unMateriel.TypeMateriel.CategorieType.ToString().StartsWith(Filtre.Text, StringComparison.OrdinalIgnoreCase));
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
@@ -45,6 +57,16 @@ namespace SAE_201_LOXAM
             {
                 mainWindow.AfficherContenu(ficheClient);
             }
+        }
+
+        private void Filtre_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgReserver.ItemsSource).Refresh();
+        }
+
+        private void Enregistrer_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

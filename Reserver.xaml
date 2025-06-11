@@ -24,6 +24,7 @@
             Background="Snow"
             BorderBrush="Black"
             CaretBrush="White"
+            TextChanged="Filtre_TextChanged"
             TextWrapping="Wrap" />
 
         <Label
@@ -48,6 +49,7 @@
             VerticalAlignment="Top"
             Background="Red"
             BorderBrush="Red"
+            Click="Enregistrer_Click"
             Content="Enregistrer la réservation"
             FontFamily="Arial Rounded MT Bold"
             Foreground="White" />
@@ -77,6 +79,7 @@
             Stroke="Black" />
 
         <DataGrid
+            x:Name="dgReserver"
             Margin="0,180,0,0"
             AutoGenerateColumns="False"
             ItemsSource="{Binding Materiels}">
@@ -91,12 +94,25 @@
                     Header="Référence" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding Descriptif}"
-                    Header="Descriptif" />
-                <DataGridTextColumn
-                    Width="*"
                     Binding="{Binding PrixJournee}"
                     Header="Prix journée" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding EtatMateriel}"
+                    Header="Etat du Materiel" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding TypeMateriel.LibelleType}"
+                    Header="Type" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding TypeMateriel.CategorieType}"
+                    Header="Catégorie" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding CertificationsDisplay}"
+                    Header="Certifications" />
+
             </DataGrid.Columns>
         </DataGrid>
 

@@ -64,7 +64,7 @@ namespace SAE_201_LOXAM
         }
         public Etat EtatMateriel { get => etatMateriel; set => etatMateriel = value; }
         public List<Certification> Certificationsnecessaires { get => certificationsnecessaires; set => certificationsnecessaires = value; }
-        internal Type TypeMateriel { get => typeMateriel; set => typeMateriel = value; }
+        public Type TypeMateriel { get => typeMateriel; set => typeMateriel = value; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -137,6 +137,15 @@ namespace SAE_201_LOXAM
                 }
             }
             return certifications;
+        }
+        public string CertificationsDisplay
+        {
+            get
+            {
+                if (Certificationsnecessaires == null || Certificationsnecessaires.Count == 0)
+                    return "";
+                return string.Join(", ", Certificationsnecessaires.Select(c => c.ToString()));
+            }
         }
     }
 }

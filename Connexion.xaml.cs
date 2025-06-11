@@ -38,7 +38,7 @@ namespace SAE_201_LOXAM
             {
                 DataAccess.Init(connString);
                 var conn = DataAccess.Instance.GetConnection();
-                MessageBox.Show("Connexion réussie !");
+                MessageBox.Show("Connexion réussie ! attendez s'il vous plait");
 
                 // Met à jour le bouton dans MainWindow
                 mainWindow.SetUserConnected(username);
