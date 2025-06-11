@@ -45,11 +45,18 @@ namespace SAE_201_LOXAM
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    lesTypes.Add(new Type(
-                        (int)dr["numtype"],
-                        (string)dr["libelletype"],
-                        (Categorie)(int)dr["numcategorie"]
-                    ));
+                    try
+                    {
+                        lesTypes.Add(new Type(
+                            (int)dr["numtype"],
+                            (string)dr["libelletype"],
+                            (Categorie)(int)dr["numcategorie"]
+                        ));
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error creating Type: " + ex.Message);
+                    }
                 }
             }
             return lesTypes;

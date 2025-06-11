@@ -42,8 +42,9 @@ namespace SAE_201_LOXAM
 
                 // Met à jour le bouton dans MainWindow
                 mainWindow.SetUserConnected(username);
-
+                mainWindow.ChargeData();
                 this.Close();
+                
             }
             catch (Exception ex)
             {

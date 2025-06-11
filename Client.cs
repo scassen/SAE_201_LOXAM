@@ -78,12 +78,12 @@ namespace SAE_201_LOXAM
         private List<Certification> FindAllCertifications(int num)
         {
             List<Certification> certifications = new();
-            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"MAIN\".dispose;"))
+            using (NpgsqlCommand cmdSelect = new("select * from \"MAIN\".dispose n join \"MAIN\".client c on c.numclient = n.numclient group by n.numclient,n.numcertification,c.numclient having n.numclient =" + num))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    if ((int)dr["numclient"] == num)
+                   
                         certifications.Add((Certification)(int)dr["numcertification"]);
                 }
             }

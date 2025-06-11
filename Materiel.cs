@@ -79,9 +79,13 @@ namespace SAE_201_LOXAM
             List<Materiel> lesMateriaux = new();
             using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"MAIN\".materiel"))
             {
+
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                 {
+                    var type = agence.Types.SingleOrDefault(t => t.NumType == (int)dr["numtype"]);
+                    if (type == null)
+                        throw new Exception($"Type not found for NumType = {(int)dr["numtype"]}");
                     lesMateriaux.Add(new Materiel(
                         (int)dr["nummateriel"],
                         (string)dr["reference"],
@@ -90,8 +94,8 @@ namespace SAE_201_LOXAM
                         (decimal)dr["prixjournee"],
                         (Etat)(int)dr["numetat"],
                         FindAllCertifications((int)dr["nummateriel"]),
-                        agence.Types.SingleOrDefault(t => t.NumType == (int)dr["numtype"])
-                    ));
+                        type));
+                   
                 }
             }
             return lesMateriaux;
@@ -123,12 +127,12 @@ namespace SAE_201_LOXAM
         private List<Certification> FindAllCertifications(int num)
         {
             List<Certification> certifications = new();
-            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"MAIN\".necessiter"))
+            using (NpgsqlCommand cmdSelect = new("select * from \"MAIN\".necessiter n join \"MAIN\".materiel m on n.nummateriel = m.nummateriel group by n.numcertification,m.nummateriel,n.nummateriel having m.nummateriel =" + num  ))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    if ((int)dr["nummateriel"] == num)
+                    
                         certifications.Add((Certification)(int)dr["numcertification"]);
                 }
             }
