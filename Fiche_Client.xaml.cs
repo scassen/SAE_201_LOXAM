@@ -9,6 +9,7 @@ namespace SAE_201_LOXAM
 {
     public partial class Fiche_Client : UserControl
     {
+        
         public Fiche_Client()
         {
             InitializeComponent();
@@ -51,6 +52,8 @@ namespace SAE_201_LOXAM
 
                 if (rowsAffected > 0)
                     MessageBox.Show("Client créé avec succès !");
+                    
+
                 else
                     MessageBox.Show("Erreur lors de la création du client.");
             }
