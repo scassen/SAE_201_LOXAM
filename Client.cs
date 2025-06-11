@@ -95,11 +95,14 @@ namespace SAE_201_LOXAM
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
-                    lesClients.Add(new Client((int)dr["numclient"], (string)dr["nomclient"], (string)dr["prenomclient"],FindAllCertifications()));
-
+                {
+                    int num = (int)dr["numclient"];
+                    lesClients.Add(new Client(num, (string)dr["nomclient"], (string)dr["prenomclient"], FindAllCertifications(num)));
+                }
             }
             return lesClients;
         }
+
         private List<Certification> FindAllCertifications(int num)
         {
             List<Certification> certifications = new List<Certification>();
@@ -108,7 +111,7 @@ namespace SAE_201_LOXAM
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                     if (num == (int)dr["numclient"])
-                    certifications.Add((Certification)((int)dr["numcertification"]));
+                        certifications.Add((Certification)((int)dr["numcertification"]));
 
             }
             return certifications;
