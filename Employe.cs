@@ -1,7 +1,9 @@
 ﻿// Fichier : Employe.cs
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 
 namespace SAE_201_LOXAM
 {
@@ -17,6 +19,16 @@ namespace SAE_201_LOXAM
         private Role roleEmploye;
 
         public Employe() { }
+
+        public Employe(int numEmploye, string nomEmploye, string prenomEmploye, string login, string mdp, Role roleEmploye)
+        {
+            this.numEmploye = numEmploye;
+            this.nomEmploye = nomEmploye;
+            this.prenomEmploye = prenomEmploye;
+            this.login = login;
+            this.mdp = mdp;
+            this.roleEmploye = roleEmploye;
+        }
 
         public int NumEmploye { get => numEmploye; set => numEmploye = value; }
         public string NomEmploye
@@ -47,7 +59,49 @@ namespace SAE_201_LOXAM
         public int Delete() => throw new NotImplementedException();
         public void Read() => throw new NotImplementedException();
         public int Update() => throw new NotImplementedException();
-        public List<Employe> FindAll() => throw new NotImplementedException();
+
+
+        public List<Employe> FindAll()
+        {
+            List<Employe> employes = new List<Employe>();
+            try
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM \"MAIN\".employe;"))
+                {
+                    DataTable dt = DataAccess.Instance.ExecuteSelect(cmd);
+                    Console.WriteLine($"[DEBUG] Employe rows fetched: {dt.Rows.Count}");
+
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        try
+                        {
+                            Console.WriteLine($"  Row: numemploye={dr["numemploye"]}, nom={dr["nom"]}, prenom={dr["prenom"]}");
+
+                            employes.Add(new Employe
+                            {
+                                NumEmploye = Convert.ToInt32(dr["numemploye"]),
+                                NomEmploye = dr["nom"].ToString(),
+                                PrenomEmploye = dr["prenom"].ToString(),
+                                Login = dr["login"].ToString(),
+                                Mdp = dr["mdp"].ToString(),
+                                RoleEmploye = Role.Employe
+                            });
+                        }
+                        catch (Exception rowEx)
+                        {
+                            Console.WriteLine($"[ERROR] Skipping row due to: {rowEx.Message}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Employe.FindAll failed: {ex.Message}");
+            }
+
+            return employes;
+        }
+
         public List<Employe> FindBySelection(string criteres) => throw new NotImplementedException();
     }
 }

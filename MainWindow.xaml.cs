@@ -1,6 +1,7 @@
 ﻿// Fichier : MainWindow.xaml.cs
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -23,7 +24,15 @@ namespace SAE_201_LOXAM
         {
             try
             {
-                LAgence = new Agence("Agence 1");
+                var agence = new Agence("Agence 1");
+                Console.WriteLine($"[DEBUG] Employes loaded? {(agence.Employes == null ? "null" : agence.Employes.Count.ToString())}");
+                Console.WriteLine($"[DEBUG] Clients loaded? {(agence.Clients == null ? "null" : agence.Clients.Count.ToString())}");
+                Console.WriteLine($"[DEBUG] Materiels loaded? {(agence.Materiels == null ? "null" : agence.Materiels.Count.ToString())}");
+                if (agence.Employes == null || agence.Clients == null || agence.Materiels == null)
+                    throw new InvalidOperationException("Agence is not fully initialized before loading reservations.");
+                agence.Reservations = new ObservableCollection<Reservation>(new Reservation().FindAll(agence)
+                );
+                this.LAgence = agence;
                 this.DataContext = LAgence;
             }
             catch (Exception ex)

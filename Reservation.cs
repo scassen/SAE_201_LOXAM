@@ -180,14 +180,36 @@ namespace SAE_201_LOXAM
         public List<Reservation> FindAll(Agence agence)
         {
             List<Reservation> lesReservations = new List<Reservation>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from reservation ;"))
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from \"MAIN\".reservation ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
-                foreach (DataRow dr in dt.Rows)
-                    lesReservations.Add(new Reservation((int)dr["numreservation"], (DateTime)dr["datereservation"], (DateTime)dr["datedebutlocation"], (DateTime)dr["dateretoureffectivelocation"],
-                        (DateTime)dr["dateretourreellelocation"], (Decimal)dr["prixtotal"], agence.Employes.SingleOrDefault(ID => ID.NumEmploye == (int)dr["numemploye"]),
-                        agence.Clients.SingleOrDefault(ID => ID.NumClient == (int)dr["numclient"]),
-                        agence.Materiels.SingleOrDefault(ID => ID.NumMateriel == (int)dr["nummateriel"])));
+            
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        var employe = agence.Employes.SingleOrDefault(e => e.NumEmploye == (int)dr["numemploye"]);
+                        var client = agence.Clients.SingleOrDefault(c => c.NumClient == (int)dr["numclient"]);
+                        var materiel = agence.Materiels.SingleOrDefault(m => m.NumMateriel == (int)dr["nummateriel"]);
+
+                        if (employe == null || client == null || materiel == null)
+                        {
+                            Console.WriteLine($"[SKIP] Reservation #{dr["numreservation"]} skipped: Missing related entities.");
+                            Console.WriteLine($"  Employe: {(employe == null ? "NOT FOUND" : "OK")}, Client: {(client == null ? "NOT FOUND" : "OK")}, Materiel: {(materiel == null ? "NOT FOUND" : "OK")}");
+                            continue;
+                        }
+
+                        lesReservations.Add(new Reservation(
+                            (int)dr["numreservation"],
+                            (DateTime)dr["datereservation"],
+                            (DateTime)dr["datedebutlocation"],
+                            (DateTime)dr["dateretoureffectivelocation"],
+                            (DateTime)dr["dateretourreellelocation"],
+                            (Decimal)dr["prixtotal"],
+                            employe,
+                            client,
+                            materiel
+                        ));
+                    }
+
 
             }
             return lesReservations;
