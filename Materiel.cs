@@ -2,6 +2,7 @@
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -95,7 +96,7 @@ namespace SAE_201_LOXAM
                         (Etat)(int)dr["numetat"],
                         FindAllCertifications((int)dr["nummateriel"]),
                         type));
-                   
+
                 }
             }
             return lesMateriaux;
@@ -127,13 +128,13 @@ namespace SAE_201_LOXAM
         private List<Certification> FindAllCertifications(int num)
         {
             List<Certification> certifications = new();
-            using (NpgsqlCommand cmdSelect = new("select * from \"MAIN\".necessiter n join \"MAIN\".materiel m on n.nummateriel = m.nummateriel group by n.numcertification,m.nummateriel,n.nummateriel having m.nummateriel =" + num  ))
+            using (NpgsqlCommand cmdSelect = new("select * from \"MAIN\".necessiter n join \"MAIN\".materiel m on n.nummateriel = m.nummateriel group by n.numcertification,m.nummateriel,n.nummateriel having m.nummateriel =" + num))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    
-                        certifications.Add((Certification)(int)dr["numcertification"]);
+
+                    certifications.Add((Certification)(int)dr["numcertification"]);
                 }
             }
             return certifications;
@@ -146,6 +147,23 @@ namespace SAE_201_LOXAM
                     return "";
                 return string.Join(", ", Certificationsnecessaires.Select(c => c.ToString()));
             }
+        }
+        public bool EstDisponible(DateTime dateDebut, DateTime dateFin, ObservableCollection<Reservation> lesReservations)
+        {
+
+            foreach (Reservation reservation in lesReservations)
+            {
+                if (reservation.Materiel.numMateriel == this.NumMateriel)
+                {
+                    if (!(dateFin <reservation.DateDebutLocation || dateDebut > reservation.DateRetourReelleLocation))
+                    {
+                        return false;
+                    }
+                    
+                }
+
+            }
+            return true;
         }
     }
 }

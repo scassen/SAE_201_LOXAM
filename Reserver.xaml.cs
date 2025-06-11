@@ -59,14 +59,21 @@ namespace SAE_201_LOXAM
             }
         }
 
-        private void Filtre_TextChanged(object sender, TextChangedEventArgs e)
+        private void Filtre_TextChanged(object sender, TextChangedEventArgs e)  
         {
             CollectionViewSource.GetDefaultView(dgReserver.ItemsSource).Refresh();
         }
 
         private void Enregistrer_Click(object sender, RoutedEventArgs e)
         {
-            
+            Materiel selectedMateriel = dgReserver.SelectedItems as Materiel;
+           var enregistrer = new Enregistrer(selectedMateriel);
+            if (Application.Current.MainWindow is MainWindow mainWindow)
+            {
+                    mainWindow.AfficherContenu(enregistrer);
+            }
+
         }
+
     }
 }

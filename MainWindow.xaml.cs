@@ -17,7 +17,7 @@ namespace SAE_201_LOXAM
             InitializeComponent();
             
         }
-
+        private Reserver currentReserverControl;
 
         public void ChargeData()
         {
@@ -76,6 +76,7 @@ namespace SAE_201_LOXAM
         {
             CacheMainWindow();
             MainContent.Content = new Reserver();
+      
         }
 
         private void Vérifier_Click(object sender, RoutedEventArgs e)
@@ -107,5 +108,6 @@ namespace SAE_201_LOXAM
             Se_connecter_Button.Content = username;
             Se_connecter_Button.IsEnabled = false;
         }
+
     }
 }
