@@ -1,4 +1,5 @@
 ﻿// Fichier : Reserver.xaml.cs
+using SAE_201_LOXAM;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -62,6 +63,17 @@ namespace SAE_201_LOXAM
         private void Filtre_TextChanged(object sender, TextChangedEventArgs e)  
         {
             CollectionViewSource.GetDefaultView(dgReserver.ItemsSource).Refresh();
+        }
+        private void dgReserver_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (dgReserver.SelectedItem is Materiel selectedMateriel)
+            {
+                var details = new DetailMateriel(selectedMateriel);
+                if (Application.Current.MainWindow is MainWindow mainWindow)
+                {
+                    mainWindow.AfficherContenu(details);
+                }
+            }
         }
 
         private void Enregistrer_Click(object sender, RoutedEventArgs e)
