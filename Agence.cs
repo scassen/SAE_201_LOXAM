@@ -18,10 +18,20 @@ namespace SAE_201_LOXAM
         {
             this.Nom = nom;
             try { this.Types = new ObservableCollection<Type>(new Type().FindAll()); } catch (Exception ex) { Console.WriteLine($"Error loading Types: {ex.Message}"); }
-            try { this.Clients = new ObservableCollection<Client>(new Client().FindAll()); } catch (Exception ex) { Console.WriteLine($"Error loading Clients: {ex.Message}"); }
-            try { this.Employes = new ObservableCollection<Employe>(new Employe().FindAll()); } catch (Exception ex) { Console.WriteLine($"Error loading Employes: {ex.Message}"); }
-            try { this.Materiels = new ObservableCollection<Materiel>(new Materiel().FindAll(this)); } catch (Exception ex) { Console.WriteLine($"Error loading Materiels: {ex.Message}"); }
-            try { this.Reservations = new ObservableCollection<Reservation>(new Reservation().FindAll(this)); } catch (Exception ex) { Console.WriteLine($"Error loading Reservations: {ex.Message}"); }
+            try { this.Clients = new ObservableCollection<Client>(new Client().FindAll()); } catch (Exception ex) { Console.WriteLine($"Error loading Clients: {ex.Message}"); this.Clients = new ObservableCollection<Client>(); }
+            try
+            {
+                this.Employes = new ObservableCollection<Employe>(new Employe().FindAll());
+                Console.WriteLine($"Loaded {this.Employes.Count} employé(s).");
+                foreach (var emp in this.Employes)
+                    Console.WriteLine($"  Employé: {emp.NumEmploye} - {emp.NomEmploye} {emp.PrenomEmploye}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading Employes: {ex.Message}");
+            }
+            try { this.Materiels = new ObservableCollection<Materiel>(new Materiel().FindAll(this)); } catch (Exception ex) { Console.WriteLine($"Error loading Materiels: {ex.Message}"); this.Materiels = new ObservableCollection<Materiel>(); }
+           
             
         }
 
