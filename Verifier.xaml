@@ -31,7 +31,10 @@
                         Height="350"
                         Background="#FFE5E5E5"
                         FlowDirection="LeftToRight">
-                        <DataGrid Margin="0,44,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" Height="352" VerticalAlignment="Top" />
+                        <DataGrid
+                            Height="352"
+                            Margin="0,44,0,0"
+                            VerticalAlignment="Top" />
                         <Label
                             x:Name="Client_location_label"
                             Width="140"
@@ -54,7 +57,47 @@
                 <!--  Onglet Reservation  -->
                 <TabItem Header="Reservation">
                     <Grid Height="395" Background="#FFE5E5E5">
-                        <DataGrid Margin="0,45,0,-48" d:ItemsSource="{d:SampleData ItemCount=5}" />
+                        <DataGrid
+                            Margin="0,50,10,-53"
+                            AutoGenerateColumns="False"
+                            ItemsSource="{Binding Reservations}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding NumReservation}"
+                                    Header="NumReservation" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding NumMateriel}"
+                                    Header="NumMateriel" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding NumEmploye}"
+                                    Header="NumEmploye" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding NumClient}"
+                                    Header="NumClient" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding DateReservation}"
+                                    Header="DateReservation" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding DateDebutLocation}"
+                                    Header="DateDebutLocation" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding DateRetourEffectiveLocation}"
+                                    Header="DateRetourEffectiveLocation" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding DateRetourReelleLocation}"
+                                    Header="DateRetourReelleLocation" />
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
                         <Label
                             x:Name="Client_reservation_label"
                             Margin="207,0,0,0"

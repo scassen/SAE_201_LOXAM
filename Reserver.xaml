@@ -19,7 +19,7 @@
         <TextBox
             x:Name="Filtre"
             Width="191"
-            Margin="29,54,0,288"
+            Margin="29,54,0,290"
             HorizontalAlignment="Left"
             Background="Snow"
             BorderBrush="Black"
