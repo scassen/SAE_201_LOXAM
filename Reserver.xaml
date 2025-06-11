@@ -69,7 +69,7 @@
             Foreground="White" />
 
         <Label
-            Margin="10,150,0,0"
+            Margin="10,92,0,249"
             HorizontalAlignment="Left"
             Content="Location" />
         <Rectangle
@@ -80,7 +80,7 @@
 
         <DataGrid
             x:Name="dgReserver"
-            Margin="0,180,0,0"
+            Margin="0,122,0,0"
             AutoGenerateColumns="False"
             ItemsSource="{Binding Materiels}">
             <DataGrid.Columns>

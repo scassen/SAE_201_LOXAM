@@ -1,27 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows;
 
 namespace SAE_201_LOXAM
 {
     /// <summary>
     /// Logique d'interaction pour Verifier.xaml
     /// </summary>
-    public partial class Verifier : UserControl
+    public partial class Verifier : UserControl, INotifyPropertyChanged
     {
         private ObservableCollection<Client> clients;
         public ObservableCollection<Client> Clients
@@ -30,30 +19,76 @@ namespace SAE_201_LOXAM
             set
             {
                 clients = value;
-                OnPropertyChanged(nameof(clients));
+                OnPropertyChanged(nameof(Clients));
             }
         }
+        private ObservableCollection<Reservation> reservations;
+        public ObservableCollection<Reservation> Reservations
+        {
+            get => reservations;
+            set
+            {
+                reservations = value;
+                OnPropertyChanged(nameof(Reservations));
+            }
+        }
+
+        private ICollectionView filteredClients;
+        public ICollectionView FilteredClients
+        {
+            get => filteredClients;
+            set
+            {
+                filteredClients = value;
+                OnPropertyChanged(nameof(FilteredClients));
+            }
+        }
+
         public Verifier()
         {
             InitializeComponent();
+            this.DataContext = this;
+
+            if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.LAgence is not null)
+            {
+                Clients = new ObservableCollection<Client>(new Client().FindAll());
+            }
+            else
+            {
+                Clients = new ObservableCollection<Client>();
+            }
+
+            FilteredClients = CollectionViewSource.GetDefaultView(Clients);
         }
-        /*  public Verifier()
-          {
-              InitializeComponent();
-              this.DataContext = this;
 
-              if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.LAgence is not null)
-              {
-                  Clients = new ObservableCollection<Client>(new Client().FindAll());
-              }
-              else
-              {
-                  Clients = new ObservableCollection<Client>();
-              }
-          }*/
+        private void ClientLocationTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = ClientLocationTextBox.Text;
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                FilteredClients.Filter = null;
+            }
+            else
+            {
+                FilteredClients.Filter = obj =>
+                {
+                    if (obj is Client client)
+                    {
+                        return client.NomClient.Contains(searchText, StringComparison.OrdinalIgnoreCase);
+                           
+                    }
+                    return false;
+                };
+            }
+
+            FilteredClients.Refresh();
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }
