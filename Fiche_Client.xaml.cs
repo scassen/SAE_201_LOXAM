@@ -1,5 +1,6 @@
-﻿using System;
-using System.Data;
+﻿// Fichier : Fiche_Client.xaml.cs
+using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using Npgsql;
@@ -33,22 +34,18 @@ namespace SAE_201_LOXAM
 
                 int nextNumClient = GetNextNumClient();
 
-                // Insertion du client
-                var insertClientCmd = new NpgsqlCommand(
-                    "INSERT INTO \"MAIN\".client(numclient, nomclient, prenomclient) VALUES (@num, @nom, @prenom)");
+                var insertClientCmd = new NpgsqlCommand("INSERT INTO \"MAIN\".client(numclient, nomclient, prenomclient) VALUES (@num, @nom, @prenom)");
                 insertClientCmd.Parameters.AddWithValue("@num", nextNumClient);
                 insertClientCmd.Parameters.AddWithValue("@nom", nom);
                 insertClientCmd.Parameters.AddWithValue("@prenom", prenom);
 
                 int rowsAffected = DataAccess.Instance.ExecuteSet(insertClientCmd);
 
-                // Insertion des certifications dans "dispose"
                 foreach (var certif in certifications)
                 {
-                    var insertCertifCmd = new NpgsqlCommand(
-                        "INSERT INTO \"MAIN\".dispose(numclient, numcertification) VALUES (@numclient, @numcertif)");
+                    var insertCertifCmd = new NpgsqlCommand("INSERT INTO \"MAIN\".dispose(numclient, numcertification) VALUES (@numclient, @numcertif)");
                     insertCertifCmd.Parameters.AddWithValue("@numclient", nextNumClient);
-                    insertCertifCmd.Parameters.AddWithValue("@numcertif", (int)certif); // supposant que l'enum = numcertification
+                    insertCertifCmd.Parameters.AddWithValue("@numcertif", (int)certif);
                     DataAccess.Instance.ExecuteSet(insertCertifCmd);
                 }
 
@@ -63,16 +60,11 @@ namespace SAE_201_LOXAM
             }
         }
 
-
         private int GetNextNumClient()
         {
             var cmd = new NpgsqlCommand("SELECT MAX(numclient) FROM \"MAIN\".client");
             object result = DataAccess.Instance.ExecuteSelectUneValeur(cmd);
-
-            if (result != DBNull.Value && result != null)
-                return Convert.ToInt32(result) + 1;
-            else
-                return 10000; // Premier client
+            return (result != DBNull.Value && result != null) ? Convert.ToInt32(result) + 1 : 10000;
         }
     }
 }

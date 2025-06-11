@@ -1,42 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Fichier : Reserver.xaml.cs
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SAE_201_LOXAM
 {
-    /// <summary>
-    /// Logique d'interaction pour Reserver.xaml
-    /// </summary>
-    public partial class Reserver : UserControl
+    public partial class Reserver : UserControl, INotifyPropertyChanged
     {
+        private ObservableCollection<Materiel> materiels;
+
+        public ObservableCollection<Materiel> Materiels
+        {
+            get => materiels;
+            set
+            {
+                materiels = value;
+                OnPropertyChanged(nameof(Materiels));
+            }
+        }
+
         public Reserver()
         {
             InitializeComponent();
+            this.DataContext = this;
+
+            if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.LAgence is not null)
+            {
+                Materiels = new ObservableCollection<Materiel>(new Materiel().FindAll(mainWindow.LAgence));
+            }
+            else
+            {
+                Materiels = new ObservableCollection<Materiel>();
+            }
         }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
         private void Client_Click(object sender, RoutedEventArgs e)
         {
-
             var ficheClient = new Fiche_Client();
-
-            // Récupère la fenêtre principale
-            var mainWindow = Application.Current.MainWindow as MainWindow;
-            if (mainWindow != null)
+            if (Application.Current.MainWindow is MainWindow mainWindow)
             {
                 mainWindow.AfficherContenu(ficheClient);
             }
         }
-
     }
 }

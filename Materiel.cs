@@ -1,16 +1,21 @@
-﻿using Npgsql;
+﻿// Fichier : Materiel.cs
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SAE_201_LOXAM
 {
-    public enum Etat { }
-    public class Materiel:ICrud<Materiel>,INotifyPropertyChanged
+    public enum Etat
+    {
+        Disponible = 1,
+        EnMaintenance = 2,
+        Loue = 3
+    }
+
+    public class Materiel : ICrud<Materiel>, INotifyPropertyChanged
     {
         private int numMateriel;
         private string reference;
@@ -21,205 +26,113 @@ namespace SAE_201_LOXAM
         private Type typeMateriel;
         private List<Certification> certificationsnecessaires;
 
+        public Materiel() { }
 
-
-        public Materiel(int numMateriel, string reference, string nomMateriel, string descriptif, decimal prixJournee, Etat etatMateriel, List<Certification> certificationsnecessaires, Type typeMateriel)
+        public Materiel(int numMateriel, string reference, string nomMateriel, string descriptif, decimal prixJournee,
+                        Etat etatMateriel, List<Certification> certificationsnecessaires, Type typeMateriel)
         {
-            this.NumMateriel = numMateriel;
-            this.Reference = reference;
-            this.NomMateriel = nomMateriel;
-            this.Descriptif = descriptif;
-            this.PrixJournee = prixJournee;
-            this.EtatMateriel = etatMateriel;
-            this.Certificationsnecessaires = certificationsnecessaires;
-            this.TypeMateriel = typeMateriel;
-        }
-        public Materiel()
-        {
+            NumMateriel = numMateriel;
+            Reference = reference;
+            NomMateriel = nomMateriel;
+            Descriptif = descriptif;
+            PrixJournee = prixJournee;
+            EtatMateriel = etatMateriel;
+            Certificationsnecessaires = certificationsnecessaires;
+            TypeMateriel = typeMateriel;
         }
 
-        public int NumMateriel
-        {
-            get
-            {
-                return this.numMateriel;
-            }
-
-            set
-            {
-                this.numMateriel = value;
-            }
-        }
-
+        public int NumMateriel { get => numMateriel; set => numMateriel = value; }
         public string Reference
         {
-            get
-            {
-                return this.reference;
-            }
-
-            set
-            {
-                if (value.Length > 50)
-                { throw new ArgumentOutOfRangeException("reference de moins de 50 caracteres"); }
-                else
-                    this.reference = value;
-            }
+            get => reference;
+            set => reference = value.Length > 50 ? throw new ArgumentOutOfRangeException("reference") : value;
         }
-
         public string NomMateriel
         {
-            get
-            {
-                return this.nomMateriel;
-            }
-
-            set
-            {
-                if (value.Length > 100)
-                { throw new ArgumentOutOfRangeException("nom de moins de 100 caracteres"); }
-                else
-                    this.nomMateriel = value;
-            }
+            get => nomMateriel;
+            set => nomMateriel = value.Length > 100 ? throw new ArgumentOutOfRangeException("nom") : value;
         }
-
         public string Descriptif
         {
-            get
-            {
-                return this.descriptif;
-            }
-
-            set
-            {
-                if (value.Length >1000)
-                { throw new ArgumentOutOfRangeException("description de moins de 1000 caracteres"); }
-                else
-                this.descriptif = value;
-            }
+            get => descriptif;
+            set => descriptif = value.Length > 1000 ? throw new ArgumentOutOfRangeException("descriptif") : value;
         }
-
         public decimal PrixJournee
         {
-            get
-            {
-                return this.prixJournee;
-            }
-
-            set
-            {
-                if (value <= 0)
-                { throw new ArgumentOutOfRangeException("prix ne peut pas etre negatif ou egal a 0"); }
-                else
-                this.prixJournee = value;
-            }
+            get => prixJournee;
+            set => prixJournee = value <= 0 ? throw new ArgumentOutOfRangeException("prix") : value;
         }
-
-        public Etat EtatMateriel
-        {
-            get
-            {
-                return this.etatMateriel;
-            }
-
-            set
-            {
-                this.etatMateriel = value;
-            }
-        }
-
-        public List<Certification> Certificationsnecessaires
-        {
-            get
-            {
-                return this.certificationsnecessaires;
-            }
-
-            set
-            {
-                this.certificationsnecessaires = value;
-            }
-        }
-
-        internal Type TypeMateriel
-        {
-            get
-            {
-                return this.typeMateriel;
-            }
-
-            set
-            {
-                this.typeMateriel = value;
-            }
-        }
+        public Etat EtatMateriel { get => etatMateriel; set => etatMateriel = value; }
+        public List<Certification> Certificationsnecessaires { get => certificationsnecessaires; set => certificationsnecessaires = value; }
+        internal Type TypeMateriel { get => typeMateriel; set => typeMateriel = value; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public int Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Delete()
-        {
-            throw new NotImplementedException();
-        }
+        public int Create() => throw new NotImplementedException();
+        public int Delete() => throw new NotImplementedException();
+        public void Read() => throw new NotImplementedException();
+        public int Update() => throw new NotImplementedException();
+        public List<Materiel> FindBySelection(string criteres) => throw new NotImplementedException();
 
         public List<Materiel> FindAll(Agence agence)
         {
-            List<Materiel> lesMateriaux = new List<Materiel>();
-            
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from materiels ;"))
+            List<Materiel> lesMateriaux = new();
+            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"MAIN\".materiel"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
+                {
                     lesMateriaux.Add(new Materiel(
-                        (int)dr["nummateriel"], 
+                        (int)dr["nummateriel"],
                         (string)dr["reference"],
                         (string)dr["nommateriel"],
                         (string)dr["descriptif"],
                         (decimal)dr["prixjournee"],
-                        (Etat)((int)dr["numetat"]),
+                        (Etat)(int)dr["numetat"],
                         FindAllCertifications((int)dr["nummateriel"]),
-                        agence.Types.SingleOrDefault(ID => ID.NumType == (int)dr["numtype"])));
+                        agence.Types.SingleOrDefault(t => t.NumType == (int)dr["numtype"])
+                    ));
+                }
+            }
+            return lesMateriaux;
+        }
 
+        public List<Materiel> FindAll()
+        {
+            List<Materiel> lesMateriaux = new();
+            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"MAIN\".materiel"))
+            {
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    lesMateriaux.Add(new Materiel(
+                        (int)dr["nummateriel"],
+                        (string)dr["reference"],
+                        (string)dr["nommateriel"],
+                        (string)dr["descriptif"],
+                        (decimal)dr["prixjournee"],
+                        (Etat)(int)dr["numetat"],
+                        FindAllCertifications((int)dr["nummateriel"]),
+                        Type.FindById((int)dr["numtype"])
+                    ));
+                }
             }
             return lesMateriaux;
         }
 
         private List<Certification> FindAllCertifications(int num)
         {
-           List<Certification> certifications = new List<Certification>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from necessiter ;"))
+            List<Certification> certifications = new();
+            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"MAIN\".necessiter"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
-                    if(num== (int)dr["nummateriel"])
-                    certifications.Add((Certification)((int)dr["numcertification"]));
-
+                {
+                    if ((int)dr["nummateriel"] == num)
+                        certifications.Add((Certification)(int)dr["numcertification"]);
+                }
             }
             return certifications;
-        }
-
-        public List<Materiel> FindBySelection(string criteres)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Read()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Update()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Materiel> FindAll()
-        {
-            throw new NotImplementedException();
         }
     }
 }
