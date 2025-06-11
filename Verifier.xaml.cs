@@ -23,27 +23,37 @@ namespace SAE_201_LOXAM
     /// </summary>
     public partial class Verifier : UserControl
     {
-        private ObservableCollection<Reservation> reservations;
-
-        public ObservableCollection<Reservation> Reservations
+        private ObservableCollection<Client> clients;
+        public ObservableCollection<Client> Clients
         {
-            get => reservations;
+            get => clients;
             set
             {
-                reservations = value;
-                OnPropertyChanged(nameof(Reservations));
+                clients = value;
+                OnPropertyChanged(nameof(clients));
             }
         }
         public Verifier()
         {
             InitializeComponent();
-            this.DataContext = this;
-
         }
+        /*  public Verifier()
+          {
+              InitializeComponent();
+              this.DataContext = this;
 
+              if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.LAgence is not null)
+              {
+                  Clients = new ObservableCollection<Client>(new Client().FindAll());
+              }
+              else
+              {
+                  Clients = new ObservableCollection<Client>();
+              }
+          }*/
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
-     
+
     }
 }
