@@ -5,71 +5,76 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SAE_201_LOXAM"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="800"
-    Height="385"
+    Width="980"
+    Height="434"
+    Background="White"
     mc:Ignorable="d">
     <Grid>
         <Grid>
             <TabControl>
                 <TabItem Header="Consulter">
-                    <Grid Background="#FFE5E5E5">
+                    <Grid Background="#FFFFF8F8">
                         <TextBox
                             Width="120"
-                            Margin="397,10,0,0"
+                            Margin="435,10,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             TextWrapping="Wrap" />
                         <Label
                             x:Name="Rechercher_materiel"
-                            Margin="271,6,0,0"
+                            Margin="307,6,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Content="Rechercher materiel :" />
                         <Button
                             x:Name="Commentaire"
-                            Margin="146,33,0,0"
+                            Width="149"
+                            Height="41"
+                            Margin="127,32,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Background="Red"
                             Content="Ajout commentaire" />
                         <Button
                             x:Name="location"
-                            Margin="521,33,0,0"
+                            Width="166"
+                            Height="43"
+                            Margin="581,31,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Background="Red"
                             Content="Remettre en location" />
-                        <Rectangle Margin="-29,-24,-11,12" Stroke="Black" />
+
                         <Label
-    x:Name="filtre_label"
-    Margin="0,71,0,0"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top"
-    Content="Rechercher par filtre :" />
+                            x:Name="filtre_label"
+                            Margin="0,89,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content="Rechercher par filtre :" />
                         <RadioButton
-    Margin="4,102,0,0"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top"
-    Content="RadioButton" />
+                            Margin="4,120,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content="RadioButton" />
                         <RadioButton
-    Margin="99,102,0,0"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top"
-    Content="RadioButton" />
+                            Margin="99,120,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content="RadioButton" />
                         <RadioButton
-    Margin="200,102,0,0"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top"
-    Content="RadioButton" />
+                            Margin="200,120,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content="RadioButton" />
                         <RadioButton
-    Margin="307,102,0,0"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top"
-    Content="RadioButton" />
-                        <DataGrid Margin="0,122,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" />
+                            Margin="307,120,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content="RadioButton" />
+                        <DataGrid Margin="0,140,0,-18" d:ItemsSource="{d:SampleData ItemCount=5}" />
                         <Label
                             x:Name="materiel_label"
-                            Margin="0,48,0,0"
+                            Margin="0,66,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Content="Materiel"
@@ -81,13 +86,13 @@
                         <Grid Background="#FFE5E5E5">
                             <TextBox
                                 Width="120"
-                                Margin="397,10,0,0"
+                                Margin="435,10,0,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 TextWrapping="Wrap" />
                             <Label
                                 x:Name="Rechercher_materiel1"
-                                Margin="271,6,0,0"
+                                Margin="309,6,0,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 Content="Rechercher materiel :" />

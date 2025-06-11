@@ -99,8 +99,9 @@ namespace SAE_201_LOXAM
 
         private void Acceuil_button_Click(object sender, RoutedEventArgs e)
         {
-            MontreMainWindow();
             MainContent.Content = null;
+            MontreMainWindow();
+           
         }
 
         public void SetUserConnected(string username)

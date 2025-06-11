@@ -52,10 +52,12 @@ namespace SAE_201_LOXAM
             if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.LAgence is not null)
             {
                 Clients = new ObservableCollection<Client>(new Client().FindAll());
+               /* Reservations = new ObservableCollection<Reservation>(new Reservation().FindAll(mainWindow.LAgence));*/
             }
             else
             {
                 Clients = new ObservableCollection<Client>();
+                
             }
 
             FilteredClients = CollectionViewSource.GetDefaultView(Clients);
@@ -83,6 +85,7 @@ namespace SAE_201_LOXAM
             }
 
             FilteredClients.Refresh();
+            
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
