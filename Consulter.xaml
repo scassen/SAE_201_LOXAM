@@ -74,7 +74,6 @@
                             VerticalAlignment="Top"
                             Content="Electrique" />
                         <RadioButton
-                            x:Name="rd_Bi_energie"
                             Margin="208,85,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
@@ -129,10 +128,12 @@
                     <Grid Background="#FFE5E5E5">
                         <Grid Background="#FFE5E5E5">
                             <TextBox
+                                x:Name="filtre2"
                                 Width="120"
                                 Margin="435,10,0,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
+                                TextChanged="filtre2_TextChanged"
                                 TextWrapping="Wrap" />
                             <Label
                                 x:Name="Rechercher_materiel1"
@@ -140,14 +141,61 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 Content="Rechercher materiel :" />
-                            <DataGrid Margin="0,77,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" />
+                            <DataGrid
+                                x:Name="dgRetourner"
+                                Margin="0,79,0,-18"
+                                AutoGenerateColumns="False"
+                                ItemsSource="{Binding Materiels}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding NomMateriel}"
+                                        Header="Nom du matériel" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Reference}"
+                                        Header="Référence" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding PrixJournee}"
+                                        Header="Prix journée" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding EtatMateriel}"
+                                        Header="Etat du Materiel" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding TypeMateriel.LibelleType}"
+                                        Header="Type" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding TypeMateriel.CategorieType}"
+                                        Header="Catégorie" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding CertificationsDisplay}"
+                                        Header="Certifications" />
+
+                                </DataGrid.Columns>
+                            </DataGrid>
                             <Label
                                 x:Name="location_label"
                                 Margin="0,48,0,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
-                                Content="Location"
+                                Content="Remis en Disponible"
                                 FontWeight="Bold" />
+                            <Button
+                                x:Name="reparer"
+                                Width="202"
+                                Height="43"
+                                Margin="669,17,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Background="Red"
+                                Click="reparer_Click"
+                                Content="Mettre à réparer"
+                                FontSize="22" />
                         </Grid>
                     </Grid>
                 </TabItem>

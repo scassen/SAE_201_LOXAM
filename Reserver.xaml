@@ -15,7 +15,7 @@
             Margin="144,23,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="Rechercher par nom : " />
+            Content="Rechercher par nom matériel : " />
         <TextBox
             x:Name="Filtre"
             Width="191"

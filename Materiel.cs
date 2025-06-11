@@ -140,7 +140,7 @@ namespace SAE_201_LOXAM
             return certifications;
         }
 
-        public void UpdateEtat()
+        public void UpdateEtatEnMaintenance()
         {
             
             var cmd = new NpgsqlCommand("UPDATE \"MAIN\".materiel SET numetat = @numetat WHERE nummateriel = @nummateriel");
@@ -150,6 +150,7 @@ namespace SAE_201_LOXAM
                 cmd.Parameters.AddWithValue("@numetat", 1);
                 cmd.Parameters.AddWithValue("@nummateriel", this.NumMateriel);
             }
+         
             else
             {
                 throw new Exception("Ce materiel n'est déjà plus en maintenance");
@@ -158,6 +159,26 @@ namespace SAE_201_LOXAM
 
             DataAccess.Instance.ExecuteSet(cmd);
         }
+        public void UpdateEtatDispo()
+        {
+
+            var cmd = new NpgsqlCommand("UPDATE \"MAIN\".materiel SET numetat = @numetat WHERE nummateriel = @nummateriel");
+
+            if (this.EtatMateriel == Etat.Disponible)
+            {
+                cmd.Parameters.AddWithValue("@numetat", 2);
+                cmd.Parameters.AddWithValue("@nummateriel", this.NumMateriel);
+            }
+
+            else
+            {
+                throw new Exception("Ce materiel n'est déjà plus en réparation");
+            }
+
+
+            DataAccess.Instance.ExecuteSet(cmd);
+        }
+
 
 
         public string CertificationsDisplay
