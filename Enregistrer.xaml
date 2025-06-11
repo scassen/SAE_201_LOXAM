@@ -34,9 +34,94 @@
             VerticalAlignment="Top"
             Content="Label" />
         <DataGrid
-            Margin="0,1,139,233"
-            AutoGenerateColumns="True"
-            ItemsSource="{Binding Materiaux}" />
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            ItemsSource="{Binding SingleMaterielList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding NomMateriel}"
+                    Header="Nom du matériel" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Reference}"
+                    Header="Référence" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding PrixJournee}"
+                    Header="Prix journée" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding EtatMateriel}"
+                    Header="Etat du Materiel" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding TypeMateriel.LibelleType}"
+                    Header="Type" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding TypeMateriel.CategorieType}"
+                    Header="Catégorie" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding CertificationsDisplay}"
+                    Header="Certifications" />
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <DatePicker
+            x:Name="DateDebut"
+            Width="120"
+            Margin="10,243,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectedDateChanged="Date_SelectedDateChanged"
+            Text="" />
+        <DatePicker
+            x:Name="DateFin"
+            Width="120"
+            Margin="189,243,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectedDateChanged="Date_SelectedDateChanged"
+            Text="" />
+        <Label
+            Margin="10,216,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="date de debut" />
+        <Label
+            Margin="189,217,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="date de fin" />
+        <TextBlock
+            Width="295"
+            Height="99"
+            Margin="495,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Background="#FFDCCFCF"
+            Text="{Binding selectedMateriel.Descriptif}"
+            TextWrapping="Wrap" />
+        <TextBlock
+            Width="130"
+            Margin="571,242,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#FFA79595"
+            Text="{Binding EstDisponible}"
+            TextWrapping="Wrap" />
+        <Button
+            Width="77"
+            Height="28"
+            Margin="420,242,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#FFE22E2E"
+            Click="Button_Click"
+            Content="Valider" />
+
 
     </Grid>
 </UserControl>
