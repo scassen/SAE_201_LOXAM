@@ -9,17 +9,17 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <Grid Background="White">
+    <Grid Background="White" Margin="0,0,-52,0">
 
         <Label
-            Margin="41,20,0,0"
+            Margin="144,23,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Rechercher par nom : " />
         <TextBox
             x:Name="Filtre"
             Width="191"
-            Margin="29,54,0,290"
+            Margin="144,54,0,290"
             HorizontalAlignment="Left"
             Background="Snow"
             BorderBrush="Black"
@@ -27,51 +27,38 @@
             TextChanged="Filtre_TextChanged"
             TextWrapping="Wrap" />
 
-        <Label
-            Margin="263,20,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Client existant : " />
-        <TextBox
-            x:Name="Client_box"
-            Width="146"
-            Margin="263,54,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            TextWrapping="Wrap" />
-
         <Button
             x:Name="Enregistrer"
-            Width="186"
-            Height="35"
-            Margin="558,24,0,0"
+            Width="216"
+            Height="62"
+            Margin="408,19,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="Red"
-            BorderBrush="Red"
+            BorderBrush="#FF060606"
             Click="Enregistrer_Click"
             Content="Enregistrer la réservation"
             FontFamily="Arial Rounded MT Bold"
-            Foreground="White" />
+            Foreground="White" FontSize="14" />
 
         <Button
             x:Name="Client"
-            Width="130"
-            Height="35"
-            Margin="586,74,0,0"
+            Width="176"
+            Height="51"
+            Margin="642,30,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="Red"
-            BorderBrush="Red"
+            BorderBrush="Black"
             Click="Client_Click"
             Content="Créer fiche client"
             FontFamily="Arial Rounded MT Bold"
-            Foreground="White" />
+            Foreground="White" FontSize="16" />
 
         <Label
-            Margin="10,92,0,249"
+            Margin="10,83,0,258"
             HorizontalAlignment="Left"
-            Content="Location" />
+            Content="Location" FontWeight="Bold" />
         <Rectangle
             Width="802"
             Margin="0,176,0,0"
@@ -80,7 +67,7 @@
 
         <DataGrid
             x:Name="dgReserver"
-            Margin="0,122,0,0"
+            Margin="0,118,0,0"
             AutoGenerateColumns="False"
             ItemsSource="{Binding Materiels}">
             <DataGrid.Columns>

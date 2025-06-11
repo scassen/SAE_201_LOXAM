@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="Acceuil"
     Title="Accueil"
-    Width="800"
-    Height="450"
+    Width="947"
+    Height="525"
     HorizontalAlignment="Center"
     VerticalAlignment="Center"
     HorizontalContentAlignment="Center"
@@ -17,15 +17,22 @@
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Grid>
-        <ContentControl x:Name="MainContent" Margin="0,52,0,0">
+    <Grid Margin="0,0,-19,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="212*" />
+            <RowDefinition Height="297*" />
+        </Grid.RowDefinitions>
+        <ContentControl
+            x:Name="MainContent"
+            Grid.RowSpan="2"
+            Margin="0,94,0,0">
             <Label
                 x:Name="Bienvenue_label"
                 Width="819"
                 Height="297"
-                Margin="-19,0,0,0"
+                Margin="55,38,0,0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Center"
+                VerticalAlignment="Top"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
                 BorderBrush="Black"
@@ -38,16 +45,16 @@
 
 
         <Grid
-            Width="829"
+            Width="976"
             Height="110"
             Margin="-29,-16,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top">
 
             <Rectangle
-                Width="800"
-                Height="52"
-                Margin="29,16,0,0"
+                Width="949"
+                Height="94"
+                Margin="27,16,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Fill="#FFFF3636" />
@@ -55,16 +62,16 @@
 
         <Button
             x:Name="Reserver"
-            Grid.Column="1"
-            Width="73"
-            Height="36"
-            Margin="351,8,0,0"
+            Width="108"
+            Height="52"
+            Margin="395,15,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFFF3636"
             BorderBrush="White"
             Click="Reserver_Click"
             Content="Reserver"
+            FontSize="18"
             Foreground="White"
             RenderTransformOrigin="0.5,0.5">
 
@@ -79,16 +86,16 @@
         </Button>
         <Button
             x:Name="Vérifier"
-            Grid.Column="1"
-            Width="73"
-            Height="36"
-            Margin="444,8,0,0"
+            Width="105"
+            Height="52"
+            Margin="515,15,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFFF3636"
             BorderBrush="White"
             Click="Vérifier_Click"
             Content="Vérifier"
+            FontSize="18"
             Foreground="White"
             RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
@@ -102,16 +109,16 @@
         </Button>
         <Button
             x:Name="Consulter"
-            Grid.Column="1"
-            Width="75"
-            Height="36"
-            Margin="533,8,0,0"
+            Width="108"
+            Height="52"
+            Margin="627,15,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFFF3636"
             BorderBrush="White"
             Click="Consulter_Click"
             Content="Consulter"
+            FontSize="18"
             Foreground="White"
             RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
@@ -125,15 +132,16 @@
         </Button>
         <Button
             x:Name="Se_connecter_Button"
-            Width="163"
-            Height="36"
-            Margin="624,8,0,0"
+            Width="182"
+            Height="49"
+            Margin="743,17,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="White"
             BorderBrush="White"
             Click="Se_connecter_Click"
             Content="Se connecter"
+            FontSize="24"
             Foreground="Black"
             RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
@@ -146,24 +154,25 @@
             </Button.RenderTransform>
         </Button>
         <Image
-            Width="245"
-            Height="63"
-            Margin="0,-3,0,0"
+            Width="308"
+            Height="82"
+            Margin="-55,1,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Source="/IMG/f567c238ffb4f0ab7644d64aec5e1ce6863c2271.png"
             Stretch="Fill" />
         <Button
             x:Name="Acceuil_button"
-            Width="108"
-            Height="36"
-            Margin="218,8,0,0"
+            Width="168"
+            Height="56"
+            Margin="210,12,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFFFFBFB"
             BorderBrush="{x:Null}"
             Click="Acceuil_button_Click"
             Content="Accueil"
+            FontSize="22"
             Foreground="#FFFD0000"
             RenderTransformOrigin="0.5,0.5">
 

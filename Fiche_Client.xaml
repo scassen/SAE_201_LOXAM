@@ -5,13 +5,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SAE_201_LOXAM"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignWidth="800"
-    mc:Ignorable="d" Height="392">
+    Height="392"
+    mc:Ignorable="d" Width="848">
     <Grid Background="White">
 
         <Label
             x:Name="Créer_label"
-            Margin="287,13,0,0"
+            Margin="318,23,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="CREER FICHE CLIENT"
@@ -20,14 +20,14 @@
             x:Name="Nom_label"
             Width="139"
             Height="38"
-            Margin="166,57,0,0"
+            Margin="197,83,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Nom client : "
             FontSize="22" />
         <Label
             x:Name="prenom_label"
-            Margin="502,56,0,0"
+            Margin="533,81,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Prénom client :"
@@ -35,7 +35,7 @@
         <TextBox
             x:Name="nom_client_box"
             Width="180"
-            Margin="145,100,0,0"
+            Margin="176,125,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFFBF8F8"
@@ -44,7 +44,7 @@
         <TextBox
             x:Name="prenom_client_box"
             Width="180"
-            Margin="489,96,0,0"
+            Margin="520,121,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFFBF8F8"
@@ -53,28 +53,28 @@
         <Label
             x:Name="Certification_label"
             Width="148"
-            Height="37"
-            Margin="329,172,0,0"
+            Height="36"
+            Margin="357,182,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Certification : "
             FontSize="22" />
         <CheckBox
             x:Name="interne_check"
-            Margin="289,225,0,0"
+            Margin="284,238,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Interne" />
         <CheckBox
             x:Name="CACES_R486_check"
-            Margin="362,225,0,0"
-            HorizontalAlignment="Left"
+            Margin="0,241,0,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="CACES_R486"
             RenderTransformOrigin="0.261,-0.883" />
         <CheckBox
             x:Name="CACES_R482_check"
-            Margin="460,225,0,0"
+            Margin="496,238,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="CACES_R482" />
@@ -82,7 +82,7 @@
             x:Name="btnCreerClient"
             Width="150"
             Height="40"
-            Margin="0,268,0,0"
+            Margin="0,281,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="Red"
