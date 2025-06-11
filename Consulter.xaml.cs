@@ -15,6 +15,7 @@ namespace SAE_201_LOXAM
     public partial class Consulter : UserControl, INotifyPropertyChanged
     {
         private ObservableCollection<Materiel> materiels;
+        private string? referenceFiltre = null;
 
         public ObservableCollection<Materiel> Materiels
         {
@@ -60,6 +61,9 @@ namespace SAE_201_LOXAM
             if (unMateriel.EtatMateriel != Etat.EnMaintenance)
                 return false;
 
+            if (!string.IsNullOrEmpty(referenceFiltre) && unMateriel.Reference != referenceFiltre)
+                return false;
+
             if (string.IsNullOrEmpty(Filtre.Text))
                 return true;
 
@@ -67,6 +71,7 @@ namespace SAE_201_LOXAM
                 || unMateriel.TypeMateriel.LibelleType.StartsWith(Filtre.Text, StringComparison.OrdinalIgnoreCase)
                 || unMateriel.TypeMateriel.CategorieType.ToString().StartsWith(Filtre.Text, StringComparison.OrdinalIgnoreCase));
         }
+
 
         private bool RechercheMotCleMaterielRetourner(object obj)
         {
@@ -76,6 +81,9 @@ namespace SAE_201_LOXAM
             if (unMateriel.EtatMateriel != Etat.Disponible)
                 return false;
 
+            if (!string.IsNullOrEmpty(referenceFiltre) && unMateriel.Reference != referenceFiltre)
+                return false;
+
             if (string.IsNullOrEmpty(filtre2.Text))
                 return true;
 
@@ -83,6 +91,25 @@ namespace SAE_201_LOXAM
                 || unMateriel.TypeMateriel.LibelleType.StartsWith(filtre2.Text, StringComparison.OrdinalIgnoreCase)
                 || unMateriel.TypeMateriel.CategorieType.ToString().StartsWith(filtre2.Text, StringComparison.OrdinalIgnoreCase));
         }
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Sans_rd.IsChecked == true)
+                referenceFiltre = "Sans";
+            else if (Essence.IsChecked == true)
+                referenceFiltre = "Essence";
+            else if (rd_Electrique.IsChecked == true)
+                referenceFiltre = "Électrique";
+            else if (rd_BiEnergie.IsChecked == true)
+                referenceFiltre = "Bi énergie";
+            else if (rd_tout.IsChecked == true)
+                referenceFiltre = null;
+            else
+                referenceFiltre = null;
+
+            ViewConsulter?.Refresh();
+            ViewRetourner?.Refresh();
+        }
+
 
         private void Filtre_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -158,6 +185,7 @@ namespace SAE_201_LOXAM
             ViewConsulter.Refresh();
             ViewRetourner.Refresh();
         }
+
 
     }
 }

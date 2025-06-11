@@ -58,26 +58,24 @@
                         <RadioButton
                             x:Name="Sans_rd"
                             Margin="8,85,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            Checked="RadioButton_Checked"
                             Content="Sans" />
                         <RadioButton
                             x:Name="Essence"
                             Margin="66,85,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            Checked="RadioButton_Checked"
                             Content="Essence" />
                         <RadioButton
                             x:Name="rd_Electrique"
-                            Margin="132,85,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            Margin="132,85,757,298"
+                            Checked="RadioButton_Checked"
                             Content="Electrique" />
                         <RadioButton
+                            x:Name="rd_BiEnergie"
                             Margin="208,85,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
+                            Checked="RadioButton_Checked"
                             Content="Bi energie" />
+
                         <DataGrid
                             x:Name="dgConsulter"
                             Margin="0,113,0,-18"
@@ -121,6 +119,14 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Content="Materiel"
+                            FontWeight="Bold" />
+                        <RadioButton
+                            x:Name="rd_tout"
+                            Margin="293,85,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Checked="RadioButton_Checked"
+                            Content="Tous"
                             FontWeight="Bold" />
                     </Grid>
                 </TabItem>

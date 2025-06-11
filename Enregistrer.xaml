@@ -72,7 +72,7 @@
         <DatePicker
             x:Name="DateDebut"
             Width="120"
-            Margin="10,243,0,0"
+            Margin="10,78,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             SelectedDateChanged="Date_SelectedDateChanged"
@@ -80,18 +80,18 @@
         <DatePicker
             x:Name="DateFin"
             Width="120"
-            Margin="189,243,0,0"
+            Margin="207,78,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             SelectedDateChanged="Date_SelectedDateChanged"
             Text="" />
         <Label
-            Margin="10,216,0,0"
+            Margin="10,54,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="date de debut" />
         <Label
-            Margin="189,217,0,0"
+            Margin="207,52,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="date de fin" />
@@ -105,22 +105,22 @@
             Text="{Binding selectedMateriel.Descriptif}"
             TextWrapping="Wrap" />
         <TextBlock
-            Width="130"
-            Margin="571,242,0,0"
+            Width="180"
+            Margin="515,222,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFA79595"
             Text="{Binding EstDisponible}"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Height="22" />
         <Button
-            Width="77"
-            Height="28"
-            Margin="420,242,0,0"
+            Width="120"
+            Height="42"
+            Margin="362,212,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFE22E2E"
             Click="Button_Click"
-            Content="Valider" />
+            Content="Valider" FontSize="20" />
 
 
     </Grid>
