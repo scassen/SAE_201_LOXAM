@@ -80,7 +80,28 @@ namespace SAE_201_LOXAM
 
         private void location_Click(object sender, RoutedEventArgs e)
         {
+            if (dgConsulter.SelectedItem is not Materiel selectedMateriel)
+            {
+                MessageBox.Show("Veuillez sélectionner un matériel à remettre en location.");
+                return;
+            }
 
+            // Modifier l'état en mémoire
+            selectedMateriel.EtatMateriel = Etat.EnMaintenance;
+
+            try
+            {
+                
+                selectedMateriel.UpdateEtat();
+                Materiels.Remove(selectedMateriel);
+
+                MessageBox.Show("Le matériel a été remis en location avec succès.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la mise à jour de l'état du matériel : " + ex.Message);
+            }
         }
+
     }
 }

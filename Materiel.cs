@@ -139,6 +139,27 @@ namespace SAE_201_LOXAM
             }
             return certifications;
         }
+
+        public void UpdateEtat()
+        {
+            
+            var cmd = new NpgsqlCommand("UPDATE \"MAIN\".materiel SET numetat = @numetat WHERE nummateriel = @nummateriel");
+         
+            if(this.EtatMateriel == Etat.EnMaintenance)
+            {
+                cmd.Parameters.AddWithValue("@numetat", 1);
+                cmd.Parameters.AddWithValue("@nummateriel", this.NumMateriel);
+            }
+            else
+            {
+                throw new Exception("Ce materiel n'est déjà plus en maintenance");
+            }
+           
+
+            DataAccess.Instance.ExecuteSet(cmd);
+        }
+
+
         public string CertificationsDisplay
         {
             get

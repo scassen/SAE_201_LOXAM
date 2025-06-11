@@ -9,7 +9,7 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <Grid Background="White" Margin="0,0,-52,0">
+    <Grid Margin="0,0,-52,0" Background="White">
 
         <Label
             Margin="144,23,0,0"
@@ -39,7 +39,8 @@
             Click="Enregistrer_Click"
             Content="Enregistrer la réservation"
             FontFamily="Arial Rounded MT Bold"
-            Foreground="White" FontSize="14" />
+            FontSize="14"
+            Foreground="White" />
 
         <Button
             x:Name="Client"
@@ -53,12 +54,14 @@
             Click="Client_Click"
             Content="Créer fiche client"
             FontFamily="Arial Rounded MT Bold"
-            Foreground="White" FontSize="16" />
+            FontSize="16"
+            Foreground="White" />
 
         <Label
             Margin="10,83,0,258"
             HorizontalAlignment="Left"
-            Content="Location" FontWeight="Bold" />
+            Content="Location"
+            FontWeight="Bold" />
         <Rectangle
             Width="802"
             Margin="0,176,0,0"
@@ -69,7 +72,8 @@
             x:Name="dgReserver"
             Margin="0,118,0,0"
             AutoGenerateColumns="False"
-            ItemsSource="{Binding Materiels}">
+            ItemsSource="{Binding Materiels}"
+            MouseDoubleClick="dgReserver_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
