@@ -15,10 +15,12 @@
                 <TabItem Header="Consulter">
                     <Grid Background="#FFFFF8F8">
                         <TextBox
+                            x:Name="Filtre"
                             Width="120"
                             Margin="435,10,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
+                            TextChanged="Filtre_TextChanged"
                             TextWrapping="Wrap" />
                         <Label
                             x:Name="Rechercher_materiel"
@@ -30,7 +32,7 @@
                             x:Name="Commentaire"
                             Width="149"
                             Height="41"
-                            Margin="127,32,0,0"
+                            Margin="772,35,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Background="Red"
@@ -39,42 +41,80 @@
                             x:Name="location"
                             Width="166"
                             Height="43"
-                            Margin="581,31,0,0"
+                            Margin="601,34,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Background="Red"
+                            Click="location_Click"
                             Content="Remettre en location" />
 
                         <Label
                             x:Name="filtre_label"
-                            Margin="0,89,0,0"
+                            Margin="0,59,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            Content="Rechercher par filtre :" />
+                            Content="Rechercher par filtre :"
+                            RenderTransformOrigin="0.522,-0.461" />
                         <RadioButton
-                            Margin="4,120,0,0"
+                            Margin="8,85,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Content="RadioButton" />
                         <RadioButton
-                            Margin="99,120,0,0"
+                            Margin="98,85,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Content="RadioButton" />
                         <RadioButton
-                            Margin="200,120,0,0"
+                            Margin="188,85,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Content="RadioButton" />
                         <RadioButton
-                            Margin="307,120,0,0"
+                            Margin="283,85,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Content="RadioButton" />
-                        <DataGrid Margin="0,140,0,-18" d:ItemsSource="{d:SampleData ItemCount=5}" />
+                        <DataGrid
+                            x:Name="dgConsulter"
+                            Margin="0,113,0,-18"
+                            AutoGenerateColumns="False"
+                            ItemsSource="{Binding Materiels}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding NomMateriel}"
+                                    Header="Nom du matériel" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding Reference}"
+                                    Header="Référence" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding PrixJournee}"
+                                    Header="Prix journée" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding EtatMateriel}"
+                                    Header="Etat du Materiel" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding TypeMateriel.LibelleType}"
+                                    Header="Type" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding TypeMateriel.CategorieType}"
+                                    Header="Catégorie" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding CertificationsDisplay}"
+                                    Header="Certifications" />
+
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <Label
                             x:Name="materiel_label"
-                            Margin="0,66,0,0"
+                            Margin="0,33,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Content="Materiel"

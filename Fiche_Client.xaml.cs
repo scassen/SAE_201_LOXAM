@@ -51,11 +51,15 @@ namespace SAE_201_LOXAM
                 }
 
                 if (rowsAffected > 0)
+                {
                     MessageBox.Show("Client créé avec succès !");
-                    
-
+                    this.Visibility = Visibility.Collapsed;
+                }
                 else
+                {
                     MessageBox.Show("Erreur lors de la création du client.");
+                }
+                  
             }
             catch (Exception ex)
             {
