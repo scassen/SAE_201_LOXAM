@@ -114,6 +114,11 @@ namespace SAE_201_LOXAM
            
         }
 
+        public void Commentaire()
+        {
+            var CommentaireFenetre = new Commentaire();
+            CommentaireFenetre.Show();
+        }
         public void SetUserConnected(string username)
         {
             Se_connecter_Button.Content = username;

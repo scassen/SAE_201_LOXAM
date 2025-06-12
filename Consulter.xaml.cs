@@ -16,6 +16,8 @@ namespace SAE_201_LOXAM
     {
         private ObservableCollection<Materiel> materiels;
         private string? referenceFiltre = null;
+        private MainWindow mainWindow;
+        public Materiel materiel;
 
         public ObservableCollection<Materiel> Materiels
         {
@@ -189,6 +191,8 @@ namespace SAE_201_LOXAM
         private void Commentaire_Click(object sender, RoutedEventArgs e)
         {
 
+            var CommentaireFenetre = new Commentaire();
+            CommentaireFenetre.Show();
         }
     }
 }
