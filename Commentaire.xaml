@@ -8,12 +8,18 @@
     Title="Commentaire"
     Width="945"
     Height="527"
-    mc:Ignorable="d" ResizeMode="NoResize" Icon="/IMG/256x256bb.jpg" WindowStartupLocation="CenterScreen">
+    Icon="/IMG/256x256bb.jpg"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
     <Grid Margin="0,0,0,-27" Background="White">
-        <TextBlock x:Name="nommateriel"
+        <TextBlock
+            x:Name="nommateriel"
             Margin="257,83,257,397"
             FontSize="24"
-            Text="{Binding NomMateriel}" FontWeight="Bold" TextAlignment="Center" />
+            FontWeight="Bold"
+            Text="{Binding NomMateriel}"
+            TextAlignment="Center" />
         <Rectangle
             Width="945"
             Height="61"
@@ -45,8 +51,31 @@
             Fill="WhiteSmoke"
             Stroke="Black"
             StrokeThickness="3" />
-        <Button x:Name="Valider_button" Content="Valider" HorizontalAlignment="Center" Margin="0,426,0,0" VerticalAlignment="Top" Background="#FFF90000" BorderBrush="White" Height="49" Width="198" FontSize="24" FontWeight="Bold" Click="Valider_button_Click"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="562" Height="199" Background="{x:Null}" BorderThickness="10,10,10,10" BorderBrush="{x:Null}" FontSize="16"/>
+        <Button
+            x:Name="Valider_button"
+            Width="198"
+            Height="49"
+            Margin="0,426,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Background="#FFF90000"
+            BorderBrush="White"
+            Click="Valider_button_Click"
+            Content="Valider"
+            FontSize="24"
+            FontWeight="Bold" />
+        <TextBox
+            Width="562"
+            Height="199"
+            Margin="0,208,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            BorderThickness="10,10,10,10"
+            FontSize="16"
+            Text="{Binding Materiel.Commentaire}"
+            TextWrapping="Wrap" />
 
     </Grid>
 </Window>

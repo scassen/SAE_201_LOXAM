@@ -26,6 +26,7 @@ namespace SAE_201_LOXAM
         private Etat etatMateriel;
         private Type typeMateriel;
         private List<Certification> certificationsnecessaires;
+        private string commentaire;
 
         public Materiel() { }
 
@@ -297,6 +298,20 @@ namespace SAE_201_LOXAM
                 return string.Join(", ", Certificationsnecessaires.Select(c => c.ToString()));
             }
         }
+
+        public string Commentaire
+        {
+            get
+            {
+                return this.commentaire;
+            }
+
+            set
+            {
+                this.commentaire = value;
+            }
+        }
+
         public bool EstDisponible(DateTime dateDebut, DateTime dateFin, ObservableCollection<Reservation> lesReservations)
         {
 

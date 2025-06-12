@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +22,8 @@ namespace SAE_201_LOXAM
     /// </summary>
     public partial class Commentaire : Window
     {
-       
+
+        private Materiel materiel;
 
         public Commentaire(Materiel materiel)
         {
@@ -31,7 +34,31 @@ namespace SAE_201_LOXAM
 
         private void Valider_button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            try
+            {
+                // Prépare la commande SQL pour mettre à jour le commentaire
+                var cmd = new NpgsqlCommand("UPDATE \"main\".materiel SET commentaire = @commentaire WHERE nummateriel = @nummateriel");
+                cmd.Parameters.AddWithValue("@commentaire", materiel.Commentaire ?? "");
+                cmd.Parameters.AddWithValue("@nummateriel", materiel.NumMateriel);
+
+                int rowsAffected = DataAccess.Instance.ExecuteSet(cmd);
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Commentaire mis à jour avec succès !");
+                }
+                else
+                {
+                    MessageBox.Show("Erreur lors de la mise à jour du commentaire.");
+                }
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la mise à jour du commentaire : " + ex.Message);
+            }
         }
     }
+    
 }
