@@ -63,7 +63,7 @@ namespace SAE_201_LOXAM
         public List<Client> FindAll()
         {
             List<Client> lesClients = new();
-            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"MAIN\".client;"))
+            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"main\".client;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
@@ -78,7 +78,7 @@ namespace SAE_201_LOXAM
         private List<Certification> FindAllCertifications(int num)
         {
             List<Certification> certifications = new();
-            using (NpgsqlCommand cmdSelect = new("select * from \"MAIN\".dispose n join \"MAIN\".client c on c.numclient = n.numclient group by n.numclient,n.numcertification,c.numclient having n.numclient =" + num))
+            using (NpgsqlCommand cmdSelect = new("select * from \"main\".dispose n join \"main\".client c on c.numclient = n.numclient group by n.numclient,n.numcertification,c.numclient having n.numclient =" + num))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)

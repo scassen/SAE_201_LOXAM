@@ -40,7 +40,7 @@ namespace SAE_201_LOXAM
         public List<Type> FindAll()
         {
             List<Type> lesTypes = new();
-            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"MAIN\".type"))
+            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"main\".type"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
@@ -64,7 +64,7 @@ namespace SAE_201_LOXAM
 
         public static Type FindById(int numType)
         {
-            using (NpgsqlCommand cmd = new("SELECT * FROM \"MAIN\".type WHERE numtype = @id"))
+            using (NpgsqlCommand cmd = new("SELECT * FROM \"main\".type WHERE numtype = @id"))
             {
                 cmd.Parameters.AddWithValue("@id", numType);
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmd);

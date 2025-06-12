@@ -32,7 +32,7 @@ namespace SAE_201_LOXAM
             string username = identifier_box.Text;
             string password = mdp_box.Password;
 
-            string connString = $"Host=srv-peda-new;Port=5433;Username={username};Password={password};Database=201;Options='-c search_path=MAIN'";
+            string connString = $"Host=srv-peda-new;Port=5433;Username={username};Password={password};Database=201;Options='-c search_path=main'";
 
             try
             {

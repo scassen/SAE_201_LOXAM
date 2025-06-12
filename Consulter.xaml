@@ -36,7 +36,7 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Background="Red"
-                            Content="Ajout commentaire" />
+                            Content="Ajout commentaire" Click="Commentaire_Click" />
                         <Button
                             x:Name="location"
                             Width="166"

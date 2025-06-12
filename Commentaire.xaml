@@ -1,0 +1,50 @@
+﻿<Window
+    x:Class="SAE_201_LOXAM.Commentaire"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SAE_201_LOXAM"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Commentaire"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Grid>
+        <TextBlock
+            Margin="257,71,257,313"
+            FontSize="16"
+            Text="{Binding NomMateriel}" />
+        <Rectangle
+            Width="800"
+            Height="52"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Fill="#FFFF3636" />
+        <Image
+            Width="245"
+            Height="63"
+            Margin="0,-3,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Source="/IMG/f567c238ffb4f0ab7644d64aec5e1ce6863c2271.png"
+            Stretch="Fill" />
+        <Label
+            x:Name="Com_label"
+            Margin="0,121,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="Ajout d'un commentaire"
+            FontSize="24"
+            FontWeight="Bold" />
+        <Rectangle
+            Width="562"
+            Height="247"
+            Margin="0,177,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Fill="WhiteSmoke"
+            Stroke="Black"
+            StrokeThickness="3" />
+
+    </Grid>
+</Window>
