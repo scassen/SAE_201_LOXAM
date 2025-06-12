@@ -65,16 +65,20 @@ namespace SAE_201_LOXAM
             if (userRole == "responsable")
             {
                 
-                Verifier_button.IsEnabled = true;
-                Reserver_button.IsEnabled = true;
-                Consulter_button.IsEnabled = true;
+                Verifier_button.IsEnabled = true; //false
+                Verifier_button.Opacity = 0.5;
+                Reserver_button.IsEnabled = true; //false
+                Reserver_button.Opacity = 0.5;
+                Consulter_button.IsEnabled = true; //true
             }
             else if (userRole == "employe")
             {
                 
-                Verifier_button.IsEnabled = true;
-                Reserver_button.IsEnabled = true;
-                Consulter_button.IsEnabled = true;
+                Verifier_button.IsEnabled = true; //true
+                
+                Reserver_button.IsEnabled = true; //true
+                Consulter_button.IsEnabled = true; //false
+                Consulter_button.Opacity = 0.5;
             }
         }
 
@@ -128,19 +132,21 @@ namespace SAE_201_LOXAM
         {
             CacheMainWindow();
             MainContent.Content = new Reserver();
-      
+            Animation_Reserver();
         }
 
         private void Vérifier_Click(object sender, RoutedEventArgs e)
         {
             CacheMainWindow();
             MainContent.Content = new Verifier();
+            Animation_Verifier();
         }
 
         private void Consulter_Click(object sender, RoutedEventArgs e)
         {
             CacheMainWindow();
             MainContent.Content = new Consulter();
+            Animation_Consulter();
         }
 
         private void Se_connecter_Click(object sender, RoutedEventArgs e)
@@ -154,6 +160,36 @@ namespace SAE_201_LOXAM
             MainContent.Content = null;
             MontreMainWindow();
            
+        }
+
+        private void Animation_Reserver()
+        {
+            Reserver_button.Background = new SolidColorBrush(Colors.White);
+            Reserver_button.Foreground = new SolidColorBrush(Colors.Red);
+            Verifier_button.Background = new SolidColorBrush(Colors.Red);
+            Verifier_button.Foreground = new SolidColorBrush(Colors.White);
+            Consulter_button.Background = new SolidColorBrush(Colors.Red);
+            Consulter_button.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        private void Animation_Verifier()
+        {
+            Reserver_button.Background = new SolidColorBrush(Colors.Red);
+            Reserver_button.Foreground = new SolidColorBrush(Colors.White);
+            Verifier_button.Background = new SolidColorBrush(Colors.White);
+            Verifier_button.Foreground = new SolidColorBrush(Colors.Red);
+            Consulter_button.Background = new SolidColorBrush(Colors.Red);
+            Consulter_button.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        private void Animation_Consulter()
+        {
+            Reserver_button.Background = new SolidColorBrush(Colors.Red);
+            Reserver_button.Foreground = new SolidColorBrush(Colors.White);
+            Verifier_button.Background = new SolidColorBrush(Colors.Red);
+            Reserver_button.Foreground = new SolidColorBrush(Colors.White);
+            Consulter_button.Background = new SolidColorBrush(Colors.White);
+            Consulter_button.Foreground = new SolidColorBrush(Colors.Red);
         }
 
     }
