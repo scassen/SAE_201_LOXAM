@@ -1,45 +1,38 @@
-﻿using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using Npgsql;
 using SAE_201_LOXAM.Classes;
 
 namespace SAE_201_LOXAM
 {
-    /// <summary>
-    /// Logique d'interaction pour Commentaire.xaml
-    /// </summary>
     public partial class Commentaire : Window
     {
-
+        // Variable d'instance pour stocker le matériel courant
         private Materiel materiel;
 
-        public Commentaire(Materiel materiel)
+        // Constructeur avec paramètre Materiel
+        public Commentaire(Materiel mat)
         {
             InitializeComponent();
-            DataContext = materiel;
-
+            materiel = mat;
+            // Pour que le binding fonctionne, on met le DataContext à materiel
+            this.DataContext = materiel;
         }
 
         private void Valider_button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                // Prépare la commande SQL pour mettre à jour le commentaire
+                if (materiel == null)
+                {
+                    MessageBox.Show("Le matériel n'est pas défini.");
+                    return;
+                }
+
+                // On récupère le commentaire depuis la propriété liée
+                string commentaire = materiel.Commentaire ?? "";
+
                 var cmd = new NpgsqlCommand("UPDATE \"main\".materiel SET commentaire = @commentaire WHERE nummateriel = @nummateriel");
-                cmd.Parameters.AddWithValue("@commentaire", materiel.Commentaire ?? "");
+                cmd.Parameters.AddWithValue("@commentaire", commentaire);
                 cmd.Parameters.AddWithValue("@nummateriel", materiel.NumMateriel);
 
                 int rowsAffected = DataAccess.Instance.ExecuteSet(cmd);
@@ -61,5 +54,4 @@ namespace SAE_201_LOXAM
             }
         }
     }
-    
 }

@@ -74,7 +74,7 @@
             BorderBrush="{x:Null}"
             BorderThickness="10,10,10,10"
             FontSize="16"
-            Text="{Binding Materiel.Commentaire}"
+            Text="{Binding Commentaire}"
             TextWrapping="Wrap" />
 
     </Grid>
