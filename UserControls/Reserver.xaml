@@ -89,10 +89,6 @@
                     Header="Nom du matériel" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding Reference}"
-                    Header="Référence" />
-                <DataGridTextColumn
-                    Width="*"
                     Binding="{Binding PrixJournee}"
                     Header="Prix journée" />
                 <DataGridTextColumn
@@ -103,10 +99,6 @@
                     Width="*"
                     Binding="{Binding TypeMateriel.LibelleType}"
                     Header="Type" />
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding TypeMateriel.CategorieType}"
-                    Header="Catégorie" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding CertificationsDisplay}"

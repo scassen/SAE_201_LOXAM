@@ -94,22 +94,8 @@
                                     Width="*"
                                     Binding="{Binding Materiel.NomMateriel}"
                                     Header="Nom Materiel" />
-                                <DataGridTextColumn
-                                    Width="*"
-                                    Binding="{Binding DateReservation}"
-                                    Header="DateReservation" />
-                                <DataGridTextColumn
-                                    Width="*"
-                                    Binding="{Binding DateDebutLocation}"
-                                    Header="DateDebutLocation" />
-                                <DataGridTextColumn
-                                    Width="*"
-                                    Binding="{Binding DateRetourEffectiveLocation}"
-                                    Header="DateRetourEffectiveLocation" />
-                                <DataGridTextColumn
-                                    Width="*"
-                                    Binding="{Binding DateRetourReelleLocation}"
-                                    Header="DateRetourReelleLocation" />
+
+
 
                             </DataGrid.Columns>
 

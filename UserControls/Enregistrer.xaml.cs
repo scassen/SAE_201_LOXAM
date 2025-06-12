@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -162,38 +163,69 @@ namespace SAE_201_LOXAM
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
             if (client.SelectedItem == null)
             {
-                MessageBox.Show("il faut selectionner un client");
+                MessageBox.Show("Il faut sélectionner un client.");
+                return;
             }
-            else
+
+            Client selectedClient = client.SelectedItem as Client;
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow == null)
+                return;
+
+            var debut = DateDebut.SelectedDate;
+            var fin = DateFin.SelectedDate;
+
+            if (!debut.HasValue || !fin.HasValue)
             {
-                Client selectedClient = client.SelectedItem as Client;
-                var mainWindow = Application.Current.MainWindow as MainWindow;
-                if (mainWindow != null)
-                {
-                    var debut = DateDebut.SelectedDate;
-                    var fin = DateFin.SelectedDate;
-                    if ((fin.Value - debut.Value).TotalDays > 5)
-                    { MessageBox.Show("une reservation ne peut pas durer plus de 5 jours"); }
-                    if ((fin.Value < debut.Value))
-                    { MessageBox.Show("une date de debut ne peut pas etre apres une date de fin"); }
-                    if (SelectedMateriel.EstDisponible(debut.Value, fin.Value, mainWindow.LAgence.Reservations))
-                    {
-                        Reservation resa = new Reservation(GetNextNumReservation(), DateTime.Now, (DateTime)debut, (DateTime)fin, ((decimal)((fin.Value - debut.Value).TotalDays) * SelectedMateriel.PrixJournee), mainWindow.LAgence.Employes[0], selectedClient, SelectedMateriel);
-                        try
-                        {
-                            resa.NumReservation = resa.Create();
-                            mainWindow.LAgence.Reservations.Add(resa);
-                            MessageBox.Show("la reservation a bien été confirmée");
-                        }
-                        catch(Exception ex) { MessageBox.Show( "La reservation n'a pas pu être créée."); }
-                    }
-                    else
-                    { MessageBox.Show("materiel indisponible"); }
-                }
+                MessageBox.Show("Veuillez sélectionner une date de début et une date de fin.");
+                return;
             }
+
+            if ((fin.Value - debut.Value).TotalDays > 5)
+            {
+                MessageBox.Show("Une réservation ne peut pas durer plus de 5 jours.");
+                return;
+            }
+
+            if (fin.Value < debut.Value)
+            {
+                MessageBox.Show("La date de début ne peut pas être après la date de fin.");
+                return;
+            }
+
+            if (!SelectedMateriel.EstDisponible(debut.Value, fin.Value, mainWindow.LAgence.Reservations))
+            {
+                MessageBox.Show("Matériel indisponible.");
+                return;
+            }
+
+            Reservation resa = new Reservation(
+                GetNextNumReservation(),
+                DateTime.Now,
+                debut.Value,
+                fin.Value,
+                CalculPrixTotal(debut.Value, fin.Value),
+                mainWindow.LAgence.Employes[0],
+                selectedClient,
+                SelectedMateriel
+            );
+
+            try
+            {
+                resa.NumReservation = resa.Create();
+                mainWindow.LAgence.Reservations.Add(resa);
+                MessageBox.Show("La réservation a bien été confirmée.");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("La réservation n'a pas pu être créée.");
+            }
+        }
+        private decimal CalculPrixTotal(DateTime debut, DateTime fin)
+        {
+            return (decimal)(fin - debut).TotalDays * SelectedMateriel.PrixJournee;
         }
 
         private void Date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

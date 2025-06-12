@@ -94,7 +94,7 @@
             Background="#FFFF3636"
             BorderBrush="White"
             Click="Vérifier_Click"
-            Content="Vérifier"
+            Content="Valider"
             FontSize="18"
             Foreground="White"
             RenderTransformOrigin="0.5,0.5">
