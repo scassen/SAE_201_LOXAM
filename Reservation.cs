@@ -39,6 +39,20 @@ namespace SAE_201_LOXAM
             this.Client = client;
             this.Materiel = materiel;
         }
+        public Reservation(int numReservation, DateTime dateReservation, DateTime dateDebutLocation,
+    DateTime dateRetourEffectiveLocation,
+    decimal prixTotal, Employe employe, Client client, Materiel materiel)
+        {
+            this.NumReservation = numReservation;
+            this.DateReservation = dateReservation;
+            this.DateDebutLocation = dateDebutLocation;
+            this.DateRetourEffectiveLocation = dateRetourEffectiveLocation;
+            this.DateRetourReelleLocation = dateRetourReelleLocation;
+            this.PrixTotal = prixTotal;
+            this.Employe = employe;
+            this.Client = client;
+            this.Materiel = materiel;
+        }
 
         public int NumReservation
         {
@@ -152,7 +166,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        internal Materiel Materiel
+        public Materiel Materiel
         {
             get
             {

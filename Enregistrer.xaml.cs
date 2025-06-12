@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -25,9 +26,30 @@ namespace SAE_201_LOXAM
     {
 
         public ObservableCollection<Materiel> SingleMaterielList { get; set; }
-        public Materiel selectedMateriel { get; set; }
-        public Disponibilite EstDisponible { get; set; }
-       
+        public Materiel SelectedMateriel { get; set; }
+
+        public Disponibilite EstDisponible
+        {
+            get
+            {
+                return this.estDisponible;
+            }
+
+            set
+            {
+                if (estDisponible != value)
+                {
+                    estDisponible = value;
+                    OnPropertyChanged(nameof(EstDisponible));
+                }
+            
+            }
+        }
+
+        private Disponibilite estDisponible;
+
+
+
 
         public Enregistrer()
         {
@@ -39,7 +61,7 @@ namespace SAE_201_LOXAM
 
             InitializeComponent();
            
-            selectedMateriel = materiel;
+            SelectedMateriel = materiel;
              SingleMaterielList = new ObservableCollection<Materiel>() { materiel};
             DataContext = this;
 
@@ -49,6 +71,10 @@ namespace SAE_201_LOXAM
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         private void CheckDisponibilite()
         {
@@ -63,7 +89,7 @@ namespace SAE_201_LOXAM
                     { MessageBox.Show("une reservation ne peut pas durer plus de 5 jours"); }
                     else
                     {
-                        if (selectedMateriel.EstDisponible(debut.Value, fin.Value, mainWindow.LAgence.Reservations))
+                        if (SelectedMateriel.EstDisponible(debut.Value, fin.Value, mainWindow.LAgence.Reservations))
                         {
                             EstDisponible = Disponibilite.Disponible;
                         }
@@ -78,12 +104,34 @@ namespace SAE_201_LOXAM
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                var debut = DateDebut.SelectedDate;
+            var fin = DateFin.SelectedDate;
+            if ((fin.Value - debut.Value).TotalDays > 5)
+            { MessageBox.Show("une reservation ne peut pas durer plus de 5 jours"); }
+            if ((fin.Value < debut.Value) )
+            { MessageBox.Show("une date de debut ne peut pas etre apres une date de fin"); }
+            if (SelectedMateriel.EstDisponible(debut.Value, fin.Value, mainWindow.LAgence.Reservations))
+            {
+                  //  Reservation resa = new Reservation(GetNextNumReservation(),DateTime.Now,(DateTime)debut, (DateTime)fin, ((decimal)((fin.Value - debut.Value).TotalDays) * SelectedMateriel.PrixJournee), mainWindow.LAgence.Employes[1],,SelectedMateriel);
+                  //  mainWindow.LAgence.Reservations.Add(); 
+                }
+            else
+            { MessageBox.Show("materiel indisponible"); }
+            }
         }
 
         private void Date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             CheckDisponibilite();
+        }
+        private int GetNextNumReservation()
+        {
+            var cmd = new NpgsqlCommand("SELECT MAX(numreservation) FROM \"main\".reservation");
+            object result = DataAccess.Instance.ExecuteSelectUneValeur(cmd);
+            return (result != DBNull.Value && result != null) ? Convert.ToInt32(result) + 1 : 10000;
         }
 
 

@@ -25,7 +25,10 @@ namespace SAE_201_LOXAM
         private ObservableCollection<Reservation> reservations;
         public ObservableCollection<Reservation> Reservations
         {
-            get => reservations;
+            get
+            {
+                return reservations;
+            }
             set
             {
                 reservations = value;
@@ -36,7 +39,10 @@ namespace SAE_201_LOXAM
         private ICollectionView filteredClients;
         public ICollectionView FilteredClients
         {
-            get => filteredClients;
+            get
+            {
+                return filteredClients;
+            }
             set
             {
                 filteredClients = value;
@@ -54,14 +60,15 @@ namespace SAE_201_LOXAM
             {
                 Clients = new ObservableCollection<Client>(new Client().FindAll());
                 Reservations = new ObservableCollection<Reservation>(new Reservation().FindAll(mainWindow.LAgence));
-                dgVerifier.Items.Filter = RechercheNumReservation;
+
             }
             else
             {
                 Clients = new ObservableCollection<Client>();
-                
+                Reservations = new ObservableCollection<Reservation>();
             }
-
+            dgVerifier.ItemsSource = Reservations;
+            dgVerifier.Items.Filter = RechercheNumReservation;
             FilteredClients = CollectionViewSource.GetDefaultView(Clients);
         }
 
@@ -104,11 +111,13 @@ namespace SAE_201_LOXAM
         }
         private bool RechercheNumReservation(object obj)
         {
-            if (String.IsNullOrEmpty(ClientLocationTextBox.Text))
+            if (obj is not Reservation reservation) 
+                return false;
+            if (String.IsNullOrWhiteSpace(ClientReservationTextBox.Text))
                 return true;
-            Reservation uneResa = obj as Reservation;
-            return (uneResa.NumReservation ==int.Parse(ClientLocationTextBox.Text));
-           
+            if (int.TryParse(ClientReservationTextBox.Text, out int num))
+                return (reservation.NumReservation == num);
+           return false;
         }
     }
 }
