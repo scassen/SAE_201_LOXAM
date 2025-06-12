@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SAE_201_LOXAM
+namespace SAE_201_LOXAM.Classes
 {
     public class Reservation : ICrud<Reservation>, INotifyPropertyChanged
     {
@@ -197,32 +197,32 @@ namespace SAE_201_LOXAM
             using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from \"main\".reservation ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
-            
-                    foreach (DataRow dr in dt.Rows)
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    var employe = agence.Employes.SingleOrDefault(e => e.NumEmploye == (int)dr["numemploye"]);
+                    var client = agence.Clients.SingleOrDefault(c => c.NumClient == (int)dr["numclient"]);
+                    var materiel = agence.Materiels.SingleOrDefault(m => m.NumMateriel == (int)dr["nummateriel"]);
+
+                    if (employe == null || client == null || materiel == null)
                     {
-                        var employe = agence.Employes.SingleOrDefault(e => e.NumEmploye == (int)dr["numemploye"]);
-                        var client = agence.Clients.SingleOrDefault(c => c.NumClient == (int)dr["numclient"]);
-                        var materiel = agence.Materiels.SingleOrDefault(m => m.NumMateriel == (int)dr["nummateriel"]);
-
-                        if (employe == null || client == null || materiel == null)
-                        {
-                            Console.WriteLine($"[SKIP] Reservation #{dr["numreservation"]} skipped: Missing related entities.");
-                            Console.WriteLine($"  Employe: {(employe == null ? "NOT FOUND" : "OK")}, Client: {(client == null ? "NOT FOUND" : "OK")}, Materiel: {(materiel == null ? "NOT FOUND" : "OK")}");
-                            continue;
-                        }
-
-                        lesReservations.Add(new Reservation(
-                            (int)dr["numreservation"],
-                            (DateTime)dr["datereservation"],
-                            (DateTime)dr["datedebutlocation"],
-                            (DateTime)dr["dateretoureffectivelocation"],
-                            (DateTime)dr["dateretourreellelocation"],
-                            (Decimal)dr["prixtotal"],
-                            employe,
-                            client,
-                            materiel
-                        ));
+                        Console.WriteLine($"[SKIP] Reservation #{dr["numreservation"]} skipped: Missing related entities.");
+                        Console.WriteLine($"  Employe: {(employe == null ? "NOT FOUND" : "OK")}, Client: {(client == null ? "NOT FOUND" : "OK")}, Materiel: {(materiel == null ? "NOT FOUND" : "OK")}");
+                        continue;
                     }
+
+                    lesReservations.Add(new Reservation(
+                        (int)dr["numreservation"],
+                        (DateTime)dr["datereservation"],
+                        (DateTime)dr["datedebutlocation"],
+                        (DateTime)dr["dateretoureffectivelocation"],
+                        (DateTime)dr["dateretourreellelocation"],
+                        (decimal)dr["prixtotal"],
+                        employe,
+                        client,
+                        materiel
+                    ));
+                }
 
 
             }

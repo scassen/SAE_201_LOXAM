@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using SAE_201_LOXAM.Classes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,7 +22,7 @@ namespace SAE_201_LOXAM
     /// <summary>
     /// Logique d'interaction pour Enregistrer.xaml
     /// </summary>
-     public enum Disponibilite {Disponible,Indisponible}
+    public enum Disponibilite {Disponible,Indisponible}
     public partial class Enregistrer : UserControl,INotifyPropertyChanged
     {
 
