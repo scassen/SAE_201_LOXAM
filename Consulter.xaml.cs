@@ -21,13 +21,17 @@ namespace SAE_201_LOXAM
 
         public ObservableCollection<Materiel> Materiels
         {
-            get => materiels;
+            get
+            {
+                return materiels;
+            }
             set
             {
                 materiels = value;
                 OnPropertyChanged(nameof(Materiels));
             }
         }
+
 
         public ICollectionView ViewConsulter { get; set; }
         public ICollectionView ViewRetourner { get; set; }

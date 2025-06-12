@@ -82,20 +82,19 @@ namespace SAE_201_LOXAM
             }
             else
             {
-                FilteredClients.Filter = obj =>
+                FilteredClients.Filter = delegate (object obj)
                 {
                     if (obj is Client client)
                     {
                         return client.NomClient.Contains(searchText, StringComparison.OrdinalIgnoreCase);
-                           
                     }
                     return false;
                 };
             }
 
             FilteredClients.Refresh();
-            
         }
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string name)
