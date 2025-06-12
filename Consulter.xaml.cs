@@ -190,9 +190,15 @@ namespace SAE_201_LOXAM
 
         private void Commentaire_Click(object sender, RoutedEventArgs e)
         {
-
-            var CommentaireFenetre = new Commentaire();
-            CommentaireFenetre.Show();
+            Materiel selectedMateriel = dgConsulter.SelectedItem as Materiel;
+            if (selectedMateriel != null)
+            {
+                var commentaire = new Commentaire(selectedMateriel);
+                commentaire.Show();
+               
+            }
+            else
+                MessageBox.Show("pas de materiel séléctionné");
         }
     }
 }

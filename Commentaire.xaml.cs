@@ -20,10 +20,13 @@ namespace SAE_201_LOXAM
     /// </summary>
     public partial class Commentaire : Window
     {
-        public Commentaire()
+       
+
+        public Commentaire(Materiel materiel)
         {
             InitializeComponent();
-            
+            DataContext = materiel;
+
         }
 
         private void Valider_button_Click(object sender, RoutedEventArgs e)

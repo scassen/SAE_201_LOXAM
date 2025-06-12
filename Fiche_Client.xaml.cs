@@ -35,7 +35,7 @@ namespace SAE_201_LOXAM
 
                 int nextNumClient = GetNextNumClient();
 
-                var insertClientCmd = new NpgsqlCommand("INSERT INTO \"MAIN\".client(numclient, nomclient, prenomclient) VALUES (@num, @nom, @prenom)");
+                var insertClientCmd = new NpgsqlCommand("INSERT INTO \"main\".client(numclient, nomclient, prenomclient) VALUES (@num, @nom, @prenom)");
                 insertClientCmd.Parameters.AddWithValue("@num", nextNumClient);
                 insertClientCmd.Parameters.AddWithValue("@nom", nom);
                 insertClientCmd.Parameters.AddWithValue("@prenom", prenom);
@@ -44,7 +44,7 @@ namespace SAE_201_LOXAM
 
                 foreach (var certif in certifications)
                 {
-                    var insertCertifCmd = new NpgsqlCommand("INSERT INTO \"MAIN\".dispose(numclient, numcertification) VALUES (@numclient, @numcertif)");
+                    var insertCertifCmd = new NpgsqlCommand("INSERT INTO \"main\".dispose(numclient, numcertification) VALUES (@numclient, @numcertif)");
                     insertCertifCmd.Parameters.AddWithValue("@numclient", nextNumClient);
                     insertCertifCmd.Parameters.AddWithValue("@numcertif", (int)certif);
                     DataAccess.Instance.ExecuteSet(insertCertifCmd);
@@ -69,7 +69,7 @@ namespace SAE_201_LOXAM
 
         private int GetNextNumClient()
         {
-            var cmd = new NpgsqlCommand("SELECT MAX(numclient) FROM \"MAIN\".client");
+            var cmd = new NpgsqlCommand("SELECT MAX(numclient) FROM \"main\".client");
             object result = DataAccess.Instance.ExecuteSelectUneValeur(cmd);
             return (result != DBNull.Value && result != null) ? Convert.ToInt32(result) + 1 : 10000;
         }

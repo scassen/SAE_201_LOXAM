@@ -99,6 +99,13 @@ namespace SAE_201_LOXAM
         {
             this.MainContent.Content = uc;
         }
+        /*public void Commentaire(Window win)
+        {
+            var Com = Commentaire(win)
+        }
+        */
+
+        
 
         private List<FrameworkElement> TrouverElementsParTag(DependencyObject parent, object tag)
         {
