@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace SAE_201_LOXAM
+namespace SAE_201_LOXAM.Classes
 {
     public enum Categorie { Elevation = 1, EspaceVert = 2 }
 

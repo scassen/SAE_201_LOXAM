@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using SAE_201_LOXAM.Classes;
 
 namespace SAE_201_LOXAM
 {

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 
-namespace SAE_201_LOXAM
+namespace SAE_201_LOXAM.Classes
 {
     public class Agence
     {
@@ -12,7 +12,7 @@ namespace SAE_201_LOXAM
         private ObservableCollection<Client> clients;
         private ObservableCollection<Materiel> materiels;
         private ObservableCollection<Reservation> reservations;
-        
+
 
         public Agence(string nom)
         {
@@ -31,8 +31,8 @@ namespace SAE_201_LOXAM
                 Console.WriteLine($"Error loading Employes: {ex.Message}");
             }
             try { this.Materiels = new ObservableCollection<Materiel>(new Materiel().FindAll(this)); } catch (Exception ex) { Console.WriteLine($"Error loading Materiels: {ex.Message}"); this.Materiels = new ObservableCollection<Materiel>(); }
-           
-            
+
+
         }
 
         public string Nom

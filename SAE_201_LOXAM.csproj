@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Windows\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Npgsql" Version="9.0.3" />
   </ItemGroup>
 

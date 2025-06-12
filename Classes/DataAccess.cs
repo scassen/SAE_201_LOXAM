@@ -3,7 +3,7 @@ using System;
 using System.Data;
 using Npgsql;
 
-namespace SAE_201_LOXAM
+namespace SAE_201_LOXAM.Classes
 {
     public class DataAccess
     {

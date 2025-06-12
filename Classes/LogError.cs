@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SAE_201_LOXAM
+namespace SAE_201_LOXAM.Classes
 {
     public class LogError
     {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 
-namespace SAE_201_LOXAM
+namespace SAE_201_LOXAM.Classes
 {
     public enum Role { Employe, ResponsableAtelier }
 
