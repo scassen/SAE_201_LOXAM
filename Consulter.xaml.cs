@@ -186,6 +186,9 @@ namespace SAE_201_LOXAM
             ViewRetourner.Refresh();
         }
 
+        private void Commentaire_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

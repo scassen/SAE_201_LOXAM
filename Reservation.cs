@@ -180,7 +180,7 @@ namespace SAE_201_LOXAM
         public List<Reservation> FindAll(Agence agence)
         {
             List<Reservation> lesReservations = new List<Reservation>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from \"MAIN\".reservation ;"))
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from \"main\".reservation ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
             

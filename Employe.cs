@@ -66,7 +66,7 @@ namespace SAE_201_LOXAM
             List<Employe> employes = new List<Employe>();
             try
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM \"MAIN\".employe;"))
+                using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM \"main\".employe;"))
                 {
                     DataTable dt = DataAccess.Instance.ExecuteSelect(cmd);
                     Console.WriteLine($"[DEBUG] Employe rows fetched: {dt.Rows.Count}");

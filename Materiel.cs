@@ -78,7 +78,7 @@ namespace SAE_201_LOXAM
         public List<Materiel> FindAll(Agence agence)
         {
             List<Materiel> lesMateriaux = new();
-            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"MAIN\".materiel"))
+            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"main\".materiel"))
             {
 
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
@@ -105,7 +105,7 @@ namespace SAE_201_LOXAM
         public List<Materiel> FindAll()
         {
             List<Materiel> lesMateriaux = new();
-            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"MAIN\".materiel"))
+            using (NpgsqlCommand cmdSelect = new("SELECT * FROM \"main\".materiel"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
@@ -128,7 +128,7 @@ namespace SAE_201_LOXAM
         private List<Certification> FindAllCertifications(int num)
         {
             List<Certification> certifications = new();
-            using (NpgsqlCommand cmdSelect = new("select * from \"MAIN\".necessiter n join \"MAIN\".materiel m on n.nummateriel = m.nummateriel group by n.numcertification,m.nummateriel,n.nummateriel having m.nummateriel =" + num))
+            using (NpgsqlCommand cmdSelect = new("select * from \"main\".necessiter n join \"main\".materiel m on n.nummateriel = m.nummateriel group by n.numcertification,m.nummateriel,n.nummateriel having m.nummateriel =" + num))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
@@ -143,7 +143,7 @@ namespace SAE_201_LOXAM
         public void UpdateEtatEnMaintenance()
         {
             
-            var cmd = new NpgsqlCommand("UPDATE \"MAIN\".materiel SET numetat = @numetat WHERE nummateriel = @nummateriel");
+            var cmd = new NpgsqlCommand("UPDATE \"main\".materiel SET numetat = @numetat WHERE nummateriel = @nummateriel");
          
             if(this.EtatMateriel == Etat.EnMaintenance)
             {
@@ -162,7 +162,7 @@ namespace SAE_201_LOXAM
         public void UpdateEtatDispo()
         {
 
-            var cmd = new NpgsqlCommand("UPDATE \"MAIN\".materiel SET numetat = @numetat WHERE nummateriel = @nummateriel");
+            var cmd = new NpgsqlCommand("UPDATE \"main\".materiel SET numetat = @numetat WHERE nummateriel = @nummateriel");
 
             if (this.EtatMateriel == Etat.Disponible)
             {
