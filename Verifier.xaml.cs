@@ -47,12 +47,14 @@ namespace SAE_201_LOXAM
         public Verifier()
         {
             InitializeComponent();
+          
             this.DataContext = this;
 
             if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.LAgence is not null)
             {
                 Clients = new ObservableCollection<Client>(new Client().FindAll());
                 Reservations = new ObservableCollection<Reservation>(new Reservation().FindAll(mainWindow.LAgence));
+                dgVerifier.Items.Filter = RechercheNumReservation;
             }
             else
             {
@@ -92,6 +94,21 @@ namespace SAE_201_LOXAM
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+
+
+        private void ClientReservationTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgVerifier.ItemsSource).Refresh();
+        }
+        private bool RechercheNumReservation(object obj)
+        {
+            if (String.IsNullOrEmpty(ClientLocationTextBox.Text))
+                return true;
+            Reservation uneResa = obj as Reservation;
+            return (uneResa.NumReservation ==int.Parse(ClientLocationTextBox.Text));
+           
         }
     }
 }
