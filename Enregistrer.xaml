@@ -34,9 +34,10 @@
             VerticalAlignment="Top"
             Content="Label" />
         <DataGrid
+            Margin="0,-29,0,0"
             AutoGenerateColumns="False"
             CanUserAddRows="False"
-            ItemsSource="{Binding SingleMaterielList}" Margin="0,-29,0,0">
+            ItemsSource="{Binding SingleMaterielList}">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
@@ -106,12 +107,13 @@
             TextWrapping="Wrap" />
         <TextBlock
             Width="180"
+            Height="22"
             Margin="515,222,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFA79595"
             Text="{Binding EstDisponible}"
-            TextWrapping="Wrap" Height="22" />
+            TextWrapping="Wrap" />
         <Button
             Width="120"
             Height="42"
@@ -120,7 +122,42 @@
             VerticalAlignment="Top"
             Background="#FFE22E2E"
             Click="Button_Click"
-            Content="Valider" FontSize="20" />
+            Content="Valider"
+            FontSize="20" />
+        <DataGrid
+            Height="253"
+            Margin="0,139,524,0"
+            VerticalAlignment="Top"
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding FilteredClients}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding NumClient}"
+                    Header="Num client" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding NomClient}"
+                    Header="Nom" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding PrenomClient}"
+                    Header="Prénom" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox
+            x:Name="Filtre"
+            Width="120"
+            Margin="0,121,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text=""
+            TextWrapping="Wrap" />
+        <Label
+            Margin="0,95,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="nom du client" />
 
 
     </Grid>

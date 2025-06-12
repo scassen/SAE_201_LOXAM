@@ -69,7 +69,7 @@ namespace SAE_201_LOXAM
 
         private int GetNextNumClient()
         {
-            var cmd = new NpgsqlCommand("SELECT MAX(numclient) FROM \"MAIN\".client");
+            var cmd = new NpgsqlCommand("SELECT MAX(numclient) FROM \"main\".client");
             object result = DataAccess.Instance.ExecuteSelectUneValeur(cmd);
             return (result != DBNull.Value && result != null) ? Convert.ToInt32(result) + 1 : 10000;
         }
