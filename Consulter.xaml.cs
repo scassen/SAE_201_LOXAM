@@ -59,6 +59,18 @@ namespace SAE_201_LOXAM
             dgRetourner.ItemsSource = ViewRetourner;
         }
 
+        private void dgConsulter_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (dgConsulter.SelectedItem is Materiel selectedMateriel)
+            {
+                var detailscom = new DetailCommentaire(selectedMateriel);
+                if (Application.Current.MainWindow is MainWindow mainWindow)
+                {
+                    mainWindow.AfficherContenu(detailscom);
+                }
+            }
+        }
+
         private bool RechercheMotCleMateriel(object obj)
         {
             if (obj is not Materiel unMateriel)
