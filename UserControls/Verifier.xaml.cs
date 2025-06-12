@@ -123,5 +123,49 @@ namespace SAE_201_LOXAM
                 return (reservation.NumReservation == num);
            return false;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgVerifier.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une reservation", "Attention",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show(
+                    "Êtes-vous sûr de vouloir supprimer cette réservation ?",
+                    "Confirmation",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    Reservation resaSelectionne = (Reservation)dgVerifier.SelectedItem;
+
+                    try
+                    {
+                        resaSelectionne.Delete();
+                        Reservations.Remove(resaSelectionne);
+                        if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.LAgence is not null)
+                        {
+                            mainWindow.LAgence.Reservations.Remove(resaSelectionne);
+
+
+
+                        }
+                        MessageBox.Show("La reservation a bien été supprimée.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("La reservation n'a pas pu être supprimée.", "Attention",
+                       MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+
+
+
+
+        }
     }
 }

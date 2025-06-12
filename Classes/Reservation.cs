@@ -215,7 +215,11 @@ decimal prixTotal, Employe employe, Client client, Materiel materiel)
 
         public int Delete()
         {
-            throw new NotImplementedException();
+            using (var cmdUpdate = new NpgsqlCommand("delete from reservation where numreservation =@numreservation;"))
+            {
+                cmdUpdate.Parameters.AddWithValue("numreservation", this.NumReservation);
+                return DataAccess.Instance.ExecuteSet(cmdUpdate);
+            }
         }
 
         public List<Reservation> FindAll(Agence agence)

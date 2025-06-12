@@ -133,6 +133,13 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Content="Reservation de location :" />
+                        <Button
+                            Margin="699,10,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Background="#FFE62020"
+                            Click="Button_Click"
+                            Content="Supprimer" />
                     </Grid>
                 </TabItem>
             </TabControl>

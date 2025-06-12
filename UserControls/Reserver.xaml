@@ -10,16 +10,20 @@
     mc:Ignorable="d">
 
     <Grid Margin="0,0,-52,0" Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="109*" />
+            <ColumnDefinition Width="175*" />
+        </Grid.ColumnDefinitions>
 
         <Label
-            Margin="144,23,0,0"
+            Margin="0,1,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Rechercher par nom matériel : " />
         <TextBox
             x:Name="Filtre"
             Width="191"
-            Margin="144,54,0,290"
+            Margin="0,23,0,321"
             HorizontalAlignment="Left"
             Background="Snow"
             BorderBrush="Black"
@@ -29,9 +33,10 @@
 
         <Button
             x:Name="Enregistrer"
+            Grid.Column="1"
             Width="216"
             Height="62"
-            Margin="408,19,0,0"
+            Margin="81,19,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="Red"
@@ -44,9 +49,10 @@
 
         <Button
             x:Name="Client"
+            Grid.Column="1"
             Width="176"
             Height="51"
-            Margin="642,30,0,0"
+            Margin="315,30,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="Red"
@@ -63,13 +69,15 @@
             Content="Location"
             FontWeight="Bold" />
         <Rectangle
+            Grid.ColumnSpan="2"
             Width="802"
-            Margin="0,176,0,0"
-            HorizontalAlignment="Center"
+            Margin="25,176,0,0"
+            HorizontalAlignment="Left"
             Stroke="Black" />
 
         <DataGrid
             x:Name="dgReserver"
+            Grid.ColumnSpan="2"
             Margin="0,118,0,0"
             AutoGenerateColumns="False"
             ItemsSource="{Binding Materiels}"
@@ -106,6 +114,29 @@
 
             </DataGrid.Columns>
         </DataGrid>
+        <DatePicker
+            x:Name="FiltreDebut"
+            Margin="68,69,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectedDateChanged="Filtre_SelectedDateChanged" />
+        <DatePicker
+            x:Name="FiltreFin"
+            Grid.ColumnSpan="2"
+            Margin="239,69,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectedDateChanged="Filtre_SelectedDateChanged" />
+        <Label
+            Margin="67,50,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="debut période" />
+        <Label
+            Margin="239,50,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="fin période" />
 
     </Grid>
 </UserControl>
