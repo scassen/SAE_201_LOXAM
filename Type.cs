@@ -23,19 +23,71 @@ namespace SAE_201_LOXAM
             CategorieType = categorieType;
         }
 
-        public int NumType { get => numType; set => numType = value; }
+        public int NumType
+        {
+            get
+            {
+                return numType;
+            }
+            set
+            {
+                numType = value;
+            }
+        }
+
         public string LibelleType
         {
-            get => libelleType;
-            set => libelleType = value.Length > 30 ? throw new ArgumentOutOfRangeException("libelle") : value;
+            get
+            {
+                return libelleType;
+            }
+            set
+            {
+                if (value.Length > 30)
+                {
+                    throw new ArgumentOutOfRangeException("libelle");
+                }
+                libelleType = value;
+            }
         }
-        public Categorie CategorieType { get => categorieType; set => categorieType = value; }
 
-        public int Create() => throw new NotImplementedException();
-        public int Delete() => throw new NotImplementedException();
-        public void Read() => throw new NotImplementedException();
-        public int Update() => throw new NotImplementedException();
-        public List<Type> FindBySelection(string criteres) => throw new NotImplementedException();
+        public Categorie CategorieType
+        {
+            get
+            {
+                return categorieType;
+            }
+            set
+            {
+                categorieType = value;
+            }
+        }
+
+        public int Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Type> FindBySelection(string criteres)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public List<Type> FindAll()
         {

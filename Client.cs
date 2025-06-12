@@ -34,31 +34,68 @@ namespace SAE_201_LOXAM
         public int NumClient { get => numClient; set => numClient = value; }
         public string NomClient
         {
-            get => nomClient;
+            get
+            {
+                return nomClient;
+            }
             set
             {
                 if (value.Length > 30) throw new ArgumentException("Le nom du client ne peut pas dépasser 30 caractères.");
                 nomClient = value;
             }
         }
+
         public string PrenomClient
         {
-            get => prenomClient;
+            get
+            {
+                return prenomClient;
+            }
             set
             {
                 if (value.Length > 30) throw new ArgumentException("Le prénom du client ne peut pas dépasser 30 caractères.");
                 prenomClient = value;
             }
         }
-        public List<Certification> Certifications { get => certifications; set => certifications = value; }
+
+        public List<Certification> Certifications
+        {
+            get
+            {
+                return certifications;
+            }
+            set
+            {
+                certifications = value;
+            }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public int Create() => throw new NotImplementedException();
-        public int Delete() => throw new NotImplementedException();
-        public void Read() => throw new NotImplementedException();
-        public int Update() => throw new NotImplementedException();
-        public List<Client> FindBySelection(string criteres) => throw new NotImplementedException();
+        public int Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Client> FindBySelection(string criteres)
+        {
+            throw new NotImplementedException();
+        }
 
         public List<Client> FindAll()
         {

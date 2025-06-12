@@ -35,11 +35,77 @@ namespace SAE_201_LOXAM
             
         }
 
-        public string Nom { get => nom; set => nom = value; }
-        public ObservableCollection<Client> Clients { get => clients; set => clients = value; }
-        public ObservableCollection<Employe> Employes { get => employes; set => employes = value; }
-        public ObservableCollection<Materiel> Materiels { get => materiels; set => materiels = value; }
-        public ObservableCollection<Reservation> Reservations { get => reservations; set => reservations = value; }
-        public ObservableCollection<Type> Types { get => types; set => types = value; }
+        public string Nom
+        {
+            get
+            {
+                return nom;
+            }
+            set
+            {
+                nom = value;
+            }
+        }
+
+        public ObservableCollection<Client> Clients
+        {
+            get
+            {
+                return clients;
+            }
+            set
+            {
+                clients = value;
+            }
+        }
+
+        public ObservableCollection<Employe> Employes
+        {
+            get
+            {
+                return employes;
+            }
+            set
+            {
+                employes = value;
+            }
+        }
+
+        public ObservableCollection<Materiel> Materiels
+        {
+            get
+            {
+                return materiels;
+            }
+            set
+            {
+                materiels = value;
+            }
+        }
+
+        public ObservableCollection<Reservation> Reservations
+        {
+            get
+            {
+                return reservations;
+            }
+            set
+            {
+                reservations = value;
+            }
+        }
+
+        public ObservableCollection<Type> Types
+        {
+            get
+            {
+                return types;
+            }
+            set
+            {
+                types = value;
+            }
+        }
+
     }
 }

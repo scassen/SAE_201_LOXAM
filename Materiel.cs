@@ -42,38 +42,145 @@ namespace SAE_201_LOXAM
             TypeMateriel = typeMateriel;
         }
 
-        public int NumMateriel { get => numMateriel; set => numMateriel = value; }
+        public int NumMateriel
+        {
+            get
+            {
+                return numMateriel;
+            }
+            set
+            {
+                numMateriel = value;
+            }
+        }
+
         public string Reference
         {
-            get => reference;
-            set => reference = value.Length > 50 ? throw new ArgumentOutOfRangeException("reference") : value;
+            get
+            {
+                return reference;
+            }
+            set
+            {
+                if (value.Length > 50)
+                {
+                    throw new ArgumentOutOfRangeException("reference");
+                }
+                reference = value;
+            }
         }
+
         public string NomMateriel
         {
-            get => nomMateriel;
-            set => nomMateriel = value.Length > 100 ? throw new ArgumentOutOfRangeException("nom") : value;
+            get
+            {
+                return nomMateriel;
+            }
+            set
+            {
+                if (value.Length > 100)
+                {
+                    throw new ArgumentOutOfRangeException("nom");
+                }
+                nomMateriel = value;
+            }
         }
+
         public string Descriptif
         {
-            get => descriptif;
-            set => descriptif = value.Length > 1000 ? throw new ArgumentOutOfRangeException("descriptif") : value;
+            get
+            {
+                return descriptif;
+            }
+            set
+            {
+                if (value.Length > 1000)
+                {
+                    throw new ArgumentOutOfRangeException("descriptif");
+                }
+                descriptif = value;
+            }
         }
+
         public decimal PrixJournee
         {
-            get => prixJournee;
-            set => prixJournee = value <= 0 ? throw new ArgumentOutOfRangeException("prix") : value;
+            get
+            {
+                return prixJournee;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("prix");
+                }
+                prixJournee = value;
+            }
         }
-        public Etat EtatMateriel { get => etatMateriel; set => etatMateriel = value; }
-        public List<Certification> Certificationsnecessaires { get => certificationsnecessaires; set => certificationsnecessaires = value; }
-        public Type TypeMateriel { get => typeMateriel; set => typeMateriel = value; }
+
+        public Etat EtatMateriel
+        {
+            get
+            {
+                return etatMateriel;
+            }
+            set
+            {
+                etatMateriel = value;
+            }
+        }
+
+        public List<Certification> Certificationsnecessaires
+        {
+            get
+            {
+                return certificationsnecessaires;
+            }
+            set
+            {
+                certificationsnecessaires = value;
+            }
+        }
+
+        public Type TypeMateriel
+        {
+            get
+            {
+                return typeMateriel;
+            }
+            set
+            {
+                typeMateriel = value;
+            }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public int Create() => throw new NotImplementedException();
-        public int Delete() => throw new NotImplementedException();
-        public void Read() => throw new NotImplementedException();
-        public int Update() => throw new NotImplementedException();
-        public List<Materiel> FindBySelection(string criteres) => throw new NotImplementedException();
+        public int Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Materiel> FindBySelection(string criteres)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public List<Materiel> FindAll(Agence agence)
         {

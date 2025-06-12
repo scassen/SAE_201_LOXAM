@@ -30,35 +30,116 @@ namespace SAE_201_LOXAM
             this.roleEmploye = roleEmploye;
         }
 
-        public int NumEmploye { get => numEmploye; set => numEmploye = value; }
+        public int NumEmploye
+        {
+            get
+            {
+                return numEmploye;
+            }
+            set
+            {
+                numEmploye = value;
+            }
+        }
+
         public string NomEmploye
         {
-            get => nomEmploye;
-            set => nomEmploye = value.Length > 30 ? throw new ArgumentOutOfRangeException("Nom de moins de 30 caractères") : value;
+            get
+            {
+                return nomEmploye;
+            }
+            set
+            {
+                if (value.Length > 30)
+                {
+                    throw new ArgumentOutOfRangeException("Nom de moins de 30 caractères");
+                }
+                nomEmploye = value;
+            }
         }
+
         public string PrenomEmploye
         {
-            get => prenomEmploye;
-            set => prenomEmploye = value.Length > 30 ? throw new ArgumentOutOfRangeException("Prénom de moins de 30 caractères") : value;
+            get
+            {
+                return prenomEmploye;
+            }
+            set
+            {
+                if (value.Length > 30)
+                {
+                    throw new ArgumentOutOfRangeException("Prénom de moins de 30 caractères");
+                }
+                prenomEmploye = value;
+            }
         }
+
         public string Login
         {
-            get => login;
-            set => login = value.Length > 30 ? throw new ArgumentOutOfRangeException("Login de moins de 30 caractères") : value;
+            get
+            {
+                return login;
+            }
+            set
+            {
+                if (value.Length > 30)
+                {
+                    throw new ArgumentOutOfRangeException("Login de moins de 30 caractères");
+                }
+                login = value;
+            }
         }
+
         public string Mdp
         {
-            get => mdp;
-            set => mdp = value.Length > 30 ? throw new ArgumentOutOfRangeException("MDP de moins de 30 caractères") : value;
+            get
+            {
+                return mdp;
+            }
+            set
+            {
+                if (value.Length > 30)
+                {
+                    throw new ArgumentOutOfRangeException("MDP de moins de 30 caractères");
+                }
+                mdp = value;
+            }
         }
-        public Role RoleEmploye { get => roleEmploye; set => roleEmploye = value; }
+
+        public Role RoleEmploye
+        {
+            get
+            {
+                return roleEmploye;
+            }
+            set
+            {
+                roleEmploye = value;
+            }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public int Create() => throw new NotImplementedException();
-        public int Delete() => throw new NotImplementedException();
-        public void Read() => throw new NotImplementedException();
-        public int Update() => throw new NotImplementedException();
+        public int Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
+        }
+
 
 
         public List<Employe> FindAll()
@@ -102,6 +183,9 @@ namespace SAE_201_LOXAM
             return employes;
         }
 
-        public List<Employe> FindBySelection(string criteres) => throw new NotImplementedException();
+        public List<Employe> FindBySelection(string criteres)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
