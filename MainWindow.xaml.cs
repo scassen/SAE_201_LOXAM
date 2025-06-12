@@ -12,7 +12,7 @@ namespace SAE_201_LOXAM
     public partial class MainWindow : Window
     {
         public Agence LAgence { get; set; }
-        bool open = true;
+        private string userRole;
 
         public MainWindow()
         {
@@ -40,6 +40,40 @@ namespace SAE_201_LOXAM
             {
                 MessageBox.Show($"Problème lors de la récupération des données: {ex.Message}\nStack Trace: {ex.StackTrace}");
                 Application.Current.Shutdown();
+            }
+        }
+        public void SetUserConnected(string username)
+        {
+            Se_connecter_Button.Content = username;
+            Se_connecter_Button.IsEnabled = false;
+
+            if (username == "noslandm")
+            {
+                userRole = "responsable";
+            }
+            else
+            {
+                userRole = "employe";
+            }
+
+            AdapterInterfaceSelonRole();
+        }
+        private void AdapterInterfaceSelonRole()
+        {
+
+            if (userRole == "responsable")
+            {
+                
+                Verifier_button.IsEnabled = true;
+                Reserver_button.IsEnabled = true;
+                Consulter_button.IsEnabled = true;
+            }
+            else if (userRole == "employe")
+            {
+                
+                Verifier_button.IsEnabled = true;
+                Reserver_button.IsEnabled = true;
+                Consulter_button.IsEnabled = true;
             }
         }
 
@@ -112,17 +146,6 @@ namespace SAE_201_LOXAM
             MainContent.Content = null;
             MontreMainWindow();
            
-        }
-
-        public void Commentaire()
-        {
-            var CommentaireFenetre = new Commentaire();
-            CommentaireFenetre.Show();
-        }
-        public void SetUserConnected(string username)
-        {
-            Se_connecter_Button.Content = username;
-            Se_connecter_Button.IsEnabled = false;
         }
 
     }

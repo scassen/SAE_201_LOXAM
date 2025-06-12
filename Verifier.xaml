@@ -77,6 +77,7 @@
                 <TabItem Header="Reservation">
                     <Grid Height="395" Background="#FFE5E5E5">
                         <DataGrid
+                            x:Name="dgVerifier"
                             Margin="0,50,0,-53"
                             AutoGenerateColumns="False"
                             ItemsSource="{Binding Reservations}">
@@ -85,18 +86,6 @@
                                     Width="*"
                                     Binding="{Binding NumReservation}"
                                     Header="NumReservation" />
-                                <DataGridTextColumn
-                                    Width="*"
-                                    Binding="{Binding NumMateriel}"
-                                    Header="NumMateriel" />
-                                <DataGridTextColumn
-                                    Width="*"
-                                    Binding="{Binding NumEmploye}"
-                                    Header="NumEmploye" />
-                                <DataGridTextColumn
-                                    Width="*"
-                                    Binding="{Binding NumClient}"
-                                    Header="NumClient" />
                                 <DataGridTextColumn
                                     Width="*"
                                     Binding="{Binding DateReservation}"
@@ -129,7 +118,7 @@
                             Margin="402,4,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            TextWrapping="Wrap" />
+                            TextWrapping="Wrap" TextChanged="ClientReservationTextBox_TextChanged"  />
                         <Label
                             Margin="0,19,0,0"
                             HorizontalAlignment="Left"

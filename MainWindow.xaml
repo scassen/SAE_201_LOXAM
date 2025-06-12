@@ -61,7 +61,7 @@
         </Grid>
 
         <Button
-            x:Name="Reserver"
+            x:Name="Reserver_button"
             Width="108"
             Height="52"
             Margin="395,15,0,0"
@@ -85,7 +85,7 @@
             </Button.RenderTransform>
         </Button>
         <Button
-            x:Name="Vérifier"
+            x:Name="Verifier_button"
             Width="105"
             Height="52"
             Margin="515,15,0,0"
@@ -108,7 +108,7 @@
             </Button.RenderTransform>
         </Button>
         <Button
-            x:Name="Consulter"
+            x:Name="Consulter_button"
             Width="108"
             Height="52"
             Margin="627,15,0,0"
