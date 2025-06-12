@@ -16,13 +16,17 @@ namespace SAE_201_LOXAM
         private ObservableCollection<Client> clients;
         public ObservableCollection<Client> Clients
         {
-            get => clients;
+            get
+            {
+                return clients;
+            }
             set
             {
                 clients = value;
                 OnPropertyChanged(nameof(Clients));
             }
         }
+
         private ObservableCollection<Reservation> reservations;
         public ObservableCollection<Reservation> Reservations
         {
