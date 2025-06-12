@@ -1,6 +1,4 @@
-﻿
-
-namespace SAE_201_LOXAM
+﻿namespace SAE_201_LOXAM.Classes
 {
     public interface ICrud<T>
     {

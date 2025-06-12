@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SAE_201_LOXAM
+namespace SAE_201_LOXAM.Classes
 {
     public class Reservation : ICrud<Reservation>, INotifyPropertyChanged
     {
@@ -224,12 +224,12 @@ decimal prixTotal, Employe employe, Client client, Materiel materiel)
             using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from \"main\".reservation ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
-            
-                    foreach (DataRow dr in dt.Rows)
-                    {
-                        var employe = agence.Employes.SingleOrDefault(e => e.NumEmploye == (int)dr["numemploye"]);
-                        var client = agence.Clients.SingleOrDefault(c => c.NumClient == (int)dr["numclient"]);
-                        var materiel = agence.Materiels.SingleOrDefault(m => m.NumMateriel == (int)dr["nummateriel"]);
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    var employe = agence.Employes.SingleOrDefault(e => e.NumEmploye == (int)dr["numemploye"]);
+                    var client = agence.Clients.SingleOrDefault(c => c.NumClient == (int)dr["numclient"]);
+                    var materiel = agence.Materiels.SingleOrDefault(m => m.NumMateriel == (int)dr["nummateriel"]);
 
                         if (employe == null || client == null || materiel == null)
                         {

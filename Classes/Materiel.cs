@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 
-namespace SAE_201_LOXAM
+namespace SAE_201_LOXAM.Classes
 {
     public enum Etat
     {
@@ -26,6 +26,7 @@ namespace SAE_201_LOXAM
         private Etat etatMateriel;
         private Type typeMateriel;
         private List<Certification> certificationsnecessaires;
+        private string commentaire;
 
         public Materiel() { }
 
@@ -249,20 +250,20 @@ namespace SAE_201_LOXAM
 
         public void UpdateEtatEnMaintenance()
         {
-            
+
             var cmd = new NpgsqlCommand("UPDATE \"main\".materiel SET numetat = @numetat WHERE nummateriel = @nummateriel");
-         
-            if(this.EtatMateriel == Etat.EnMaintenance)
+
+            if (this.EtatMateriel == Etat.EnMaintenance)
             {
                 cmd.Parameters.AddWithValue("@numetat", 1);
                 cmd.Parameters.AddWithValue("@nummateriel", this.NumMateriel);
             }
-         
+
             else
             {
                 throw new Exception("Ce materiel n'est déjà plus en maintenance");
             }
-           
+
 
             DataAccess.Instance.ExecuteSet(cmd);
         }
@@ -297,6 +298,20 @@ namespace SAE_201_LOXAM
                 return string.Join(", ", Certificationsnecessaires.Select(c => c.ToString()));
             }
         }
+
+        public string Commentaire
+        {
+            get
+            {
+                return this.commentaire;
+            }
+
+            set
+            {
+                this.commentaire = value;
+            }
+        }
+
         public bool EstDisponible(DateTime dateDebut, DateTime dateFin, ObservableCollection<Reservation> lesReservations)
         {
 
@@ -304,11 +319,11 @@ namespace SAE_201_LOXAM
             {
                 if (reservation.Materiel.numMateriel == this.NumMateriel)
                 {
-                    if (!(dateFin <reservation.DateDebutLocation || dateDebut > reservation.DateRetourReelleLocation))
+                    if (!(dateFin < reservation.DateDebutLocation || dateDebut > reservation.DateRetourReelleLocation))
                     {
                         return false;
                     }
-                    
+
                 }
 
             }

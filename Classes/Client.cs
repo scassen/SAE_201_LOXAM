@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 
-namespace SAE_201_LOXAM
+namespace SAE_201_LOXAM.Classes
 {
     public enum Certification
     {
@@ -120,8 +120,8 @@ namespace SAE_201_LOXAM
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                 {
-                   
-                        certifications.Add((Certification)(int)dr["numcertification"]);
+
+                    certifications.Add((Certification)(int)dr["numcertification"]);
                 }
             }
             return certifications;

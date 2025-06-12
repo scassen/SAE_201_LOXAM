@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using Npgsql;
+using SAE_201_LOXAM.Classes;
 
 namespace SAE_201_LOXAM
 {

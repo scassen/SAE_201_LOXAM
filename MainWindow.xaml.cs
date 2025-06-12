@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using SAE_201_LOXAM.Classes;
 
 namespace SAE_201_LOXAM
 {

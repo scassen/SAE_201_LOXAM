@@ -80,7 +80,8 @@
                             x:Name="dgConsulter"
                             Margin="0,113,0,-18"
                             AutoGenerateColumns="False"
-                            ItemsSource="{Binding Materiels}">
+                            ItemsSource="{Binding Materiels}"
+                            MouseDoubleClick="dgConsulter_MouseDoubleClick">
                             <DataGrid.Columns>
                                 <DataGridTextColumn
                                     Width="*"

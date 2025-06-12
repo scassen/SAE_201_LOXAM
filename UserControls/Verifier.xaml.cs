@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows;
+using SAE_201_LOXAM.Classes;
 
 namespace SAE_201_LOXAM
 {

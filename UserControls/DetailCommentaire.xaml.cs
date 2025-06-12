@@ -10,28 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SAE_201_LOXAM.Classes;
 
 namespace SAE_201_LOXAM
 {
     /// <summary>
-    /// Logique d'interaction pour Commentaire.xaml
+    /// Logique d'interaction pour DetailCommentaire.xaml
     /// </summary>
-    public partial class Commentaire : Window
+    public partial class DetailCommentaire : UserControl
     {
-       
-
-        public Commentaire(Materiel materiel)
+        public DetailCommentaire(Materiel materiel)
         {
             InitializeComponent();
-            DataContext = materiel;
-
-        }
-
-        private void Valider_button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
+            DataContext=materiel;
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using SAE_201_LOXAM.Classes;
 
 namespace SAE_201_LOXAM
 {
@@ -57,6 +58,18 @@ namespace SAE_201_LOXAM
             ViewRetourner = new ListCollectionView(Materiels);
             ViewRetourner.Filter = RechercheMotCleMaterielRetourner;
             dgRetourner.ItemsSource = ViewRetourner;
+        }
+
+        private void dgConsulter_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (dgConsulter.SelectedItem is Materiel selectedMateriel)
+            {
+                var detailscom = new DetailCommentaire(selectedMateriel);
+                if (Application.Current.MainWindow is MainWindow mainWindow)
+                {
+                    mainWindow.AfficherContenu(detailscom);
+                }
+            }
         }
 
         private bool RechercheMotCleMateriel(object obj)
