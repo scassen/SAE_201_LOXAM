@@ -15,8 +15,8 @@ namespace SAE_201_LOXAM
         private DateTime dateReservation;
         private DateTime dateDebutLocation;
         private DateTime dateRetourEffectiveLocation;
-        private DateTime dateRetourReelleLocation;
-        private decimal prixTotal;
+        private DateTime? dateRetourReelleLocation;
+        private decimal? prixTotal;
         private Employe employe;
         private Client client;
         private Materiel materiel;
@@ -26,8 +26,8 @@ namespace SAE_201_LOXAM
         }
 
         public Reservation(int numReservation, DateTime dateReservation, DateTime dateDebutLocation,
-            DateTime dateRetourEffectiveLocation, DateTime dateRetourReelleLocation,
-            decimal prixTotal, Employe employe, Client client, Materiel materiel)
+            DateTime dateRetourEffectiveLocation, DateTime? dateRetourReelleLocation,
+            decimal? prixTotal, Employe employe, Client client, Materiel materiel)
         {
             this.NumReservation = numReservation;
             this.DateReservation = dateReservation;
@@ -44,6 +44,20 @@ namespace SAE_201_LOXAM
     decimal prixTotal, Employe employe, Client client, Materiel materiel)
         {
             this.NumReservation = numReservation;
+            this.DateReservation = dateReservation;
+            this.DateDebutLocation = dateDebutLocation;
+            this.DateRetourEffectiveLocation = dateRetourEffectiveLocation;
+            this.DateRetourReelleLocation = dateRetourReelleLocation;
+            this.PrixTotal = prixTotal;
+            this.Employe = employe;
+            this.Client = client;
+            this.Materiel = materiel;
+        }
+        public Reservation( DateTime dateReservation, DateTime dateDebutLocation,
+DateTime dateRetourEffectiveLocation,
+decimal prixTotal, Employe employe, Client client, Materiel materiel)
+        {
+           
             this.DateReservation = dateReservation;
             this.DateDebutLocation = dateDebutLocation;
             this.DateRetourEffectiveLocation = dateRetourEffectiveLocation;
@@ -89,7 +103,7 @@ namespace SAE_201_LOXAM
 
             set
             {
-                if (value < DateReservation)
+                if (value.Date < DateReservation.Date)
                 { throw new ArgumentException("date de reservation doit etre avant ou au meme moment que la date de debut location"); }
                 else
                     this.dateDebutLocation = value;
@@ -112,7 +126,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        public DateTime DateRetourReelleLocation
+        public DateTime? DateRetourReelleLocation
         {
             get
             {
@@ -125,7 +139,7 @@ namespace SAE_201_LOXAM
             }
         }
 
-        public decimal PrixTotal
+        public decimal? PrixTotal
         {
             get
             {
@@ -183,7 +197,20 @@ namespace SAE_201_LOXAM
 
         public int Create()
         {
-            throw new NotImplementedException();
+            int nb = 0;
+            using (var cmdInsert = new NpgsqlCommand("insert into reservation (datereservation,datedebutlocation,dateretoureffectivelocation,numemploye,numclient,nummateriel,prixtotal) values (@datereservation,@datedebutlocation,@dateretoureffectivelocation,@numemploye,@numclient,@nummateriel,@prixtotal) RETURNING numreservation"))
+            {
+                cmdInsert.Parameters.AddWithValue("datereservation", this.DateReservation);
+                cmdInsert.Parameters.AddWithValue("datedebutlocation", this.DateDebutLocation);
+                cmdInsert.Parameters.AddWithValue("dateretoureffectivelocation", this.DateRetourEffectiveLocation);
+                cmdInsert.Parameters.AddWithValue("numemploye", this.Employe.NumEmploye);
+                cmdInsert.Parameters.AddWithValue("numclient", this.Client.NumClient);
+                cmdInsert.Parameters.AddWithValue("nummateriel", this.Materiel.NumMateriel);
+                cmdInsert.Parameters.AddWithValue("prixtotal",this.PrixTotal);
+                nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
+            }
+            this.NumReservation = nb;
+            return nb;
         }
 
         public int Delete()
@@ -210,7 +237,22 @@ namespace SAE_201_LOXAM
                             Console.WriteLine($"  Employe: {(employe == null ? "NOT FOUND" : "OK")}, Client: {(client == null ? "NOT FOUND" : "OK")}, Materiel: {(materiel == null ? "NOT FOUND" : "OK")}");
                             continue;
                         }
-
+                    if (dr["dateretourreellelocation"] == DBNull.Value)
+                    {
+                        lesReservations.Add(new Reservation(
+                            (int)dr["numreservation"],
+                            (DateTime)dr["datereservation"],
+                            (DateTime)dr["datedebutlocation"],
+                            (DateTime)dr["dateretoureffectivelocation"],
+                            
+                            (Decimal)dr["prixtotal"],
+                            employe,
+                            client,
+                            materiel
+                        ));
+                    }
+                    else
+                    {
                         lesReservations.Add(new Reservation(
                             (int)dr["numreservation"],
                             (DateTime)dr["datereservation"],
@@ -222,6 +264,7 @@ namespace SAE_201_LOXAM
                             client,
                             materiel
                         ));
+                    }
                     }
 
 

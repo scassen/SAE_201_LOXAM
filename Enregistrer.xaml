@@ -103,21 +103,34 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Background="#FFDCCFCF"
-            Text="{Binding selectedMateriel.Descriptif}"
+            Text="{Binding SelectedMateriel.Descriptif}"
             TextWrapping="Wrap" />
         <TextBlock
+            x:Name="disponibilite"
             Width="180"
             Height="22"
-            Margin="515,222,0,0"
+            Margin="620,220,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Background="#FFA79595"
             Text="{Binding EstDisponible}"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding EstDisponible}" Value="Disponible">
+                            <Setter Property="Background" Value="Green" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding EstDisponible}" Value="Indisponible">
+                            <Setter Property="Background" Value="Red" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
         <Button
             Width="120"
             Height="42"
-            Margin="362,212,0,0"
+            Margin="444,210,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FFE22E2E"
@@ -125,10 +138,12 @@
             Content="Valider"
             FontSize="20" />
         <DataGrid
+            x:Name="client"
             Height="253"
             Margin="0,139,524,0"
             VerticalAlignment="Top"
             AutoGenerateColumns="False"
+            CanUserAddRows="False"
             ItemsSource="{Binding FilteredClients}">
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -152,6 +167,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text=""
+            TextChanged="ClientLocationTextBox_TextChanged"
             TextWrapping="Wrap" />
         <Label
             Margin="0,95,0,0"
