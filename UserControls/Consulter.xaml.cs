@@ -10,9 +10,7 @@ using SAE_201_LOXAM.Classes;
 
 namespace SAE_201_LOXAM
 {
-    /// <summary>
-    /// Logique d'interaction pour Consulter.xaml
-    /// </summary>
+
     public partial class Consulter : UserControl, INotifyPropertyChanged
     {
         private ObservableCollection<Materiel> materiels;

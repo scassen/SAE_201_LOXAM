@@ -1,4 +1,4 @@
-﻿// Fichier : DataAccess.cs
+﻿
 using System;
 using System.Data;
 using Npgsql;

@@ -15,9 +15,7 @@ using SAE_201_LOXAM.Classes;
 
 namespace SAE_201_LOXAM
 {
-    /// <summary>
-    /// Logique d'interaction pour Connexion.xaml
-    /// </summary>
+
     public partial class Connexion : Window
     {
         private MainWindow mainWindow;
@@ -41,7 +39,7 @@ namespace SAE_201_LOXAM
                 var conn = DataAccess.Instance.GetConnection();
                 MessageBox.Show("Connexion réussie ! attendez s'il vous plait");
 
-                // Met à jour le bouton dans MainWindow
+               
                 mainWindow.SetUserConnected(username);
                 mainWindow.ChargeData();
                 this.Close();

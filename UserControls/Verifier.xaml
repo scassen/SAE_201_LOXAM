@@ -11,16 +11,12 @@
     mc:Ignorable="d">
 
     <Grid>
-        <!--  Bande rouge en haut  -->
+    
 
 
-        <!--  Conteneur principal sous la bande rouge  -->
         <Grid Margin="0,55,0,0">
             <TabControl Margin="0,-55,0,55">
-                <!--  Onglet Location  -->
-
-
-                <!--  Onglet Reservation  -->
+       
                 <TabItem Header="Reservation">
                     <Grid Height="395" Background="#FFE5E5E5">
                         <Grid.ColumnDefinitions>

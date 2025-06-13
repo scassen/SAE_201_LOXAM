@@ -1,4 +1,4 @@
-﻿// Fichier : Fiche_Client.xaml.cs
+﻿
 using System;
 using System.Collections.Generic;
 using System.Windows;

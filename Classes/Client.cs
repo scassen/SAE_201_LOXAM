@@ -31,7 +31,8 @@ namespace SAE_201_LOXAM.Classes
             Certifications = certifications;
         }
 
-        public int NumClient { get => numClient; set => numClient = value; }
+      
+
         public string NomClient
         {
             get
@@ -40,10 +41,12 @@ namespace SAE_201_LOXAM.Classes
             }
             set
             {
-                if (value.Length > 30) throw new ArgumentException("Le nom du client ne peut pas dépasser 30 caractères.");
+                if (value.Length > 30)
+                    throw new ArgumentException("Le nom du client ne peut pas dépasser 30 caractères.");
                 nomClient = value;
             }
         }
+
 
         public string PrenomClient
         {
@@ -67,6 +70,19 @@ namespace SAE_201_LOXAM.Classes
             set
             {
                 certifications = value;
+            }
+        }
+
+        public int NumClient
+        {
+            get
+            {
+                return this.numClient;
+            }
+
+            set
+            {
+                this.numClient = value;
             }
         }
 
