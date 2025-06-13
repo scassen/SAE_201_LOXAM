@@ -18,7 +18,9 @@ namespace SAE_201_LOXAM
         public MainWindow()
         {
             InitializeComponent();
-            
+           
+            Accueil_Start();
+
         }
         private Reserver currentReserverControl;
 
@@ -65,9 +67,9 @@ namespace SAE_201_LOXAM
             if (userRole == "responsable")
             {
                 
-                Verifier_button.IsEnabled = true; //false
+                Verifier_button.IsEnabled = false; //false
                 Verifier_button.Opacity = 0.5;
-                Reserver_button.IsEnabled = true; //false
+                Reserver_button.IsEnabled = false; //false
                 Reserver_button.Opacity = 0.5;
                 Consulter_button.IsEnabled = true; //true
             }
@@ -77,7 +79,7 @@ namespace SAE_201_LOXAM
                 Verifier_button.IsEnabled = true; //true
                 
                 Reserver_button.IsEnabled = true; //true
-                Consulter_button.IsEnabled = true; //false
+                Consulter_button.IsEnabled = false; //false
                 Consulter_button.Opacity = 0.5;
             }
         }
@@ -157,21 +159,27 @@ namespace SAE_201_LOXAM
 
         private void Acceuil_button_Click(object sender, RoutedEventArgs e)
         {
-            MainContent.Content = null;
-            MontreMainWindow();
-           
+           Accueil_Start();
+
         }
 
-        private void Animation_Reserver()
+        private void Accueil_Start()
         {
+            CacheMainWindow();
+            MainContent.Content = new AccueilUC();
+            Animation_Acceuil();
+        }
+        private void Animation_Reserver() 
+        { 
             Reserver_button.Background = new SolidColorBrush(Colors.White);
             Reserver_button.Foreground = new SolidColorBrush(Colors.Red);
             Verifier_button.Background = new SolidColorBrush(Colors.Red);
             Verifier_button.Foreground = new SolidColorBrush(Colors.White);
             Consulter_button.Background = new SolidColorBrush(Colors.Red);
             Consulter_button.Foreground = new SolidColorBrush(Colors.White);
+            Acceuil_button.Background = new SolidColorBrush(Colors.Red);
+            Acceuil_button.Foreground = new SolidColorBrush(Colors.White);
         }
-
         private void Animation_Verifier()
         {
             Reserver_button.Background = new SolidColorBrush(Colors.Red);
@@ -180,16 +188,31 @@ namespace SAE_201_LOXAM
             Verifier_button.Foreground = new SolidColorBrush(Colors.Red);
             Consulter_button.Background = new SolidColorBrush(Colors.Red);
             Consulter_button.Foreground = new SolidColorBrush(Colors.White);
+            Acceuil_button.Background = new SolidColorBrush(Colors.Red);
+            Acceuil_button.Foreground = new SolidColorBrush(Colors.White);
         }
-
-        private void Animation_Consulter()
+        private void Animation_Consulter() 
         {
             Reserver_button.Background = new SolidColorBrush(Colors.Red);
             Reserver_button.Foreground = new SolidColorBrush(Colors.White);
             Verifier_button.Background = new SolidColorBrush(Colors.Red);
-            Reserver_button.Foreground = new SolidColorBrush(Colors.White);
+            Verifier_button.Foreground = new SolidColorBrush(Colors.White);
             Consulter_button.Background = new SolidColorBrush(Colors.White);
             Consulter_button.Foreground = new SolidColorBrush(Colors.Red);
+            Acceuil_button.Background = new SolidColorBrush(Colors.Red);
+            Acceuil_button.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        private void Animation_Acceuil()
+        {
+            Acceuil_button.Background = new SolidColorBrush(Colors.White);
+            Acceuil_button.Foreground = new SolidColorBrush(Colors.Red);
+            Consulter_button.Background = new SolidColorBrush(Colors.Red);
+            Consulter_button.Foreground = new SolidColorBrush(Colors.White);
+            Reserver_button.Background = new SolidColorBrush(Colors.Red);
+            Reserver_button.Foreground = new SolidColorBrush(Colors.White);
+            Verifier_button.Background = new SolidColorBrush(Colors.Red);
+            Verifier_button.Foreground = new SolidColorBrush(Colors.White);
         }
 
     }

@@ -18,30 +18,24 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid Margin="0,0,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="212*" />
-            <RowDefinition Height="297*" />
-        </Grid.RowDefinitions>
-        <ContentControl
-            x:Name="MainContent"
-            Grid.RowSpan="2"
-            Margin="0,94,0,0">
-            <Label
-                x:Name="Bienvenue_label"
-                Width="819"
-                Height="297"
-                Margin="55,38,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                BorderBrush="Black"
-                Content="Bienvenue chez loxam"
-                FontFamily="Bahnschrift SemiBold"
-                FontSize="72"
-                RenderTransformOrigin="0.496,0.531"
-                Tag="MainTag" />
-        </ContentControl>
+        <Grid Margin="0,99,0,0">
+            <ContentControl x:Name="MainContent">
+                <Label
+                    x:Name="Bienvenue_label"
+                    Width="819"
+                    Height="297"
+                    Margin="0,35,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    BorderBrush="Black"
+                    Content="Bienvenue chez loxam"
+                    FontFamily="Bahnschrift SemiBold"
+                    FontSize="72"
+                    RenderTransformOrigin="0.496,0.531" />
+            </ContentControl>
+        </Grid>
 
 
         <Grid

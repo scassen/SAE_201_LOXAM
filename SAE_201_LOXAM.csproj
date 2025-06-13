@@ -12,11 +12,15 @@
   <ItemGroup>
     <None Remove="IMG\256x256bb.jpg" />
     <None Remove="IMG\f567c238ffb4f0ab7644d64aec5e1ce6863c2271.png" />
+    <None Remove="IMG\lllloxam.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="IMG\256x256bb.jpg" />
     <Resource Include="IMG\f567c238ffb4f0ab7644d64aec5e1ce6863c2271.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="IMG\lllloxam.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
