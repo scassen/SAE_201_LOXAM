@@ -11,12 +11,12 @@
     mc:Ignorable="d">
 
     <Grid>
-    
+
 
 
         <Grid Margin="0,55,0,0">
             <TabControl Margin="0,-55,0,55">
-       
+
                 <TabItem Header="Reservation">
                     <Grid Height="395" Background="#FFE5E5E5">
                         <Grid.ColumnDefinitions>
@@ -28,7 +28,8 @@
                             Grid.ColumnSpan="2"
                             Margin="0,50,0,-53"
                             AutoGenerateColumns="False"
-                            CanUserAddRows="False">
+                            CanUserAddRows="False"
+                            IsReadOnly="True">
                             <DataGrid.Columns>
                                 <DataGridTextColumn
                                     Width="*"
@@ -121,6 +122,7 @@
                             Margin="0,44,0,0"
                             VerticalAlignment="Top"
                             AutoGenerateColumns="False"
+                            IsReadOnly="True"
                             ItemsSource="{Binding FilteredClients}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn

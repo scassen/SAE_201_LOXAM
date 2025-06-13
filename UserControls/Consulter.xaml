@@ -81,7 +81,8 @@
                             Margin="0,113,0,-18"
                             AutoGenerateColumns="False"
                             ItemsSource="{Binding Materiels}"
-                            MouseDoubleClick="dgConsulter_MouseDoubleClick">
+                            MouseDoubleClick="dgConsulter_MouseDoubleClick"
+                            IsReadOnly="True">
                             <DataGrid.Columns>
                                 <DataGridTextColumn
                                     Width="*"

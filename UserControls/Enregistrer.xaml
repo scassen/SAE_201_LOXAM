@@ -37,7 +37,8 @@
             Margin="0,-29,0,0"
             AutoGenerateColumns="False"
             CanUserAddRows="False"
-            ItemsSource="{Binding SingleMaterielList}">
+            ItemsSource="{Binding SingleMaterielList}"
+            IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
@@ -144,6 +145,7 @@
             VerticalAlignment="Top"
             AutoGenerateColumns="False"
             CanUserAddRows="False"
+            IsReadOnly="True"
             ItemsSource="{Binding FilteredClients}">
             <DataGrid.Columns>
                 <DataGridTextColumn

@@ -79,6 +79,7 @@
             x:Name="dgReserver"
             Grid.ColumnSpan="2"
             Margin="0,118,0,0"
+            IsReadOnly="True"
             AutoGenerateColumns="False"
             ItemsSource="{Binding Materiels}"
             MouseDoubleClick="dgReserver_MouseDoubleClick">
