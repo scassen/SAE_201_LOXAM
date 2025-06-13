@@ -1,4 +1,4 @@
-﻿// Fichier : Materiel.cs
+﻿
 using Npgsql;
 using System;
 using System.Collections.Generic;

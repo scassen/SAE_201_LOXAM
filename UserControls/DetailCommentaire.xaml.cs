@@ -16,9 +16,7 @@ using SAE_201_LOXAM.Classes;
 
 namespace SAE_201_LOXAM
 {
-    /// <summary>
-    /// Logique d'interaction pour DetailCommentaire.xaml
-    /// </summary>
+
     public partial class DetailCommentaire : UserControl
     {
         public DetailCommentaire(Materiel materiel)

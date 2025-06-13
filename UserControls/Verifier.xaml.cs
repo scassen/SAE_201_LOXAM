@@ -8,9 +8,7 @@ using SAE_201_LOXAM.Classes;
 
 namespace SAE_201_LOXAM
 {
-    /// <summary>
-    /// Logique d'interaction pour Verifier.xaml
-    /// </summary>
+
     public partial class Verifier : UserControl, INotifyPropertyChanged
     {
         private ObservableCollection<Client> clients;

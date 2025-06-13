@@ -1,4 +1,4 @@
-﻿// Fichier : Type.cs
+﻿
 using Npgsql;
 using System;
 using System.Collections.Generic;

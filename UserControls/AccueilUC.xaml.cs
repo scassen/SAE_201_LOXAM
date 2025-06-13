@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace SAE_201_LOXAM
 {
-    /// <summary>
-    /// Logique d'interaction pour AccueilUC.xaml
-    /// </summary>
+
     public partial class AccueilUC : UserControl
     {
         public AccueilUC()

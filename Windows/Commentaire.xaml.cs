@@ -6,15 +6,15 @@ namespace SAE_201_LOXAM
 {
     public partial class Commentaire : Window
     {
-        // Variable d'instance pour stocker le matériel courant
+      
         private Materiel materiel;
 
-        // Constructeur avec paramètre Materiel
+       
         public Commentaire(Materiel mat)
         {
             InitializeComponent();
             materiel = mat;
-            // Pour que le binding fonctionne, on met le DataContext à materiel
+           
             this.DataContext = materiel;
         }
 
@@ -28,7 +28,7 @@ namespace SAE_201_LOXAM
                     return;
                 }
 
-                // On récupère le commentaire depuis la propriété liée
+               
                 string commentaire = materiel.Commentaire ?? "";
 
                 var cmd = new NpgsqlCommand("UPDATE \"main\".materiel SET commentaire = @commentaire WHERE nummateriel = @nummateriel");

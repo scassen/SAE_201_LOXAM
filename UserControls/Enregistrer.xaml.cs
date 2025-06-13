@@ -20,9 +20,7 @@ using System.Windows.Shapes;
 
 namespace SAE_201_LOXAM
 {
-    /// <summary>
-    /// Logique d'interaction pour Enregistrer.xaml
-    /// </summary>
+ 
     public enum Disponibilite {Disponible,Indisponible}
     public partial class Enregistrer : UserControl,INotifyPropertyChanged
     {
