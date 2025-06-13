@@ -235,12 +235,6 @@ decimal prixTotal, Employe employe, Client client, Materiel materiel)
                     var client = agence.Clients.SingleOrDefault(c => c.NumClient == (int)dr["numclient"]);
                     var materiel = agence.Materiels.SingleOrDefault(m => m.NumMateriel == (int)dr["nummateriel"]);
 
-                        if (employe == null || client == null || materiel == null)
-                        {
-                            Console.WriteLine($"[SKIP] Reservation #{dr["numreservation"]} skipped: Missing related entities.");
-                            Console.WriteLine($"  Employe: {(employe == null ? "NOT FOUND" : "OK")}, Client: {(client == null ? "NOT FOUND" : "OK")}, Materiel: {(materiel == null ? "NOT FOUND" : "OK")}");
-                            continue;
-                        }
                     if (dr["dateretourreellelocation"] == DBNull.Value)
                     {
                         lesReservations.Add(new Reservation(
@@ -294,6 +288,53 @@ decimal prixTotal, Employe employe, Client client, Materiel materiel)
         public int Update()
         {
             throw new NotImplementedException();
+        }
+        public List<Reservation> FindAllAvecIdMateriel(Agence agence,int idMateriel)
+        {
+            List<Reservation> lesReservations = new List<Reservation>();
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from \"main\".reservation where nummateriel ="+idMateriel +";"))
+            {
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    var employe = agence.Employes.SingleOrDefault(e => e.NumEmploye == (int)dr["numemploye"]);
+                    var client = agence.Clients.SingleOrDefault(c => c.NumClient == (int)dr["numclient"]);
+                    var materiel = agence.Materiels.SingleOrDefault(m => m.NumMateriel == (int)dr["nummateriel"]);
+
+                    if (dr["dateretourreellelocation"] == DBNull.Value)
+                    {
+                        lesReservations.Add(new Reservation(
+                            (int)dr["numreservation"],
+                            (DateTime)dr["datereservation"],
+                            (DateTime)dr["datedebutlocation"],
+                            (DateTime)dr["dateretoureffectivelocation"],
+
+                            (Decimal)dr["prixtotal"],
+                            employe,
+                            client,
+                            materiel
+                        ));
+                    }
+                    else
+                    {
+                        lesReservations.Add(new Reservation(
+                            (int)dr["numreservation"],
+                            (DateTime)dr["datereservation"],
+                            (DateTime)dr["datedebutlocation"],
+                            (DateTime)dr["dateretoureffectivelocation"],
+                            (DateTime)dr["dateretourreellelocation"],
+                            (Decimal)dr["prixtotal"],
+                            employe,
+                            client,
+                            materiel
+                        ));
+                    }
+                }
+
+
+            }
+            return lesReservations;
         }
 
 

@@ -25,7 +25,7 @@ namespace SAE_201_LOXAM
         public Reserver()
         {
             InitializeComponent();
-            dgReserver.Items.Filter = RechercheMotCleMateriel;
+            dgReserver.Items.Filter = RechercheMateriel;
             this.DataContext = this;
 
             if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.LAgence is not null)
@@ -38,14 +38,56 @@ namespace SAE_201_LOXAM
             }
         }
 
-        private bool RechercheMotCleMateriel(object obj)
+        private bool RechercheMateriel(object obj)
         {
-            if (String.IsNullOrEmpty(Filtre.Text))
-                return true;
             Materiel unMateriel = obj as Materiel;
-            return (unMateriel.NomMateriel.StartsWith(Filtre.Text, StringComparison.OrdinalIgnoreCase)
-            || unMateriel.TypeMateriel.LibelleType.StartsWith(Filtre.Text, StringComparison.OrdinalIgnoreCase) 
-            || unMateriel.TypeMateriel.CategorieType.ToString().StartsWith(Filtre.Text, StringComparison.OrdinalIgnoreCase));
+
+            DateTime? dateDebut = FiltreDebut.SelectedDate;
+            DateTime? dateFin = FiltreFin.SelectedDate;
+            bool filtreTexte = true;
+            bool filtreDate = true;
+
+            if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.LAgence is not null)
+            {
+                List<Reservation> reservations = new Reservation().FindAllAvecIdMateriel(mainWindow.LAgence, unMateriel.NumMateriel);
+
+                if (!String.IsNullOrEmpty(Filtre.Text))
+                {
+                    filtreTexte =
+                        unMateriel.NomMateriel.StartsWith(Filtre.Text, StringComparison.OrdinalIgnoreCase) ||
+                        unMateriel.TypeMateriel.LibelleType.StartsWith(Filtre.Text, StringComparison.OrdinalIgnoreCase) ||
+                        unMateriel.TypeMateriel.CategorieType.ToString().StartsWith(Filtre.Text, StringComparison.OrdinalIgnoreCase);
+                }
+
+                if (dateDebut.HasValue && dateFin.HasValue)
+                {
+                    if (reservations.Count == 0)
+                    {
+                       
+                        filtreDate = true;
+                    }
+                    else
+                    {
+
+                        bool overlap = false;
+
+                        foreach (Reservation res in reservations)
+                        {
+                            if (res.DateDebutLocation < dateFin && res.DateRetourEffectiveLocation > dateDebut)
+                            {
+                                overlap = true;
+                                break;
+                            }
+                        }
+
+                        filtreDate = !overlap;
+
+                        filtreDate = !overlap;
+                    }
+                }
+            }
+
+            return filtreTexte && filtreDate;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -97,7 +139,7 @@ namespace SAE_201_LOXAM
 
         private void Filtre_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            CollectionViewSource.GetDefaultView(dgReserver.ItemsSource).Refresh();
         }
 
 

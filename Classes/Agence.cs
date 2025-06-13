@@ -18,7 +18,8 @@ namespace SAE_201_LOXAM.Classes
         {
             this.Nom = nom;
             try { this.Types = new ObservableCollection<Type>(new Type().FindAll()); } catch (Exception ex) { Console.WriteLine($"Error loading Types: {ex.Message}"); }
-            try { this.Clients = new ObservableCollection<Client>(new Client().FindAll()); } catch (Exception ex) { Console.WriteLine($"Error loading Clients: {ex.Message}"); this.Clients = new ObservableCollection<Client>(); }
+            try { this.Clients = new ObservableCollection<Client>(new Client().FindAll()); } catch (Exception ex) { Console.WriteLine($"Error loading Clients: {ex.Message}");
+                this.Clients = new ObservableCollection<Client>(); }
             try
             {
                 this.Employes = new ObservableCollection<Employe>(new Employe().FindAll());

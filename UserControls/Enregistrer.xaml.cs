@@ -29,6 +29,7 @@ namespace SAE_201_LOXAM
 
         public ObservableCollection<Materiel> SingleMaterielList { get; set; }
         public Materiel SelectedMateriel { get; set; }
+        public decimal PrixTotal { get; set; }
         private ObservableCollection<Client> clients;
         public ObservableCollection<Client> Clients
         {
@@ -91,6 +92,7 @@ namespace SAE_201_LOXAM
            
             SelectedMateriel = materiel;
              SingleMaterielList = new ObservableCollection<Materiel>() { materiel};
+            
             DataContext = this;
             if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.LAgence is not null)
             {
@@ -146,16 +148,18 @@ namespace SAE_201_LOXAM
                     { MessageBox.Show("une reservation ne peut pas durer plus de 5 jours"); }
                     else
                     {
-                        if (SelectedMateriel.EstDisponible(debut.Value, fin.Value, mainWindow.LAgence.Reservations))
+                        if (SelectedMateriel.EstDisponible(debut.Value, fin.Value, mainWindow.LAgence.Reservations)&&SelectedMateriel.EtatMateriel != Etat.EnMaintenance )
                         {
                             EstDisponible = Disponibilite.Disponible;
-                          
+
+                           
                         }
                         else
                         {
                             EstDisponible = Disponibilite.Indisponible;
-                            
+                           
                         }
+                      
                     }
                 }
             }
@@ -168,59 +172,64 @@ namespace SAE_201_LOXAM
                 MessageBox.Show("Il faut sélectionner un client.");
                 return;
             }
-
-            Client selectedClient = client.SelectedItem as Client;
-            var mainWindow = Application.Current.MainWindow as MainWindow;
-            if (mainWindow == null)
-                return;
-
-            var debut = DateDebut.SelectedDate;
-            var fin = DateFin.SelectedDate;
-
-            if (!debut.HasValue || !fin.HasValue)
+            else
             {
-                MessageBox.Show("Veuillez sélectionner une date de début et une date de fin.");
-                return;
-            }
 
-            if ((fin.Value - debut.Value).TotalDays > 5)
-            {
-                MessageBox.Show("Une réservation ne peut pas durer plus de 5 jours.");
-                return;
-            }
+                Client selectedClient = client.SelectedItem as Client;
+                var mainWindow = Application.Current.MainWindow as MainWindow;
+                if (mainWindow == null)
+                    return;
 
-            if (fin.Value < debut.Value)
-            {
-                MessageBox.Show("La date de début ne peut pas être après la date de fin.");
-                return;
-            }
+                var debut = DateDebut.SelectedDate;
+                var fin = DateFin.SelectedDate;
 
-            if (!SelectedMateriel.EstDisponible(debut.Value, fin.Value, mainWindow.LAgence.Reservations))
-            {
-                MessageBox.Show("Matériel indisponible.");
-                return;
-            }
+                if (!debut.HasValue || !fin.HasValue)
+                {
+                    MessageBox.Show("Veuillez sélectionner une date de début et une date de fin.");
+                    return;
+                }
 
-            Reservation resa = new Reservation(
-                GetNextNumReservation(),
-                DateTime.Now,
-                debut.Value,
-                fin.Value,
-                CalculPrixTotal(debut.Value, fin.Value),
-                mainWindow.LAgence.Employes[0],
-                selectedClient,
-                SelectedMateriel
-            );
+                if ((fin.Value - debut.Value).TotalDays > 5)
+                {
+                    MessageBox.Show("Une réservation ne peut pas durer plus de 5 jours.");
+                    return;
+                }
 
-            try
-            {
-                resa.NumReservation = resa.Create();
-                mainWindow.LAgence.Reservations.Add(resa);
-                MessageBox.Show("La réservation a bien été confirmée.");
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("La réservation n'a pas pu être créée.");
+                if (fin.Value < debut.Value)
+                {
+                    MessageBox.Show("La date de début ne peut pas être après la date de fin.");
+                    return;
+                }
+
+                if (!SelectedMateriel.EstDisponible(debut.Value, fin.Value, mainWindow.LAgence.Reservations))
+                {
+                    MessageBox.Show("Matériel indisponible.");
+                    return;
+                }
+
+                Reservation resa = new Reservation(
+                    GetNextNumReservation(),
+                    DateTime.Now,
+                    debut.Value,
+                    fin.Value,
+                    CalculPrixTotal(debut.Value, fin.Value),
+                    mainWindow.LAgence.Employes[0],
+                    selectedClient,
+                    SelectedMateriel
+                );
+
+                try
+                {
+                    resa.NumReservation = resa.Create();
+                    mainWindow.LAgence.Reservations.Add(resa);
+                    PrixTotal = CalculPrixTotal((DateTime)DateDebut.SelectedDate, (DateTime)DateFin.SelectedDate);
+                    MessageBox.Show("La réservation numero " +resa.NumReservation+ " avec un prix de "+ PrixTotal +  " a bien été confirmée.");
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("La réservation n'a pas pu être créée.");
+                }
             }
         }
         private decimal CalculPrixTotal(DateTime debut, DateTime fin)
