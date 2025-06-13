@@ -284,8 +284,31 @@ namespace SAE_201_LOXAM.Classes
             }
 
 
+
             DataAccess.Instance.ExecuteSet(cmd);
         }
+        public void UpdateEtatLoue()
+        {
+
+            var cmd = new NpgsqlCommand("UPDATE \"main\".materiel SET numetat = @numetat WHERE nummateriel = @nummateriel");
+
+            if (this.EtatMateriel == Etat.Disponible)
+            {
+                cmd.Parameters.AddWithValue("@numetat", (int)Etat.Loue);
+                cmd.Parameters.AddWithValue("@nummateriel", this.NumMateriel);
+            }
+
+            else
+            {
+                throw new Exception("Ce materiel est deja loue");
+            }
+
+
+
+            DataAccess.Instance.ExecuteSet(cmd);
+            
+        }
+
 
 
 

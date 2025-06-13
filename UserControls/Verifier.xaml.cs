@@ -58,7 +58,7 @@ namespace SAE_201_LOXAM
         public Verifier()
         {
             InitializeComponent();
-          
+
             this.DataContext = this;
 
             if (Application.Current.MainWindow is MainWindow mainWindow && mainWindow.LAgence is not null)
@@ -115,13 +115,28 @@ namespace SAE_201_LOXAM
         }
         private bool RechercheNumReservation(object obj)
         {
-            if (obj is not Reservation reservation) 
+            if (obj is not Reservation reservation)
                 return false;
-            if (String.IsNullOrWhiteSpace(ClientReservationTextBox.Text))
-                return true;
-            if (int.TryParse(ClientReservationTextBox.Text, out int num))
-                return (reservation.NumReservation == num);
-           return false;
+
+            bool filtreClient = true;
+            bool filtreReservation = true;
+
+
+            if (!string.IsNullOrWhiteSpace(ClientReservationTextBox.Text))
+            {
+                if (int.TryParse(ClientReservationTextBox.Text, out int num))
+                {
+                    filtreReservation = reservation.NumReservation == num;
+                }
+            }
+
+
+            if (!string.IsNullOrWhiteSpace(ClientLocationTextBox_Copy.Text))
+            {
+                filtreClient = reservation.Client.NomClient.StartsWith(ClientLocationTextBox_Copy.Text, StringComparison.OrdinalIgnoreCase);
+            }
+
+            return filtreReservation && filtreClient;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -166,6 +181,64 @@ namespace SAE_201_LOXAM
 
 
 
+
+        }
+        private void ClientLocationReservationTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgVerifier.ItemsSource).Refresh();
+        }
+        private void Button_Click_Valider(object sender, RoutedEventArgs e)
+        {
+            if (dgVerifier.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une reservation", "Attention",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                Reservation resaSelectionne = (Reservation)dgVerifier.SelectedItem;
+                if (resaSelectionne.DateDebutLocation.Date != DateTime.Today)
+                {
+                    MessageBoxResult result = MessageBox.Show(
+                    "Cette réservation n'est pas censée démarrer aujourd'hui, êtes-vous sûr de vouloir la confirmer?",
+                    "Confirmation",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+
+
+                        try
+                        {
+                            Materiel materiel = resaSelectionne.Materiel;
+                            materiel.UpdateEtatLoue();
+
+                            MessageBox.Show("La reservation a bien été validée");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("La reservation n'a pas pu être validée.", "Attention",
+                           MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        Materiel materiel = resaSelectionne.Materiel;
+                        materiel.UpdateEtatLoue();
+
+                        MessageBox.Show("La reservation a bien été validée");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("La reservation n'a pas pu être validée.", "Attention",
+                       MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+                }
+            }
         }
     }
 }

@@ -53,11 +53,11 @@ namespace SAE_201_LOXAM.Classes
             this.Client = client;
             this.Materiel = materiel;
         }
-        public Reservation( DateTime dateReservation, DateTime dateDebutLocation,
+        public Reservation(DateTime dateReservation, DateTime dateDebutLocation,
 DateTime dateRetourEffectiveLocation,
 decimal prixTotal, Employe employe, Client client, Materiel materiel)
         {
-           
+
             this.DateReservation = dateReservation;
             this.DateDebutLocation = dateDebutLocation;
             this.DateRetourEffectiveLocation = dateRetourEffectiveLocation;
@@ -206,7 +206,7 @@ decimal prixTotal, Employe employe, Client client, Materiel materiel)
                 cmdInsert.Parameters.AddWithValue("numemploye", this.Employe.NumEmploye);
                 cmdInsert.Parameters.AddWithValue("numclient", this.Client.NumClient);
                 cmdInsert.Parameters.AddWithValue("nummateriel", this.Materiel.NumMateriel);
-                cmdInsert.Parameters.AddWithValue("prixtotal",this.PrixTotal);
+                cmdInsert.Parameters.AddWithValue("prixtotal", this.PrixTotal);
                 nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
             }
             this.NumReservation = nb;
@@ -226,73 +226,6 @@ decimal prixTotal, Employe employe, Client client, Materiel materiel)
         {
             List<Reservation> lesReservations = new List<Reservation>();
             using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from \"main\".reservation ;"))
-            {
-                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
-
-                foreach (DataRow dr in dt.Rows)
-                {
-                    var employe = agence.Employes.SingleOrDefault(e => e.NumEmploye == (int)dr["numemploye"]);
-                    var client = agence.Clients.SingleOrDefault(c => c.NumClient == (int)dr["numclient"]);
-                    var materiel = agence.Materiels.SingleOrDefault(m => m.NumMateriel == (int)dr["nummateriel"]);
-
-                    if (dr["dateretourreellelocation"] == DBNull.Value)
-                    {
-                        lesReservations.Add(new Reservation(
-                            (int)dr["numreservation"],
-                            (DateTime)dr["datereservation"],
-                            (DateTime)dr["datedebutlocation"],
-                            (DateTime)dr["dateretoureffectivelocation"],
-                            
-                            (Decimal)dr["prixtotal"],
-                            employe,
-                            client,
-                            materiel
-                        ));
-                    }
-                    else
-                    {
-                        lesReservations.Add(new Reservation(
-                            (int)dr["numreservation"],
-                            (DateTime)dr["datereservation"],
-                            (DateTime)dr["datedebutlocation"],
-                            (DateTime)dr["dateretoureffectivelocation"],
-                            (DateTime)dr["dateretourreellelocation"],
-                            (Decimal)dr["prixtotal"],
-                            employe,
-                            client,
-                            materiel
-                        ));
-                    }
-                    }
-
-
-            }
-            return lesReservations;
-        }
-
-        public List<Reservation> FindAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Reservation> FindBySelection(string criteres)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Read()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Update()
-        {
-            throw new NotImplementedException();
-        }
-        public List<Reservation> FindAllAvecIdMateriel(Agence agence,int idMateriel)
-        {
-            List<Reservation> lesReservations = new List<Reservation>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from \"main\".reservation where nummateriel ="+idMateriel +";"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
 
@@ -337,6 +270,72 @@ decimal prixTotal, Employe employe, Client client, Materiel materiel)
             return lesReservations;
         }
 
+        public List<Reservation> FindAll()
+        {
+            throw new NotImplementedException();
+        }
 
+        public List<Reservation> FindBySelection(string criteres)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
+        }
+        public List<Reservation> FindAllAvecIdMateriel(Agence agence, int idMateriel)
+        {
+            List<Reservation> lesReservations = new List<Reservation>();
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from \"main\".reservation where nummateriel =" + idMateriel + ";"))
+            {
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    var employe = agence.Employes.SingleOrDefault(e => e.NumEmploye == (int)dr["numemploye"]);
+                    var client = agence.Clients.SingleOrDefault(c => c.NumClient == (int)dr["numclient"]);
+                    var materiel = agence.Materiels.SingleOrDefault(m => m.NumMateriel == (int)dr["nummateriel"]);
+
+                    if (dr["dateretourreellelocation"] == DBNull.Value)
+                    {
+                        lesReservations.Add(new Reservation(
+                            (int)dr["numreservation"],
+                            (DateTime)dr["datereservation"],
+                            (DateTime)dr["datedebutlocation"],
+                            (DateTime)dr["dateretoureffectivelocation"],
+
+                            (Decimal)dr["prixtotal"],
+                            employe,
+                            client,
+                            materiel
+                        ));
+                    }
+                    else
+                    {
+                        lesReservations.Add(new Reservation(
+                            (int)dr["numreservation"],
+                            (DateTime)dr["datereservation"],
+                            (DateTime)dr["datedebutlocation"],
+                            (DateTime)dr["dateretoureffectivelocation"],
+                            (DateTime)dr["dateretourreellelocation"],
+                            (Decimal)dr["prixtotal"],
+                            employe,
+                            client,
+                            materiel
+                        ));
+                    }
+                }
+
+
+            }
+            return lesReservations;
+
+        }
     }
 }

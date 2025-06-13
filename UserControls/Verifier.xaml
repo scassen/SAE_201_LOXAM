@@ -18,66 +18,18 @@
         <Grid Margin="0,55,0,0">
             <TabControl Margin="0,-55,0,55">
                 <!--  Onglet Location  -->
-                <TabItem FlowDirection="RightToLeft" Header="Client">
-                    <TabItem.Background>
-                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                            <GradientStop Color="#FFF0F0F0" />
-                            <GradientStop Offset="1" Color="#FFE5E5E5" />
-                        </LinearGradientBrush>
-                    </TabItem.Background>
 
-                    <Grid
-                        Height="350"
-                        Background="#FFE5E5E5"
-                        FlowDirection="LeftToRight">
-                        <DataGrid
-                            Height="348"
-                            Margin="0,44,0,0"
-                            VerticalAlignment="Top"
-                            AutoGenerateColumns="False"
-                            ItemsSource="{Binding FilteredClients}">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn
-                                    Width="*"
-                                    Binding="{Binding NumClient}"
-                                    Header="Num client" />
-                                <DataGridTextColumn
-                                    Width="*"
-                                    Binding="{Binding NomClient}"
-                                    Header="Nom" />
-                                <DataGridTextColumn
-                                    Width="*"
-                                    Binding="{Binding PrenomClient}"
-                                    Header="Prénom" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-
-                        <Label
-                            x:Name="Client_location_label"
-                            Width="155"
-                            Height="27"
-                            Margin="182,-1,0,0"
-                            Padding="5"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Content="Rechercher par nom client :" />
-                        <TextBox
-                            x:Name="ClientLocationTextBox"
-                            Width="120"
-                            Margin="0,4,0,0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Top"
-                            TextChanged="ClientLocationTextBox_TextChanged"
-                            TextWrapping="Wrap" />
-
-                    </Grid>
-                </TabItem>
 
                 <!--  Onglet Reservation  -->
                 <TabItem Header="Reservation">
                     <Grid Height="395" Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*" />
+                            <ColumnDefinition Width="769*" />
+                        </Grid.ColumnDefinitions>
                         <DataGrid
                             x:Name="dgVerifier"
+                            Grid.ColumnSpan="2"
                             Margin="0,50,0,-53"
                             AutoGenerateColumns="False"
                             CanUserAddRows="False">
@@ -102,34 +54,125 @@
                         </DataGrid>
                         <Label
                             x:Name="Client_reservation_label"
-                            Margin="217,0,0,0"
+                            Grid.Column="1"
+                            Margin="364,-1,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Content="Rechercher par numReservation:" />
                         <TextBox
                             x:Name="ClientReservationTextBox"
+                            Grid.Column="1"
                             Width="120"
-                            Margin="402,4,0,0"
+                            Margin="549,4,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             TextChanged="ClientReservationTextBox_TextChanged"
                             TextWrapping="Wrap" />
                         <Label
+                            Grid.ColumnSpan="2"
                             Margin="0,19,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Content="Reservation de location :" />
                         <Button
-                            Margin="699,10,0,0"
+                            Grid.Column="1"
+                            Margin="669,-3,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Background="#FFE62020"
                             Click="Button_Click"
                             Content="Supprimer" />
+                        <Label
+                            x:Name="Client_location_label_Copy"
+                            Grid.Column="1"
+                            Width="155"
+                            Height="27"
+                            Margin="67,-2,0,0"
+                            Padding="5"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content="Rechercher par nom client :" />
+                        <TextBox
+                            x:Name="ClientLocationTextBox_Copy"
+                            Grid.Column="1"
+                            Width="120"
+                            Margin="222,4,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            TextChanged="ClientLocationReservationTextBox_TextChanged"
+                            TextWrapping="Wrap" />
+                    </Grid>
+                </TabItem>
+                <TabItem FlowDirection="RightToLeft" Header="Client">
+                    <TabItem.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="#FFF0F0F0" />
+                            <GradientStop Offset="1" Color="#FFE5E5E5" />
+                        </LinearGradientBrush>
+                    </TabItem.Background>
+
+                    <Grid
+                        Height="350"
+                        Background="#FFE5E5E5"
+                        FlowDirection="LeftToRight">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="39*" />
+                            <ColumnDefinition Width="358*" />
+                        </Grid.ColumnDefinitions>
+                        <DataGrid
+                            Grid.ColumnSpan="2"
+                            Height="348"
+                            Margin="0,44,0,0"
+                            VerticalAlignment="Top"
+                            AutoGenerateColumns="False"
+                            ItemsSource="{Binding FilteredClients}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding NumClient}"
+                                    Header="Num client" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding NomClient}"
+                                    Header="Nom" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding PrenomClient}"
+                                    Header="Prénom" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Label
+                            x:Name="Client_location_label"
+                            Grid.Column="1"
+                            Width="155"
+                            Height="27"
+                            Margin="104,-1,0,0"
+                            Padding="5"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content="Rechercher par nom client :" />
+                        <TextBox
+                            x:Name="ClientLocationTextBox"
+                            Grid.Column="1"
+                            Width="120"
+                            Margin="259,4,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            TextChanged="ClientLocationTextBox_TextChanged"
+                            TextWrapping="Wrap" />
+
                     </Grid>
                 </TabItem>
             </TabControl>
         </Grid>
+        <Button
+            Margin="797,24,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#FFE62020"
+            Click="Button_Click_Valider"
+            Content="valider" />
 
 
     </Grid>
