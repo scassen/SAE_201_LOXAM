@@ -35,8 +35,9 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             FontSize="20"
-            Text="boultchi"
-            TextWrapping="Wrap" TextAlignment="Center" />
+            Text=""
+            TextAlignment="Center"
+            TextWrapping="Wrap" />
         <Label
             x:Name="Identifiant_label"
             Margin="0,92,0,0"
@@ -61,7 +62,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             FontSize="20"
-            Password="9E6r2Z" />
+            Password="" />
         <Button
             x:Name="Button_Valider"
             Width="122"
