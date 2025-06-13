@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SAE_201_LOXAM.Classes.Agence">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAAAAAAAAAECAAIBAgACAAIAAAAAAAAAIEAAA=</HashCode>
+      <FileName>Classes\Agence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_201_LOXAM.Classes.Client" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAIIAAAAAAAAgAAQCAAoggEAAEJAgAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Client.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SAE_201_LOXAM.Classes.DataAccess" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAgAAAABIBAAAABAABAAQAgCABAAAAA=</HashCode>
+      <FileName>Classes\DataAccess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_201_LOXAM.Classes.Employe" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAAAACAAIAgAAQCIAggAECAEIAAAAQAgAgEAI=</HashCode>
+      <FileName>Classes\Employe.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SAE_201_LOXAM.Classes.LogError" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\LogError.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_201_LOXAM.Classes.Materiel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUgABCgIgAQgASAAEAUCAAgggEAgEBAAIACQIBAAAI=</HashCode>
+      <FileName>Classes\Materiel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SAE_201_LOXAM.Classes.Reservation" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAQAIAYEAAQCgAQCIAggAGCAEAAiAAABAAEAAQ=</HashCode>
+      <FileName>Classes\Reservation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SAE_201_LOXAM.Classes.Type" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAAAAAAACAAAAQiAAgAAEBAEACAAAEAAAABAA=</HashCode>
+      <FileName>Classes\Type.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="SAE_201_LOXAM.Classes.ICrud&lt;T&gt;" Collapsed="true">
+    <Position X="5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAQCAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\ICrud.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="SAE_201_LOXAM.Classes.Certification" Collapsed="true">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAABEAAAAAAA=</HashCode>
+      <FileName>Classes\Client.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SAE_201_LOXAM.Classes.Role" Collapsed="true">
+    <Position X="5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Employe.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SAE_201_LOXAM.Classes.Etat" Collapsed="true">
+    <Position X="8.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Materiel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SAE_201_LOXAM.Classes.Categorie" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Type.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
